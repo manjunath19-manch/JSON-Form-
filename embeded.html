@@ -1,0 +1,337 @@
+<html>
+
+<head>
+</script>
+
+    <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #99AAAB;
+            color: white;
+            text-align: center;
+        }
+
+        .center {
+            
+            display: block;
+            margin-left: 500px;
+            margin-right: 500px;
+            width: 20%;
+        }
+    </style>
+
+
+
+
+
+
+</head>
+
+<body>
+    
+    <header><img src="logo.png" width="100px" height="100px" class="center"></header>
+    
+    
+    
+    
+   
+                    <div >
+                        
+                        <form id="myData"  ></form>
+     <!-- <div id="#hide" >
+         <p  > Thank u for Clicking me</p>
+         <button onclick={}>Ok</button>
+         
+         
+         
+        </div> -->
+     
+    </div>
+    
+    
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <script>
+        fetch('form.json')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                appendData(data);
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+          // $(document).ready(function(){
+                function appendData(data) {
+                   
+                        // $('div').text(data[0].title);
+                        // $('input').attr("type",data[0].type);
+                        for (var i = 0; i < data.length; i++)
+                        {
+
+                            $('<div> </div>').text(data[i].title).appendTo('#myData');
+                          
+                            $('<input >   </input').attr({type:data[i].type,id:data[i].id}).appendTo('#myData');
+                           
+                           
+                           // $('<input >   </input').attr('id',data[i].id,'type',data[i].type).appendTo('#myData');
+                            
+                         //   $('<input >   </input').attr().appendTo('#mydata');
+                            
+                           
+
+                            // $('<div> </div>').text(data[5].title).appendTo('#myData');
+                            // $('<input>   </input').attr('type',data[5].type).appendTo('#myData');
+
+
+
+
+                            
+
+
+
+                              
+
+
+                        }
+                        
+
+                   
+                         
+    
+                             
+  
+                }
+              
+                $("form").on('submit',function(e){
+                    e.preventDefault();
+                    var firstname = $('#fname').val();
+                    var lastname = $('#lname').val();
+                    var email = $('#email').val();
+                    var password = $('#password').val();
+                    var mobile = $('#mobile').val();
+                   
+                  
+                    
+                    
+                    
+                    
+                   
+                
+                 var rfname=/^[A-Z][a-z]+$/;
+                 var rlname=/^[A-Z][a-z]+$/;
+                 var remail = /(^[A-Za-z0-9\.]+)@([A-Za-z0-9\.]+).([A-z]{2,8})/;
+                 var rpassword =/(^[A-z]{6}$)/;
+                 var rmobile = /(^[0-9]{10}$)/;
+
+                 var reg_fname = (rfname.test(firstname));
+                 var reg_lname =(rlname.test(lastname));
+                 var reg_email = (remail.test(email));
+                 var reg_password = (rpassword.test(password));
+                 var reg_mobile = (rmobile.test(mobile));
+                //  if(!reg_fname)
+                //  {
+
+                //     $("#fname").parent().after("<div class='firstname' style='color:red;margin-bottom: 20px;'>Please Enter a Valid First Name</div>");
+                //      $('#fname').focus();
+                //     focusSet = true;
+                //     return false;
+                   
+                    
+
+                // }else {
+                //     $("#fname").parent().next(".firstname").remove();
+
+                // }
+               
+                
+
+                // if(!reg_lname)
+                //  {
+
+                //     $("#lname").parent().after("<div class='lastname' style='color:red;margin-bottom: 20px;'>Please Enter a Valid Last  Name</div>"); 
+                //      $('#lname').focus();
+                //     focusSet = true;
+                //     return false;
+                
+
+                // } else
+                // {
+                //     $("#lname").parent().next(".lastname").remove();
+                    
+
+                // }
+                // if(!reg_email)
+                //  {
+
+                //     $("#email").parent().after("<div class='email' style='color:red;margin-bottom: 20px;'>Please Enter a Valid Email</div>");
+                //      $('#email').focus();
+                //     focusSet = true;
+                //     return false;
+
+                // } else
+                // {
+                //     $("#email").parent().next(".email").remove();
+                   
+
+                // }
+                // if(!reg_password)
+                //  {
+
+                //     $("#password").parent().after("<div class='password' style='color:red;margin-bottom: 20px;'>Please Enter a Valid Password</div>");
+                //      $('#password').focus();
+                //     focusSet = true;
+                //     return false;
+
+                // } else
+                // {
+                //     $("#password").parent().next(".password").remove();
+                    
+
+                // }
+                // if(!reg_mobile)
+                //  {
+
+                //     $("#mobile").parent().after("<div class='mobile' style='color:red;margin-bottom: 20px;'>Please Enter a Valid Mobile Number</div>");
+                //     e.preventDefault(); 
+                //      $('#mobile').focus();
+                //     focusSet = true;
+                //     return false;
+
+                // } else
+                // {
+                //     $("#mobile").parent().next(".mobile").remove();
+                //     return true;
+                    
+
+                // }
+            });
+                    
+
+                  
+                 
+               
+
+                
+                
+                
+               
+              
+                
+
+    //      if (!$('#fname').val()) {
+    //     if ($("#fname").parent().next(".validation").length == 0) // only add if not added
+    //     {
+    //       $("#fname").parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please enter email address</div>");
+    //     }
+    //     e.preventDefault(); // prevent form from POST to server
+    //     $('#fname').focus();
+    //     focusSet = true;
+    //   } else {
+    //     $("#fname").parent().next(".validation").remove(); // remove it
+    //   }
+    //   if (!$('#lname').val()) {
+    //     if ($("#lname").parent().next(".validation").length == 0) // only add if not added
+    //     {
+    //       $("#lname").parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please enter password</div>");
+    //     }
+    //     e.preventDefault(); // prevent form from POST to server
+    //     if (!focusSet) {
+    //       $("#lname").focus();
+    //     }
+    //   } else {
+    //     $("#lname").parent().next(".validation").remove(); // remove it
+    //   }
+
+
+                
+                
+        
+                
+
+           
+
+                
+
+                
+
+            //  });
+            
+
+        
+
+
+        
+
+
+
+
+        
+
+
+
+
+    </script>
+
+
+<br>
+
+
+<div class="footer">
+    <p style="text-align: left;">&#169;&nbsp;CopyRight 2020
+        <span id="demo" style="float:right;"></span>
+    </p>
+    
+    
+    
+</div>
+<script>
+    var d = new Date();
+        document.getElementById("demo").innerHTML = d;
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,440 @@
+<html>
+
+<head>
+
+<link rel="stylesheet" href="mystyle.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+ 
+
+</head>
+
+<body>
+    <header><img src="logo.png" width="100px" height="100px" class="center"></header>
+    
+    <div id="userdetails">
+    <form id="mydata"  ></form>
+    
+     </div>
+     <div id="userdisplay" style="display: none;">
+    
+     </div>
+    
+    
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <script>
+        
+        fetch('form.json')
+            .then(function (response) {
+                return response.json();
+            })  
+            .then(function (data) {
+                appendData(data);
+
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+           
+                function appendData(data) {
+                   
+                        // $('div').text(data[0].title);
+                        // $('input').attr("type",data[0].type);
+                        $( document ).ready(function() {
+                        // for (var i = 0; i < data.length; i++)
+                        // {
+
+                        //    $('<div>    </div>').attr('id',data[i].did).text(data[i].title).appendTo('#mydata');
+                        //      $('</br>').appendTo('#'+data[i].did);
+                        //     $('<input>').attr({type:data[i].type,id:data[i].id,name:data[i].id,maxlength:data[i].maxlength}).appendTo('#'+data[i].did);
+                        //     $('<p >  </p>').attr('id',data[i].pid).attr('class','validation').appendTo('#'+data[i].did);
+                            
+                           
+
+                        
+                        // } 
+                        for (var i = 0; i < data.length; i++)
+                        {
+                            var res=data[i].type;
+                            switch(res)
+                            {
+                                case "text":
+                                                  $('<label>    </label>').attr('id',data[i].did).text(data[i].title).appendTo('#mydata');
+                                                  $('</br>').appendTo('#'+data[i].did);
+                                                  $('<input>').attr({type:data[i].type,id:data[i].id,name:data[i].id,maxlength:data[i].maxlength}).appendTo('#'+data[i].did);
+                                                  $('<p >  </p>').attr('id',data[i].pid).attr('class','validation').appendTo('#'+data[i].did);
+                                                 break;
+
+                                case "password": $('<label>    </label>').attr('id',data[i].did).text(data[i].title).appendTo('#mydata');
+                                                 $('</br>').appendTo('#'+data[i].did);
+                                                  $('<input>').attr({type:data[i].type,id:data[i].id,name:data[i].id,maxlength:data[i].maxlength}).appendTo('#'+data[i].did);
+                                                  $('<p >  </p>').attr('id',data[i].pid).attr('class','validation').appendTo('#'+data[i].did);
+                                                 break;
+
+                                case "dropdown": $('<div>    </div>').attr('id',data[i].did).text(data[i].title).appendTo('#mydata');
+                                                 $('</br>').appendTo('#'+data[i].did);
+                                                 $('<select> </select>').attr('id',data[i].id).appendTo("#mydata");
+                                                 $('<option></option>').attr({value:data[i].value1}).text("Select Gender").appendTo("#gender");
+                                                 $('<option></option>').attr({value:data[i].value2}).text("Male").appendTo("#gender");
+                                                 $('<option></option>').attr({value:data[i].value3}).text("Female").appendTo("#gender");
+
+                                                 break;
+
+                                
+
+                    
+                                case "submit": $('<div>    </div>').attr('id',data[i].did).text(data[i].title).appendTo('#mydata');
+                                             $('</br>').appendTo('#'+data[i].did);
+                                              $('<input>').attr({type:data[i].type,id:data[i].id,name:data[i].id,maxlength:data[i].maxlength}).appendTo('#'+data[i].did);
+                                                $('<p >  </p>').attr('id',data[i].pid).attr('class','validation').appendTo('#'+data[i].did);
+                                                break;
+                                
+                                default:
+                                                console.log("sucess");
+
+                                
+
+                            }
+                            
+                          
+                            
+                           
+
+                        
+                        } 
+                        
+                       
+                        $(function(){
+                          $("#date").datepicker({
+                            dateFormat: "dd-mm-yy"
+                          });
+                        });
+                    });
+                            
+                }
+                $("form").on('submit',function(e){
+                    e.preventDefault();
+                    checkvalid();
+
+                });
+                $("form").on('focusout',function(e){
+                    e.preventDefault();
+                   
+                   
+
+                  checkvalid();
+                    
+                    
+                });
+                
+                
+                 
+                    function checkvalid()
+                    {
+
+                    
+                      
+                 var firstname = $('#fname').val();
+                 var lastname = $('#lname').val();
+                 var email = $('#email').val();
+                 var password = $('#password').val();
+                 var mobile = $('#mobile').val();
+                 var date = $('#date').val();
+                 console.log(date);
+                
+                 var rfname=/^[A-Z][a-z]+$/;
+                 var rlname=/^[A-Z][a-z]+$/;
+                 var remail = /(^[A-Za-z0-9\.]+)@([A-Za-z0-9\.]+).([A-z]{2,8})/;
+                 var rpassword =/(^[A-Z]([a-z0-9]){5}$)/;
+                 var rmobile = /(^[0-9]{10}$)/;
+
+                 var reg_fname = (rfname.test(firstname));
+                 var reg_lname =(rlname.test(lastname));
+                 var reg_email = (remail.test(email));
+                 var reg_password = (rpassword.test(password));
+                 var reg_mobile = (rmobile.test(mobile));
+                 var status = validate();
+                 if(status == true)
+                 {
+                     localStorage.setItem("FirstName",firstname);
+                     localStorage.setItem("lastname",lastname);
+                     localStorage.setItem("email",email);
+                     localStorage.setItem("password",password)
+                     localStorage.setItem("mobile",mobile);    
+                    $('#userdetails').hide();
+                    $('<div ></div>').text("FirstName           :     " +  localStorage.getItem('FirstName')).appendTo('#userdisplay');
+                    $('<div ></div>').text("LastName            :     " +   localStorage.getItem('lastname') ).appendTo('#userdisplay');
+                    $('<div ></div>').text("Email               :     " +   localStorage.getItem('email') ).appendTo('#userdisplay');
+                    $('<div ></div>').text("password            :     " +   localStorage.getItem('password') ).appendTo('#userdisplay');
+                    $('<div ></div>').text("mobile              :     " +   localStorage.getItem('mobile') ).appendTo('#userdisplay');
+                    $('</br>').appendTo('#userdisplay');
+                    $('<button/>', {
+                         text: 'Back', 
+                             id: 'btn',
+                         click: function () { 
+
+                           location.reload();
+                          }
+                        }).appendTo('#userdisplay');
+                   
+
+
+                    $('#userdisplay').show();
+
+                    
+
+
+                
+                 }else
+                 {
+                    
+
+                 }
+                     
+                   
+                  
+                    
+                    
+                    
+                    
+                   
+                
+                
+
+                
+                
+
+                    
+                 function validate()
+                 {
+                    
+                         if(!reg_fname )
+                     {
+                                $('#pfname').text("Enter a First Name");
+                           // e.preventDefault();       
+                     }
+                    else 
+                    {
+                            $('#pfname').text("");  
+
+                    }
+                    if(!reg_lname)
+                {
+                      $('#plname').text("Enter a Last Name");
+                   // e.preventDefault();
+                  } else
+                  {
+
+                       $('#plname').text("");   
+                }
+                if(!reg_email)
+                 {
+                    $('#pemail').text("Enter a Valid Email");
+                 // e.preventDefault();
+
+                } else
+                {
+                    
+                  
+                    $('#pemail').text("");
+                   
+                   
+
+                }
+                if(password=="")
+                 {
+
+                    $('#ppassword').text("Please Fill the Field");
+                  //  e.preventDefault();
+                    // $('#ppassword').on('keyup',function(e){
+                    //     $('#ppassword').text("First Character must Capital and Must be 6 Character Long");
+
+                    // })
+
+                } else if(!reg_password)
+                {
+                    $('#ppassword').text("First Character must Capital and Must be 6 Character Long");
+                   // $('#ppassword').text("");
+                    
+
+                }
+                else {
+                    $('#ppassword').text("");
+
+                }
+                if(!reg_mobile)
+                 {
+
+                   $('#pmobile').text("Enter a Valid Mobile Number");
+                 //   e.preventDefault();
+                 return false;
+                   
+
+                } else if(firstname!=""&&lastname!=""&&email!=""&&password!=""&&mobile!=""&&date!="")
+                {
+                    
+                   // $("form").on('submit',function(e){
+                    //e.preventDefault();
+                    //checkvalid();
+                    return true;
+
+               // });
+                    
+                }
+                else{
+                    $('#pmobile').text("");
+                   
+                }
+
+
+
+                
+                
+               
+
+
+                 }
+
+
+
+
+
+
+
+
+
+
+                 
+
+                
+             }
+                
+          //      });
+            
+                    
+
+                  
+                 
+               
+
+                
+                
+                
+               
+              
+                
+
+    //      if (!$('#fname').val()) {
+    //     if ($("#fname").parent().next(".validation").length == 0) // only add if not added
+    //     {
+    //       $("#fname").parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please enter email address</div>");
+    //     }
+    //     e.preventDefault(); // prevent form from POST to server
+    //     $('#fname').focus();
+    //     focusSet = true;
+    //   } else {
+    //     $("#fname").parent().next(".validation").remove(); // remove it
+    //   }
+    //   if (!$('#lname').val()) {
+    //     if ($("#lname").parent().next(".validation").length == 0) // only add if not added
+    //     {
+    //       $("#lname").parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please enter password</div>");
+    //     }
+    //     e.preventDefault(); // prevent form from POST to server
+    //     if (!focusSet) {
+    //       $("#lname").focus();
+    //     }
+    //   } else {
+    //     $("#lname").parent().next(".validation").remove(); // remove it
+    //   }
+
+
+                
+                
+        
+                
+
+           
+
+                
+
+                
+
+            //  });
+            
+
+        
+
+
+        
+
+
+
+
+        
+
+
+
+
+    </script>
+   
+
+
+<br>
+
+
+<div class="footer">
+    <p  style="text-align: left;color:white">&#169;&nbsp;CopyRight 2020
+        <span id="demo" style="float:right;"></span>
+    </p>
+    
+    
+    
+</div>
+<script>
+    var d = new Date();
+        document.getElementById("demo").innerHTML = d;
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+[
+    {
+        "pid":"pfname",
+        "did":"dfname",
+        "id":"fname",
+        "title": "FirstName:",
+        "pattern":"",
+        "type": "text",
+        "maxlength":""
+    },
+    {
+        "pid":"plname",
+        "did":"dlname",
+        "id":"lname",
+        "pattern":"",
+        "title": "LastName:",
+        "type": "text",
+        "maxlength":""
+    },
+    {
+        "pid":"pemail",
+        "did":"demail",
+        "id":"email",
+        "pattern":"",
+        "title": "Email:",
+        "type": "text",
+        "maxlength":""
+    },
+    {
+        "pid":"ppassword",
+        "did":"dpassword",
+        "id":"password",
+        "pattern":"",
+        "title": "Password:",
+        "type": "password",
+        "maxlength":6
+    },
+    {
+        "pid":"pmobile",
+        "did":"dmobile",
+        "id":"mobile",
+        "title": "Mobile:",
+        "pattern":"return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))",
+        "type": "text",
+        "maxlength":10
+    },
+    {
+        "pid":"pdate",
+        "did":"ddate",
+        "id":"date",
+        "pattern":"",
+        "title": "Date of Birth:",
+        "type": "text",
+        "maxlength":""
+
+    },
+    {
+        "pid":"pgender",
+        "did":"dgender",
+        "id":"gender",
+        "pattern":"",
+        "title": "Gender:",
+        "value1":"Select a Gender",
+        "value2":"Male",
+        "value3":"Female",
+        "type": "dropdown",
+        "maxlength":""
+
+    },
+    {
+        "pid":"",
+        "id":"",
+        "title":"",
+        "pattern":"",
+        "did":"dsubmit",
+        "type":"submit",
+        "maxlength":""
+    }
+   
+    
+]
