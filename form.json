@@ -5,8 +5,8 @@
         "id":"fname",
         "title": "FirstName:",
         "pattern":"",
-        "type": "text",
-        "maxlength":""
+        "type": "text"
+       
     },
     {
         "pid":"plname",
@@ -14,8 +14,8 @@
         "id":"lname",
         "pattern":"",
         "title": "LastName:",
-        "type": "text",
-        "maxlength":""
+        "type": "text"
+        
     },
     {
         "pid":"pemail",
@@ -52,6 +52,17 @@
         "title": "Date of Birth:",
         "type": "text",
         "maxlength":""
+
+    },
+    {
+    
+            "pid":"ptimer",
+            "did":"timer",
+            "id":"timer",
+            "pattern":"",
+            "title": "Timer:",
+            "type": "text",
+            "maxlength":""    
 
     },
     {

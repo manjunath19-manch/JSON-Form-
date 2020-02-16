@@ -77,9 +77,9 @@
                                 case "dropdown": $('<div>    </div>').attr('id',data[i].did).text(data[i].title).appendTo('#mydata');
                                                  $('</br>').appendTo('#'+data[i].did);
                                                  $('<select> </select>').attr('id',data[i].id).appendTo("#mydata");
-                                                 $('<option></option>').attr({value:data[i].value1}).text("Select Gender").appendTo("#gender");
-                                                 $('<option></option>').attr({value:data[i].value2}).text("Male").appendTo("#gender");
-                                                 $('<option></option>').attr({value:data[i].value3}).text("Female").appendTo("#gender");
+                                                 $('<option></option>').attr({value:data[i].value1}).text(data[i].value1).appendTo("#gender");
+                                                 $('<option></option>').attr({value:data[i].value2}).text(data[i].value2).appendTo("#gender");
+                                                 $('<option></option>').attr({value:data[i].value3}).text(data[i].value3).appendTo("#gender");
 
                                                  break;
 
@@ -93,7 +93,7 @@
                                                 break;
                                 
                                 default:
-                                                console.log("sucess");
+                                                console.log("defaultcase");
 
                                 
 
@@ -112,6 +112,7 @@
                             dateFormat: "dd-mm-yy"
                           });
                         });
+                        
                     });
                             
                 }
