@@ -7,6 +7,10 @@
     color: white;
     text-align: center;
 }
+.required:before{
+    content:"*" ;
+    color:red   
+    }
 
 .center {
     

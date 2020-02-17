@@ -1,31 +1,45 @@
 <html>
 
 <head>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="mystyle.css">
+<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 
+<!-- <link rel="stylesheet" href="jquery.timepicker.css"> -->
 </head>
 
 <body>
     <header><img src="logo.png" width="100px" height="100px" class="center"></header>
     
     <div id="userdetails">
-    <form id="mydata"  ></form>
+    <form id="mydata" style="margin-left:20px;"  ></form>
     
      </div>
      <div id="userdisplay" style="display: none;">
     
      </div>
+
+     
     
     
     
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script> 
+    
+   
+    
+    
+   
+    
+    
     
     <script>
+          
         
         fetch('form.json')
             .then(function (response) {
@@ -41,60 +55,87 @@
            
                 function appendData(data) {
                    
-                        // $('div').text(data[0].title);
-                        // $('input').attr("type",data[0].type);
-                        $( document ).ready(function() {
-                        // for (var i = 0; i < data.length; i++)
-                        // {
-
-                        //    $('<div>    </div>').attr('id',data[i].did).text(data[i].title).appendTo('#mydata');
-                        //      $('</br>').appendTo('#'+data[i].did);
-                        //     $('<input>').attr({type:data[i].type,id:data[i].id,name:data[i].id,maxlength:data[i].maxlength}).appendTo('#'+data[i].did);
-                        //     $('<p >  </p>').attr('id',data[i].pid).attr('class','validation').appendTo('#'+data[i].did);
-                            
-                           
-
                         
-                        // } 
+                        $( document ).ready(function() {
+                        
                         for (var i = 0; i < data.length; i++)
                         {
                             var res=data[i].type;
                             switch(res)
                             {
                                 case "text":
-                                                  $('<label>    </label>').attr('id',data[i].did).text(data[i].title).appendTo('#mydata');
+                                                  $('<div>    </div>').attr('id',data[i].did).text(data[i].title).appendTo('#mydata');
                                                   $('</br>').appendTo('#'+data[i].did);
-                                                  $('<input>').attr({type:data[i].type,id:data[i].id,name:data[i].id,maxlength:data[i].maxlength}).appendTo('#'+data[i].did);
+                                                  $('<input>').attr({type:data[i].type,id:data[i].id,name:data[i].id,class:data[i].class}).appendTo('#'+data[i].did);
                                                   $('<p >  </p>').attr('id',data[i].pid).attr('class','validation').appendTo('#'+data[i].did);
+                                                  if(data[i].Mandatory == "true"){
+
+                                                    $('#'+data[i].id).prop('required',true);
+                                                    $('#'+data[i].did).prop('class','required')
+                                                     
+
+
+                                                  }
+                                                  else if(data[i].Mandatory == "false")
+                                                  {
+                                                    $('#'+data[i].id).prop('required',false);
+                                                  }else{
+                                                        
+
+                                                  }
+                    
                                                  break;
 
-                                case "password": $('<label>    </label>').attr('id',data[i].did).text(data[i].title).appendTo('#mydata');
+                                case "password": $('<div>    </div>').attr('id',data[i].did).text(data[i].title).appendTo('#mydata');
                                                  $('</br>').appendTo('#'+data[i].did);
                                                   $('<input>').attr({type:data[i].type,id:data[i].id,name:data[i].id,maxlength:data[i].maxlength}).appendTo('#'+data[i].did);
                                                   $('<p >  </p>').attr('id',data[i].pid).attr('class','validation').appendTo('#'+data[i].did);
-                                                 break;
+                                                  if(data[i].Mandatory == "true"){
 
-                                case "dropdown": $('<div>    </div>').attr('id',data[i].did).text(data[i].title).appendTo('#mydata');
-                                                 $('</br>').appendTo('#'+data[i].did);
-                                                 $('<select> </select>').attr('id',data[i].id).appendTo("#mydata");
-                                                 $('<option></option>').attr({value:data[i].value1}).text(data[i].value1).appendTo("#gender");
-                                                 $('<option></option>').attr({value:data[i].value2}).text(data[i].value2).appendTo("#gender");
-                                                 $('<option></option>').attr({value:data[i].value3}).text(data[i].value3).appendTo("#gender");
+                                                $('#'+data[i].id).prop('required',true);
+                                                $('#'+data[i].did).prop('class','required')
+                                                }
+                                                else if(data[i].Mandatory == "false")
+                                                {
+                                                         $('#'+data[i].id).prop('required',false);
+                                             }else{
+                                                 console.log("success");
+                                                }
+                                                  break;
 
-                                                 break;
+                                case "select":  $('<div> </div>').attr('id',data[i].did).text(data[i].title).appendTo("#mydata");
+                                               // $('</br>').appendTo('#mydata');
+                                                $('<select></select>').attr('id',data[i].id).appendTo("#mydata");
+                                                $('<option></option>').text('Select Gender').appendTo('#gender');
+
+                                                if(data[i].Mandatory == "true"){
+
+                                            $('#'+data[i].id).prop('required',true);
+                                            $('#'+data[i].did).prop('class','required')
+                                            }
+                                            else if(data[i].Mandatory == "false")
+                                            {
+                                                $('#'+data[i].id).prop('required',false);
+                                            }else{
+                                                            console.log("success");
+                                                }
+                                                break;
+                                case "option":
+                                                $('<option></option>').attr('value',data[i].value).text(data[i].value).appendTo('#gender');
+                                                break;
 
                                 
 
                     
                                 case "submit": $('<div>    </div>').attr('id',data[i].did).text(data[i].title).appendTo('#mydata');
                                              $('</br>').appendTo('#'+data[i].did);
-                                              $('<input>').attr({type:data[i].type,id:data[i].id,name:data[i].id,maxlength:data[i].maxlength}).appendTo('#'+data[i].did);
+                                              $('<input>').attr({type:data[i].type,id:data[i].id,name:data[i].id,maxlength:data[i].maxlength}).attr('class','btn-success').appendTo('#'+data[i].did);
                                                 $('<p >  </p>').attr('id',data[i].pid).attr('class','validation').appendTo('#'+data[i].did);
                                                 break;
                                 
                                 default:
-                                                console.log("defaultcase");
-
+                                                console.log("default case ");
+                                               
                                 
 
                             }
@@ -109,21 +150,35 @@
                        
                         $(function(){
                           $("#date").datepicker({
-                            dateFormat: "dd-mm-yy"
+                            dateFormat: "dd-mm-yy",
+                            
                           });
                         });
 
-                        $('#timer').timepicker({
-    timeFormat: 'h:mm p',
-    interval: 60,
-    minTime: '10',
-    maxTime: '6:00pm',
-    defaultTime: '11',
-    startTime: '10:00',
-    dynamic: false,
-    dropdown: true,
-    scrollbar: true
-});
+                        $(function () {
+                     $('#timer').datetimepicker({
+                        format: 'LT'
+                });
+            });
+                       
+                        
+                       
+                        
+
+           
+
+            
+               
+         
+                        
+                        
+
+                        
+                        
+
+                       
+
+                      
                         
                     });
                             
@@ -156,7 +211,7 @@
                  var password = $('#password').val();
                  var mobile = $('#mobile').val();
                  var date = $('#date').val();
-                 console.log(date);
+                
                 
                  var rfname=/^[A-Z][a-z]+$/;
                  var rlname=/^[A-Z][a-z]+$/;
@@ -227,7 +282,7 @@
                          if(!reg_fname )
                      {
                                 $('#pfname').text("Enter a First Name");
-                           // e.preventDefault();       
+                                  
                      }
                     else 
                     {
@@ -261,11 +316,7 @@
                  {
 
                     $('#ppassword').text("Please Fill the Field");
-                  //  e.preventDefault();
-                    // $('#ppassword').on('keyup',function(e){
-                    //     $('#ppassword').text("First Character must Capital and Must be 6 Character Long");
-
-                    // })
+                  
 
                 } else if(!reg_password)
                 {
@@ -284,9 +335,10 @@
                    $('#pmobile').text("Enter a Valid Mobile Number");
                  //   e.preventDefault();
                  return false;
+                 }
                    
 
-                } else if(firstname!=""&&lastname!=""&&email!=""&&password!=""&&mobile!=""&&date!="")
+               else if(firstname!=""&&lastname!=""&&email!=""&&password!=""&&mobile!=""&&date!="")
                 {
                     
                    // $("form").on('submit',function(e){
@@ -299,6 +351,7 @@
                 }
                 else{
                     $('#pmobile').text("");
+                    return true;
                    
                 }
 
@@ -393,7 +446,7 @@
 
 
     </script>
-   
+    
 
 
 <br>

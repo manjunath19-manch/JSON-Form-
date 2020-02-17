@@ -4,45 +4,50 @@
         "did":"dfname",
         "id":"fname",
         "title": "FirstName:",
-        "pattern":"",
-        "type": "text"
+        "type": "text",
+        "Mandatory":"true"
+        
        
     },
     {
         "pid":"plname",
         "did":"dlname",
         "id":"lname",
-        "pattern":"",
         "title": "LastName:",
-        "type": "text"
+        "type": "text",
+        "Mandatory":"false"
+        
         
     },
     {
         "pid":"pemail",
         "did":"demail",
         "id":"email",
-        "pattern":"",
         "title": "Email:",
         "type": "text",
-        "maxlength":""
+        "maxlength":"",
+        "Mandatory":"false"
+
+        
     },
     {
         "pid":"ppassword",
         "did":"dpassword",
         "id":"password",
-        "pattern":"",
         "title": "Password:",
         "type": "password",
-        "maxlength":6
+        "maxlength":6,
+        "Mandatory":"true"
+        
     },
     {
         "pid":"pmobile",
         "did":"dmobile",
         "id":"mobile",
         "title": "Mobile:",
-        "pattern":"return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))",
         "type": "text",
-        "maxlength":10
+        "maxlength":10,
+        "Mandatory":"false"
     },
     {
         "pid":"pdate",
@@ -51,31 +56,42 @@
         "pattern":"",
         "title": "Date of Birth:",
         "type": "text",
-        "maxlength":""
+        "maxlength":"",
+        "Mandatory":"true"
+
 
     },
     {
     
             "pid":"ptimer",
-            "did":"timer",
+            "did":"dtimer",
             "id":"timer",
-            "pattern":"",
-            "title": "Timer:",
+            "title": "Time:",
             "type": "text",
-            "maxlength":""    
+            "Mandatory":"true"
+                
 
     },
     {
         "pid":"pgender",
         "did":"dgender",
         "id":"gender",
-        "pattern":"",
-        "title": "Gender:",
-        "value1":"Select a Gender",
-        "value2":"Male",
-        "value3":"Female",
-        "type": "dropdown",
-        "maxlength":""
+        "type":"select",
+        "title":"Gender :",
+        "Mandatory":"true"
+       
+        
+       
+
+    },
+    {
+        "type":"option",
+        "value":"Male"
+
+    },
+    {
+        "type":"option",
+        "value":"Female"
 
     },
     {
