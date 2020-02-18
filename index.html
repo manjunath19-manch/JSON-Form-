@@ -49,7 +49,7 @@
                                 case "text":
                                                   $('<div>    </div>').attr('id',data[i].did).text(data[i].title).appendTo('#mydata');
                                                   $('</br>').appendTo('#'+data[i].did);
-                                                  $('<input>').attr({type:data[i].type,id:data[i].id,name:data[i].id,class:data[i].class}).appendTo('#'+data[i].did);
+                                                  $('<input>').attr({type:data[i].type,id:data[i].id,name:data[i].id,class:data[i].class,pattern:data[i].pattern,maxlength:data[i].maxlength}).appendTo('#'+data[i].did);
                                                   $('<p >  </p>').attr('id',data[i].pid).attr('class','validation').appendTo('#'+data[i].did);
                                                   if(data[i].Mandatory == "true"){
 
@@ -123,6 +123,11 @@
                             }
                     
                         } 
+                        $("#mobile").keypress(function (e) {
+                       if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                     return false;
+                              }
+                          });
                        
                         $(function(){
                           $("#datepicker").datepicker({
@@ -150,7 +155,7 @@
                 var mobile = $('#mobile').val();
                 var datepicker = $('#datepicker').val();
                 
-                    validate();
+                   validate();
                     checkvalid();
                     
                 
@@ -179,11 +184,28 @@
                        var   password = $('#password').val();
                        var mobile = $('#mobile').val();
                        var datepicker = $('#datepicker').val();
+                       var timer = $('#timer').val();
                        var gender = $('#gender').val();
+
+                    
+
+                      var rfname=/^[A-Z][a-z]+$/;
+                     var rlname=/^[A-Z][a-z]+$/;
+                      var remail = /(^[A-Za-z0-9\.]+)@([A-Za-z0-9\.]+).([A-z]{2,8})/;
+                     var rpassword =/(^[A-Z]([a-z0-9]){5}$)/;
+                     var rmobile = /(^[0-9]{10}$)/;
+
+                 reg_fname = (rfname.test(firstname));
+                 reg_lname =(rlname.test(lastname));
+                 reg_email = (remail.test(email));
+                 reg_password = (rpassword.test(password));
+                 reg_mobile = (rmobile.test(mobile));
+                       
                       
 
                       
-                    if(firstname!=""&&lastname!=""&&email!=""&&password!=""&&mobile!=""&&datepicker!="")
+                  if(firstname!=""&&lastname!=""&&email!=""&&password!=""&&mobile!=""&&datepicker!=""&&timer!=""&&gender!="")
+                 // if((firstname==reg_fname)&&(lastname==reg_lname)&&(email==reg_email)&&(password==reg_password)&&(mobile==reg_mobile))
                      {
                        localStorage.setItem("FirstName",firstname);
                          localStorage.setItem("lastname",lastname);
@@ -192,6 +214,7 @@
                          localStorage.setItem("mobile",mobile); 
                          localStorage.setItem("Date Of Birth",datepicker); 
                          localStorage.setItem("Gender",gender);
+                         localStorage.setItem("Time",timer)
                          $('#userdetails').hide();
                         $('<label ></label></br>').text("First Name           :     " +  localStorage.getItem('FirstName')).appendTo('#userdisplay');
                         $('<label ></label></br>').text("Last Name            :     " +   localStorage.getItem('lastname') ).appendTo('#userdisplay');
@@ -199,6 +222,7 @@
                          $('<label ></label></br>').text("Password            :     " +   localStorage.getItem('password') ).appendTo('#userdisplay');
                          $('<label ></label></br>').text("Mobile              :     " +   localStorage.getItem('mobile') ).appendTo('#userdisplay');
                          $('<label ></label></br>').text("Date of Birth       :     " +   localStorage.getItem('Date Of Birth') ).appendTo('#userdisplay');
+                         $('<label ></label></br>').text("Time                :     " +   localStorage.getItem('Time') ).appendTo('#userdisplay');
                          $('<label ></label></br>').text("Gender              :     " +   localStorage.getItem('Gender') ).appendTo('#userdisplay');
                    
                         $('</br>').appendTo('#userdisplay');
@@ -224,7 +248,8 @@
                     var email = $('#email').val();
                     var password = $('#password').val();
                     var mobile = $('#mobile').val();
-                   var datepicker = $('#datepicker').val();
+                    var datepicker = $('#datepicker').val();
+                    var time=$("#timer").val();
 
                       var rfname=/^[A-Z][a-z]+$/;
                      var rlname=/^[A-Z][a-z]+$/;
@@ -245,6 +270,7 @@
                  }
                  else if(reg_fname ){
                     $('#pfname').text("");
+                    
                    
                  }
                  if(!reg_lname)
@@ -303,6 +329,13 @@
                 {
                     $('#pdate').text("");
               
+                }
+                if(time==""){
+                    $('#ptimer').text("Please Select  a Time");
+                }
+                else
+                {
+                    $("#ptimer").text("");
                 }
             }
                 
