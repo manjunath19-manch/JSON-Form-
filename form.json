@@ -5,7 +5,7 @@
         "id":"fname",
         "title": "FirstName:",
         "type": "text",
-        "Mandatory":"true"
+        "Mandatory":"false"
         
        
     },
@@ -37,7 +37,7 @@
         "title": "Password:",
         "type": "password",
         "maxlength":6,
-        "Mandatory":"true"
+        "Mandatory":"false"
         
     },
     {
@@ -52,12 +52,11 @@
     {
         "pid":"pdate",
         "did":"ddate",
-        "id":"date",
-        "pattern":"",
+        "id":"datepicker",
         "title": "Date of Birth:",
         "type": "text",
         "maxlength":"",
-        "Mandatory":"true"
+        "Mandatory":"false"
 
 
     },
@@ -68,7 +67,7 @@
             "id":"timer",
             "title": "Time:",
             "type": "text",
-            "Mandatory":"true"
+            "Mandatory":"false"
                 
 
     },
@@ -78,7 +77,7 @@
         "id":"gender",
         "type":"select",
         "title":"Gender :",
-        "Mandatory":"true"
+        "Mandatory":"false"
        
         
        
