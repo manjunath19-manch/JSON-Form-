@@ -1,0 +1,161 @@
+<html>
+    <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="mystyle.css">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label class="control-label">Start</label>
+                    <input class="form-control" type="text" placehoder="Start Date" id="startdate" name="startdate"/>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label class="control-label">End</label>
+                    <input class="form-control" type="text" placehoder="End Date" id="enddate" name="enddate"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <input type="submit" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+        
+
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script>
+
+        
+
+        $(document).ready(function() {
+           
+//     $("#startdate").datepicker({
+//          todayBtn: 1,
+//         autoclose: true,
+//     }).on('changeDate', function(selected) {
+//     var minDate = new Date(selected.date.valueOf());
+   
+//      $('#enddate').datepicker('setStartDate', minDate);
+//     });
+
+// $("#enddate").datepicker()
+//   .on('changeDate', function(selected) {
+//     var minDate = new Date(selected.date.valueOf());
+//     console.log(minDate);
+ 
+//     $('#startdate').datepicker('setEndDate', minDate);
+//   });
+ 
+// $(function(){
+// $("#startdate").datepicker({
+//  dateFormat: "mm-yy",
+                            
+//              });
+//        });
+ 
+//        $(function(){
+// $("#enddate").datepicker({
+//  dateFormat: "dd-mm-yy",
+                            
+//              });
+//        });
+
+$(document).ready(function()  {
+   
+    $('#startdate').datepicker({
+      dateFormat: 'dd-m-yy',
+      inline: true,
+
+      
+
+    
+     
+
+
+
+
+    });
+     
+
+
+    
+
+
+
+
+});
+
+$('#enddate').datepicker({
+      dateFormat: 'yy-m-d',
+      inline: true,
+
+      
+       
+});
+
+
+      
+       
+});
+
+//function getQtr()
+//{
+    // var date = $('#startdate').datepicker('getDate'),
+    //         day  = date.getDate(),  
+    //         month = date.getMonth() + 1,              
+    //         year =  date.getFullYear();
+    //     alert(day + '-' + month + '-' + year);
+    // var startDate1 = $('#startdate').val();
+       
+    //    var month = startDate.getMonth();
+
+    //   if(month==0 || month==1 ||month==2 )
+    //     {
+    //         alert("It belongs to 4 Quarter");
+    //     }else if(month==3 || month==4||month==5)
+    //     {
+    //         alert("It belongs to 1 Quarter");
+    //     }
+    //     else if(month==6 || month==7||month==8)
+    //     {
+    //         alert("It belongs to 2 Quarter");
+    //     }else if(month==9 || month==10||month==11)
+    //     {
+    //         alert("It belongs to 3 Quarter");
+
+    //     }
+
+//     $(document).ready(function()  {
+//     $('#startdate').datepicker({
+//       dateFormat: 'yy-m-d',
+//       inline: true,
+//       onSelect: function(dateText, inst) { 
+//                       var day = $(this).datepicker('getDate').getDate();  
+//           var month = $(this).datepicker('getDate').getMonth();  
+//           var year = $(this).datepicker('getDate').getYear();  
+//           console.log('Month is: ' + month + ' day is '+ day + ' year is '+ year);
+//      } 
+//     });
+// });
+        
+
+
+       
+
+      
+//}
+
+
+
+        </script>
+        
+    </body>
+</html>

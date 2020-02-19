@@ -173,7 +173,7 @@
                    
                    
 
-                 focusValid();
+                 focusValid(e);
                   
                  });
 
@@ -274,6 +274,7 @@
                 if(!reg_fname)
                  {
                     $('#pfname').text("Enter a First Name");
+                    
                    
                  }
                  else{
@@ -282,6 +283,7 @@
                     
                    
                  }
+                
                  
                  if(!reg_lname)
                  {
@@ -366,7 +368,7 @@
                 }
             }
 
-            function focusValid()
+            function focusValid(e)
                 {
                    
                         
@@ -395,7 +397,7 @@
                 if(!reg_fname)
                  {
                     $('#pfname').text("Enter a First Name");
-                    return 
+                    e.preventDefault();
                  }
                  else{
                     $('#pfname').text("");
@@ -408,7 +410,8 @@
                  if(!reg_lname)
                  {
                     $('#plname').text("Enter a Last Name");
-                    return 
+                   e.preventDefault();
+                    
                    
                      
                  }else
@@ -420,7 +423,8 @@
                  if(!reg_email)
                  {
                     $('#pemail').text("Enter a Valid Email");
-                    return 
+                    e.preventDefault();
+                    
                     
                    
 
@@ -433,12 +437,14 @@
                  {
 
                     $('#ppassword').text("Please Fill the Field");
-                    return 
+                    e.preventDefault();
+                    
                     
                 } else if(!reg_password)
                 {
                     $('#ppassword').text("First Character must Capital and Must be 6 Character Long");
-                    return 
+                    e.preventDefault();
+                    
                    
                     
                    
@@ -453,7 +459,8 @@
                  {
 
                    $('#pmobile').text("Enter a Valid Mobile Number");
-                   return 
+                   e.preventDefault();
+                  
                   
                  
                 
@@ -465,7 +472,8 @@
                 if(datepicker== ""){
 
                     $('#pdate').text("Please Choose a Date");
-                    return 
+                    e.preventDefault();
+                    
                    
                    
                 }
@@ -476,7 +484,8 @@
                 }
                 if(time==""){
                     $('#ptimer').text("Please Select  a Time");
-                    return 
+                    e.preventDefault();
+                    
                     
                 }
                 else
@@ -486,6 +495,8 @@
                 if(gender == "Select Gender")
                 {
                     $('#pgender').text("Please Select  a Gender");
+                    e.preventDefault();
+                   
 
                 }else
                 {
