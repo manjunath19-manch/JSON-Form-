@@ -101,6 +101,15 @@
         "did":"dsubmit",
         "type":"submit",
         "maxlength":""
+    },
+    {
+        "pid":"",
+        "id":"",
+        "title":"",
+        "pattern":"",
+        "did":"dsubmit",
+        "type":"button",
+        "maxlength":""
     }
    
     

@@ -107,6 +107,7 @@
                                 case "option":
                                                 $('<option></option>').attr('value',data[i].value).text(data[i].value).appendTo('#gender');
                                                 break;
+                                
 
                                 
 
@@ -155,7 +156,7 @@
                 var mobile = $('#mobile').val();
                 var datepicker = $('#datepicker').val();
                 
-                   validate();
+                   submitValid();
                     checkvalid();
                     
                 
@@ -168,7 +169,7 @@
                    
                    
 
-                  validate();
+                 focusValid();
                   
                  });
 
@@ -240,7 +241,7 @@
                     
                    }
                 }
-                function validate()
+                function submitValid()
                 {
                         
                     var firstname = $('#fname').val();
@@ -267,15 +268,19 @@
                 if(!reg_fname)
                  {
                     $('#pfname').text("Enter a First Name");
+                   
                  }
-                 else if(reg_fname ){
+                 else{
                     $('#pfname').text("");
+                    
                     
                    
                  }
+                 
                  if(!reg_lname)
                  {
                     $('#plname').text("Enter a Last Name");
+                   
                      
                  }else
                  {
@@ -285,6 +290,7 @@
                  if(!reg_email)
                  {
                     $('#pemail').text("Enter a Valid Email");
+                    
                    
 
                 } else
@@ -296,10 +302,12 @@
                  {
 
                     $('#ppassword').text("Please Fill the Field");
-                  
+                    
                 } else if(!reg_password)
                 {
                     $('#ppassword').text("First Character must Capital and Must be 6 Character Long");
+                   
+                    
                    
                     
 
@@ -312,6 +320,7 @@
                  {
 
                    $('#pmobile').text("Enter a Valid Mobile Number");
+                  
                  
                 
                  }
@@ -332,6 +341,123 @@
                 }
                 if(time==""){
                     $('#ptimer').text("Please Select  a Time");
+                    
+                }
+                else
+                {
+                    $("#ptimer").text("");
+                }
+            }
+
+            function focusValid()
+                {
+                        
+                    var firstname = $('#fname').val();
+                    var lastname = $('#lname').val();
+                    var email = $('#email').val();
+                    var password = $('#password').val();
+                    var mobile = $('#mobile').val();
+                    var datepicker = $('#datepicker').val();
+                    var time=$("#timer").val();
+
+                      var rfname=/^[A-Z][a-z]+$/;
+                     var rlname=/^[A-Z][a-z]+$/;
+                      var remail = /(^[A-Za-z0-9\.]+)@([A-Za-z0-9\.]+).([A-z]{2,8})/;
+                 var rpassword =/(^[A-Z]([a-z0-9]){5}$)/;
+                 var rmobile = /(^[0-9]{10}$)/;
+
+                 reg_fname = (rfname.test(firstname));
+                 reg_lname =(rlname.test(lastname));
+                 reg_email = (remail.test(email));
+                 reg_password = (rpassword.test(password));
+                 reg_mobile = (rmobile.test(mobile));
+                 
+
+                if(reg_fname)
+                 {
+                    $('#pfname').text("Enter a First Name");
+                    e.preventDefault();
+                   
+                 }
+                 else{
+                    $('#pfname').text("");
+                    
+                    
+                   
+                 }
+                 
+                 if(!reg_lname)
+                 {
+                    $('#plname').text("Enter a Last Name");
+                    e.preventDefault();
+                   
+                     
+                 }else
+                 {
+                    $('#plname').text("");
+
+                 }
+                 if(!reg_email)
+                 {
+                    $('#pemail').text("Enter a Valid Email");
+                    e.preventDefault();
+                    
+                   
+
+                } else
+                {
+                      $('#pemail').text("");
+                   
+                }
+                if(password=="")
+                 {
+
+                    $('#ppassword').text("Please Fill the Field");
+                    e.preventDefault();
+                    
+                } else if(!reg_password)
+                {
+                    $('#ppassword').text("First Character must Capital and Must be 6 Character Long");
+                    e.preventDefault();
+                   
+                    
+                   
+                    
+
+                }
+                else {
+                    $('#ppassword').text("");
+
+                }
+                if(!reg_mobile)
+                 {
+
+                   $('#pmobile').text("Enter a Valid Mobile Number");
+                   e.preventDefault();
+                  
+                 
+                
+                 }
+                 else
+                 {
+                    $('#pmobile').text("");
+                 }
+                if(datepicker== ""){
+
+                    $('#pdate').text("Please Choose a Date");
+                    e.preventDefault();
+                   
+                   
+                }
+                else 
+                {
+                    $('#pdate').text("");
+              
+                }
+                if(time==""){
+                    $('#ptimer').text("Please Select  a Time");
+                    e.preventDefault();
+                    
                 }
                 else
                 {
