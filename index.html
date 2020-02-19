@@ -88,9 +88,12 @@
                                                   break;
 
                                 case "select":  $('<div> </div>').attr('id',data[i].did).text(data[i].title).appendTo("#mydata");
-                                               // $('</br>').appendTo('#mydata');
-                                                $('<select></select>').attr('id',data[i].id).appendTo("#mydata");
-                                               // $('<option></option>').text('Select Gender').appendTo('#gender');
+                                                 $('</br>').appendTo('#'+data[i].did);
+    
+                                                $('<select></select>').attr('id',data[i].id).appendTo('#'+data[i].did);
+                                                $('<option></option>').text('Select Gender').appendTo('#gender');
+                                                $('<p >  </p>').attr('id',data[i].pid).attr('class','validation').appendTo('#'+data[i].did);
+
 
                                                 if(data[i].Mandatory == "true"){
 
@@ -105,6 +108,7 @@
                                                 }
                                                 break;
                                 case "option":
+                                                
                                                 $('<option></option>').attr('value',data[i].value).text(data[i].value).appendTo('#gender');
                                                 break;
                                 
@@ -205,7 +209,7 @@
                       
 
                       
-                  if(firstname!=""&&lastname!=""&&email!=""&&password!=""&&mobile!=""&&datepicker!=""&&timer!=""&&gender!="")
+                  if(firstname!=""&&lastname!=""&&email!=""&&password!=""&&mobile!=""&&datepicker!=""&&timer!=""&&gender!="Select Gender")
                  // if((firstname==reg_fname)&&(lastname==reg_lname)&&(email==reg_email)&&(password==reg_password)&&(mobile==reg_mobile))
                      {
                        localStorage.setItem("FirstName",firstname);
@@ -251,6 +255,8 @@
                     var mobile = $('#mobile').val();
                     var datepicker = $('#datepicker').val();
                     var time=$("#timer").val();
+                    var gender = $('#gender').val();
+                    
 
                       var rfname=/^[A-Z][a-z]+$/;
                      var rlname=/^[A-Z][a-z]+$/;
@@ -342,15 +348,27 @@
                 if(time==""){
                     $('#ptimer').text("Please Select  a Time");
                     
+                    
                 }
                 else
                 {
                     $("#ptimer").text("");
                 }
+                if(gender=="Select Gender"){
+                    $('#pgender').text("Please Select  a Gender");
+
+                    
+
+                }else{
+                    $('#pgender').text("");
+
+
+                }
             }
 
             function focusValid()
                 {
+                   
                         
                     var firstname = $('#fname').val();
                     var lastname = $('#lname').val();
@@ -359,6 +377,7 @@
                     var mobile = $('#mobile').val();
                     var datepicker = $('#datepicker').val();
                     var time=$("#timer").val();
+                    var gender = $('#gender').val();
 
                       var rfname=/^[A-Z][a-z]+$/;
                      var rlname=/^[A-Z][a-z]+$/;
@@ -373,14 +392,14 @@
                  reg_mobile = (rmobile.test(mobile));
                  
 
-                if(reg_fname)
+                if(!reg_fname)
                  {
                     $('#pfname').text("Enter a First Name");
-                    e.preventDefault();
-                   
+                    return 
                  }
                  else{
                     $('#pfname').text("");
+                    
                     
                     
                    
@@ -389,18 +408,19 @@
                  if(!reg_lname)
                  {
                     $('#plname').text("Enter a Last Name");
-                    e.preventDefault();
+                    return 
                    
                      
                  }else
                  {
                     $('#plname').text("");
+                    
 
                  }
                  if(!reg_email)
                  {
                     $('#pemail').text("Enter a Valid Email");
-                    e.preventDefault();
+                    return 
                     
                    
 
@@ -413,12 +433,12 @@
                  {
 
                     $('#ppassword').text("Please Fill the Field");
-                    e.preventDefault();
+                    return 
                     
                 } else if(!reg_password)
                 {
                     $('#ppassword').text("First Character must Capital and Must be 6 Character Long");
-                    e.preventDefault();
+                    return 
                    
                     
                    
@@ -433,7 +453,7 @@
                  {
 
                    $('#pmobile').text("Enter a Valid Mobile Number");
-                   e.preventDefault();
+                   return 
                   
                  
                 
@@ -445,7 +465,7 @@
                 if(datepicker== ""){
 
                     $('#pdate').text("Please Choose a Date");
-                    e.preventDefault();
+                    return 
                    
                    
                 }
@@ -456,13 +476,27 @@
                 }
                 if(time==""){
                     $('#ptimer').text("Please Select  a Time");
-                    e.preventDefault();
+                    return 
                     
                 }
                 else
                 {
                     $("#ptimer").text("");
                 }
+                if(gender == "Select Gender")
+                {
+                    $('#pgender').text("Please Select  a Gender");
+
+                }else
+                {
+                    $('#pgender').text("");
+
+                }
+                
+
+                
+
+                
             }
                 
 
