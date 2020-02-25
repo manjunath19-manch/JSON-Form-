@@ -1,26 +1,24 @@
 .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #99AAAB;
-    color: white;
-    text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #99aaab;
+  color: white;
+  text-align: center;
 }
-.required:before{
-    content:"*" ;
-    color:red   
-    }
+.required:before {
+  content: "*";
+  color: red;
+}
 
 .center {
-    
-    display: block;
-    margin-left: 500px;
-    margin-right: 500px;
-    width: 20%;
+  display: block;
+  margin-left: 500px;
+  margin-right: 500px;
+  width: 20%;
 }
-.validation{
-    color:red;
-    margin-bottom: 20px;
-
+.validation {
+  color: red;
+  margin-bottom: 20px;
 }

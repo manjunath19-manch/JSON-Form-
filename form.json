@@ -1,116 +1,138 @@
 [
-    {
-        "pid":"pfname",
-        "did":"dfname",
-        "id":"fname",
-        "title": "FirstName:",
-        "type": "text",
-        "Mandatory":"false"
-        
-       
-    },
-    {
-        "pid":"plname",
-        "did":"dlname",
-        "id":"lname",
-        "title": "LastName:",
-        "type": "text",
-        "Mandatory":"false"
-        
-        
-    },
-    {
-        "pid":"pemail",
-        "did":"demail",
-        "id":"email",
-        "title": "Email:",
-        "type": "text",
-        "maxlength":"",
-        "Mandatory":"false"
+  {
+    "pid": "pfname",
+    "did": "dfname",
+    "id": "fname",
+    "title": "FirstName:",
+    "type": "text",
+    "Mandatory": "false"
+  },
+  {
+    "pid": "plname",
+    "did": "dlname",
+    "id": "lname",
+    "title": "LastName:",
+    "type": "text",
+    "Mandatory": "false"
+  },
+  {
+    "pid": "pemail",
+    "did": "demail",
+    "id": "email",
+    "title": "Email:",
+    "type": "text",
+    "maxlength": "",
+    "Mandatory": "false"
+  },
+  {
+    "pid": "ppassword",
+    "did": "dpassword",
+    "id": "password",
+    "title": "Password:",
+    "type": "password",
+    "maxlength": 6,
+    "Mandatory": "false"
+  },
+  {
+    "pid": "pmobile",
+    "did": "dmobile",
+    "id": "mobile",
+    "title": "Mobile:",
+    "type": "text",
+    "maxlength": 10,
+    "Mandatory": "false"
+  },
+  {
+    "pid": "pdate",
+    "did": "ddate",
+    "id": "datepicker",
+    "title": "Date of Birth:",
+    "type": "text",
+    "maxlength": "",
+    "Mandatory": "false"
+  },
+  {
+    "pid": "ptimer",
+    "did": "dtimer",
+    "id": "timer",
+    "title": "Time:",
+    "type": "text",
+    "Mandatory": "false"
+  },
+  {
+    "pid": "pgender",
+    "did": "dgender",
+    "id": "gender",
+    "type": "select",
+    "title": "Gender :",
+    "Mandatory": "false"
+  },
+  {
+    "type": "option",
+    "value": "Male"
+  },
+  {
+    "type": "option",
+    "value": "Female"
+  },
+  {
+    "pid": "phobbies",
+    "did": "dhobbies",
+    "type": "cvalue",
+    "title": "Hobbies :",
+    "Mandatory": "false"
+  },
+  {
+    "type": "checkbox",
+    "class": "hobbies",
+    "did": "dhobbies",
+    "value": "Swimming"
+  },
+  {
+    "type": "checkbox",
+    "class": "hobbies",
+    "did": "dhobbies",
+    "value": "Dancing"
+  },
+  {
+    "pid": "pradio",
+    "did": "dradio",
+    "type": "radiobutton",
+    "value": "BCA",
+    "name": "qualification",
+    "title": "Qualification :"
+  },
+  {
+    "type": "radio",
+    "id": "radio",
+    "did": "dradio",
 
-        
-    },
-    {
-        "pid":"ppassword",
-        "did":"dpassword",
-        "id":"password",
-        "title": "Password:",
-        "type": "password",
-        "maxlength":6,
-        "Mandatory":"false"
-        
-    },
-    {
-        "pid":"pmobile",
-        "did":"dmobile",
-        "id":"mobile",
-        "title": "Mobile:",
-        "type": "text",
-        "maxlength":10,
-        "Mandatory":"false"
-    },
-    {
-        "pid":"pdate",
-        "did":"ddate",
-        "id":"datepicker",
-        "title": "Date of Birth:",
-        "type": "text",
-        "maxlength":"",
-        "Mandatory":"false"
+    "value": "BCA  ",
+    "name": "qualification"
+  },
+  {
+    "type": "radio",
+    "did": "dradio",
+    "id": "radio",
 
-
-    },
-    {
-    
-            "pid":"ptimer",
-            "did":"dtimer",
-            "id":"timer",
-            "title": "Time:",
-            "type": "text",
-            "Mandatory":"false"
-                
-
-    },
-    {
-        "pid":"pgender",
-        "did":"dgender",
-        "id":"gender",
-        "type":"select",
-        "title":"Gender :",
-        "Mandatory":"false"
-       
-        
-       
-
-    },
-    {
-        "type":"option",
-        "value":"Male"
-
-    },
-    {
-        "type":"option",
-        "value":"Female"
-
-    },
-    {
-        "pid":"",
-        "id":"",
-        "title":"",
-        "pattern":"",
-        "did":"dsubmit",
-        "type":"submit",
-        "maxlength":""
-    },
-    {
-        "pid":"",
-        "id":"",
-        "title":"",
-        "pattern":"",
-        "did":"dsubmit",
-        "type":"button",
-        "maxlength":""
-    }
-   
-    
+    "value": "MCA ",
+    "name": "qualification"
+  },
+  {
+    "type": "file",
+    "id": "file",
+    "title": "Image Upload :",
+    "accept": "image/*",
+    "did": "dfile",
+    "pid": "pfile"
+  },
+  {
+    "pid": "",
+    "id": "",
+    "title": "",
+    "pattern": "",
+    "did": "dsubmit",
+    "type": "submit",
+    "maxlength": ""
+  }
 ]
