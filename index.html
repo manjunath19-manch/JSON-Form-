@@ -27,10 +27,11 @@
 
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <div id="userdetails">
-      <form id="mydata" style="margin-left:20px;position:relative;"></form>
-    </div>
+    <table id="tuserdetails">
+      <div id="userdetails">
+        <form id="mydata" style="margin-left:20px;position:relative;"></form>
+      </div>
+    </table>
 
     <div id="userdisplay" style="display: none;margin-left: 20px;"></div>
 
@@ -40,6 +41,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 
     <script>
+      $("#userdetails").appendTo("#tuserdetails");
       fetch("form.json")
         .then(function(response) {
           return response.json();
@@ -151,6 +153,10 @@
                 .attr("id", data[i].did)
                 .text(data[i].title)
                 .appendTo("#mydata");
+              $("<p></p>")
+                .attr("id", data[i].pid)
+                .attr("class", "validation")
+                .appendTo("#mydata");
               $("</br>").appendTo("#" + data[i].did);
               break;
             case "checkbox":
@@ -160,6 +166,7 @@
                   class: data[i].class,
                   value: data[i].value
                 })
+                .attr("data-value", "")
                 .appendTo("#" + data[i].did);
               $("<label>")
                 .text(data[i].value)
@@ -170,6 +177,10 @@
               $("<div>    </div>")
                 .attr("id", data[i].did)
                 .text(data[i].title)
+                .appendTo("#mydata");
+              $("<p></p>")
+                .attr("id", data[i].pid)
+                .attr("class", "validation")
                 .appendTo("#mydata");
               $("</br>").appendTo("#" + data[i].did);
 
@@ -189,7 +200,7 @@
               break;
             case "file":
               $("<div></div>")
-                .attr("id", data[i].id)
+                .attr("id", data[i].did)
                 .text(data[i].title)
                 .appendTo("#mydata");
               $("<input>")
@@ -197,10 +208,17 @@
                   type: data[i].type,
                   id: data[i].id,
                   name: data[i].id,
+
                   accept: data[i].accept
                 })
+                .attr("imgpath", "")
                 .attr("onchange", "readURL(this)")
-                .appendTo("#" + data[i].id);
+                .appendTo("#" + data[i].did);
+              $("<p >  </p>")
+                .attr("id", data[i].pid)
+                .attr("class", "validation")
+                .appendTo("#" + data[i].did);
+
               break;
             case "select1":
               $("<div> </div>")
@@ -212,6 +230,10 @@
                 .attr("id", data[i].id)
                 .attr("multiple", "multiple")
                 .attr("data-value", "")
+                .appendTo("#" + data[i].did);
+              $("<p >  </p>")
+                .attr("id", data[i].pid)
+                .attr("class", "validation")
                 .appendTo("#" + data[i].did);
 
               break;
@@ -283,6 +305,7 @@
 
           reader.onload = function(e) {
             imgPath = e.target.result;
+            $("#file").attr("imgPath", imgPath);
           };
 
           reader.readAsDataURL(input.files[0]);
@@ -318,6 +341,9 @@
         var timer = $("#timer").val();
         var gender = $("#gender").val();
         var qualfication = $('input[name="qualification"]:checked').val();
+        var hobbies = $('input[class="hobbies"]:checked').val();
+        console.log(hobbies);
+
         var rfname = /^[A-Z][a-z]+$/;
         var rlname = /^[A-Z][a-z]+$/;
         var remail = /(^[A-Za-z0-9\.]+)@([A-Za-z0-9\.]+).([A-z]{2,8})/;
@@ -338,7 +364,10 @@
           mobile != "" &&
           datepicker != "" &&
           timer != "" &&
-          gender != "Select Gender"
+          gender != "Select Gender" &&
+          hobbies != "" &&
+          qualfication != "" &&
+          $("#multiple_Select").attr("data-value") != ""
         ) {
           localStorage.setItem("FirstName", firstname);
           localStorage.setItem("lastname", lastname);
@@ -348,17 +377,19 @@
           localStorage.setItem("Date Of Birth", datepicker);
           localStorage.setItem("Gender", gender);
           localStorage.setItem("Time", timer);
-          localStorage.setItem("File Upload", imgPath);
+          localStorage.setItem("Image Upload", imgPath);
           localStorage.setItem("Qualification", qualfication);
           localStorage.setItem(
             "Hobbies 1",
             $("#multiple_Select").attr("data-value")
           );
-          var arr = $(".hobbies")
+
+          var arr = $('input[class="hobbies"]:checked')
             .map(function() {
-              return this.checked;
+              return $(this).val();
             })
             .get();
+
           localStorage.setItem("Hobbies", JSON.stringify(arr));
           $("#userdetails").hide();
           $("<label ></label></br>")
@@ -442,7 +473,10 @@
         var datepicker = $("#datepicker").val();
         var time = $("#timer").val();
         var gender = $("#gender").val();
+        var hobbies = $('input[class="hobbies"]:checked').val();
         var qualfication = $('input[name="qualification"]:checked').val();
+        //var hobbies1 = $('input[class="dmultiple"]:checked').val();
+        //var imgUpload = $("#file").val();
 
         var rfname = /^[A-Z][a-z]+$/;
         var rlname = /^[A-Z][a-z]+$/;
@@ -500,6 +534,27 @@
           $("#pgender").text("Please Select  a Gender");
         } else {
           $("#pgender").text("");
+        }
+        if (!hobbies) {
+          $("#phobbies").text("Please Select Any one Checkbox");
+        } else {
+          $("#phobbies").text("");
+        }
+        if (!qualfication) {
+          $("#pradio").text("Please Select the radio button");
+        } else {
+          $("#pradio").text("");
+        }
+        if ($("#file").attr("imgpath") == "") {
+          $("#pfile").text("Please Upload the File");
+        } else {
+          $("#pfile").text("");
+        }
+
+        if ($("#multiple_Select").attr("data-value") == "") {
+          $("#mid").text("Please Select the hobbies");
+        } else {
+          $("#mid").text("");
         }
       }
 
@@ -516,8 +571,10 @@
         $('input[id="hobbies"]:checked').each(function(i) {
           al[i] = $(this).val();
         });
-
+        var hobbies = $('input[class="hobbies"]:checked').val();
         var qualfication = $('input[name="qualification"]:checked').val();
+
+        // var qualfication = $('input[name="qualification"]:checked').val();
 
         var rfname = /^[A-Z][a-z]+$/;
         var rlname = /^[A-Z][a-z]+$/;
@@ -584,6 +641,31 @@
           return;
         } else {
           $("#pgender").text("");
+        }
+        if (!hobbies) {
+          $("#phobbies").text("Please Select Any one Checkbox");
+          return;
+        } else {
+          $("#phobbies").text("");
+        }
+        if (!qualfication) {
+          $("#pradio").text("Please Select the radio button");
+          return;
+        } else {
+          $("#pradio").text("");
+        }
+        if ($("#file").attr("imgpath") == "") {
+          $("#pfile").text("Please Upload the File");
+          return;
+        } else {
+          $("#pfile").text("");
+        }
+
+        if ($("#multiple_Select").attr("data-value") == "") {
+          $("#mid").text("Please Select the hobbies");
+          return;
+        } else {
+          $("#mid").text("");
         }
       }
     </script>

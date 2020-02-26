@@ -108,7 +108,7 @@
 
     "did": "dradio",
 
-    "value": "BCA  ",
+    "value": "BCA ",
     "name": "qualification"
   },
   {
@@ -131,11 +131,13 @@
     "type": "select1",
     "did": "mselect",
     "id": "multiple_Select",
-    "title": "Hobbies :"
+    "title": "Hobbies :",
+    "pid": "mid"
   },
   {
     "type": "option1",
-    "value": "Reading"
+    "value": "Reading",
+    "class": "dmultiple"
   },
   {
     "type": "option1",
