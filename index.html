@@ -1,9 +1,5 @@
 <html>
   <head>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
-    />
     <link rel="stylesheet" href="mystyle.css" />
     <link
       rel="stylesheet"
@@ -11,23 +7,38 @@
     />
     <link
       rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css"
+    />
+
+    <link
+      rel="stylesheet"
       href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
     />
   </head>
+
   <body>
     <header>
       <img src="logo.png" width="100px" height="100px" class="center" />
     </header>
 
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <div id="userdetails">
       <form id="mydata" style="margin-left:20px;position:relative;"></form>
     </div>
+
     <div id="userdisplay" style="display: none;margin-left: 20px;"></div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+
     <script>
       fetch("form.json")
         .then(function(response) {
@@ -40,202 +51,228 @@
           console.log("error: " + err);
         });
       function appendData(data) {
-        $(document).ready(function() {
-          for (var i = 0; i < data.length; i++) {
-            var res = data[i].type;
-            switch (res) {
-              case "text":
-                $("<div>    </div>")
-                  .attr("id", data[i].did)
-                  .text(data[i].title)
-                  .appendTo("#mydata");
-                $("</br>").appendTo("#" + data[i].did);
-                $("<input>")
-                  .attr({
-                    type: data[i].type,
-                    id: data[i].id,
-                    name: data[i].id,
-                    class: data[i].class,
-                    pattern: data[i].pattern,
-                    maxlength: data[i].maxlength
-                  })
-                  .appendTo("#" + data[i].did);
-                $("<p >  </p>")
-                  .attr("id", data[i].pid)
-                  .attr("class", "validation")
-                  .appendTo("#" + data[i].did);
-                if (data[i].Mandatory == "true") {
-                  $("#" + data[i].id).prop("required", true);
-                  $("#" + data[i].did).prop("class", "required");
-                } else if (data[i].Mandatory == "false") {
-                  $("#" + data[i].id).prop("required", false);
-                } else {
-                }
-                break;
+        //  $(document).ready(function() {
+        for (var i = 0; i < data.length; i++) {
+          var res = data[i].type;
+          switch (res) {
+            case "text":
+              $("<div>    </div>")
+                .attr("id", data[i].did)
+                .text(data[i].title)
+                .appendTo("#mydata");
+              $("</br>").appendTo("#" + data[i].did);
+              $("<input>")
+                .attr({
+                  type: data[i].type,
+                  id: data[i].id,
+                  name: data[i].id,
+                  class: data[i].class,
+                  pattern: data[i].pattern,
+                  maxlength: data[i].maxlength
+                })
+                .appendTo("#" + data[i].did);
+              $("<p >  </p>")
+                .attr("id", data[i].pid)
+                .attr("class", "validation")
+                .appendTo("#" + data[i].did);
+              if (data[i].Mandatory == "true") {
+                $("#" + data[i].id).prop("required", true);
+                $("#" + data[i].did).prop("class", "required");
+              } else if (data[i].Mandatory == "false") {
+                $("#" + data[i].id).prop("required", false);
+              } else {
+              }
+              break;
 
-              case "password":
-                $("<div>    </div>")
-                  .attr("id", data[i].did)
-                  .text(data[i].title)
-                  .appendTo("#mydata");
-                $("</br>").appendTo("#" + data[i].did);
-                $("<input>")
-                  .attr({
-                    type: data[i].type,
-                    id: data[i].id,
-                    name: data[i].id,
-                    maxlength: data[i].maxlength
-                  })
-                  .appendTo("#" + data[i].did);
-                $("<p >  </p>")
-                  .attr("id", data[i].pid)
-                  .attr("class", "validation")
-                  .appendTo("#" + data[i].did);
-                if (data[i].Mandatory == "true") {
-                  $("#" + data[i].id).prop("required", true);
-                  $("#" + data[i].did).prop("class", "required");
-                } else if (data[i].Mandatory == "false") {
-                  $("#" + data[i].id).prop("required", false);
-                } else {
-                  console.log("success");
-                }
-                break;
+            case "password":
+              $("<div>    </div>")
+                .attr("id", data[i].did)
+                .text(data[i].title)
+                .appendTo("#mydata");
+              $("</br>").appendTo("#" + data[i].did);
+              $("<input>")
+                .attr({
+                  type: data[i].type,
+                  id: data[i].id,
+                  name: data[i].id,
+                  maxlength: data[i].maxlength
+                })
+                .appendTo("#" + data[i].did);
+              $("<p >  </p>")
+                .attr("id", data[i].pid)
+                .attr("class", "validation")
+                .appendTo("#" + data[i].did);
+              if (data[i].Mandatory == "true") {
+                $("#" + data[i].id).prop("required", true);
+                $("#" + data[i].did).prop("class", "required");
+              } else if (data[i].Mandatory == "false") {
+                $("#" + data[i].id).prop("required", false);
+              } else {
+                console.log("success");
+              }
+              break;
 
-              case "select":
-                $("<div> </div>")
-                  .attr("id", data[i].did)
-                  .text(data[i].title)
-                  .appendTo("#mydata");
-                $("</br>").appendTo("#" + data[i].did);
+            case "select":
+              $("<div> </div>")
+                .attr("id", data[i].did)
+                .text(data[i].title)
+                .appendTo("#mydata");
+              $("</br>").appendTo("#" + data[i].did);
 
-                $("<select></select>")
-                  .attr("id", data[i].id)
-                  .appendTo("#" + data[i].did);
-                $("<option></option>")
-                  .text("Select Gender")
-                  .appendTo("#gender");
-                $("<p >  </p>")
-                  .attr("id", data[i].pid)
-                  .attr("class", "validation")
-                  .appendTo("#" + data[i].did);
+              $("<select></select>")
+                .attr("id", data[i].id)
+                .appendTo("#" + data[i].did);
+              $("<option></option>")
+                .text("Select Gender")
+                .appendTo("#gender");
+              $("<p >  </p>")
+                .attr("id", data[i].pid)
+                .attr("class", "validation")
+                .appendTo("#" + data[i].did);
 
-                if (data[i].Mandatory == "true") {
-                  $("#" + data[i].id).prop("required", true);
-                  $("#" + data[i].did).prop("class", "required");
-                } else if (data[i].Mandatory == "false") {
-                  $("#" + data[i].id).prop("required", false);
-                } else {
-                  console.log("success");
-                }
-                break;
-              case "option":
-                $("<option></option>")
-                  .attr("value", data[i].value)
-                  .text(data[i].value)
-                  .appendTo("#gender");
-                break;
-              case "cvalue":
-                $("<div>    </div>")
-                  .attr("id", data[i].did)
-                  .text(data[i].title)
-                  .appendTo("#mydata");
-                $("</br>").appendTo("#" + data[i].did);
-                break;
-              case "checkbox":
-                $("<input>")
-                  .attr({
-                    type: data[i].type,
-                    class: data[i].class,
-                    value: data[i].value
-                  })
-                  .appendTo("#" + data[i].did);
-                $("<label>")
-                  .text(data[i].value)
-                  .appendTo("#" + data[i].did);
-                //$('&nbsp').appendTo('#' + data[i].did);
-                break;
-              case "radiobutton":
-                $("<div>    </div>")
-                  .attr("id", data[i].did)
-                  .text(data[i].title)
-                  .appendTo("#mydata");
-                $("</br>").appendTo("#" + data[i].did);
+              if (data[i].Mandatory == "true") {
+                $("#" + data[i].id).prop("required", true);
+                $("#" + data[i].did).prop("class", "required");
+              } else if (data[i].Mandatory == "false") {
+                $("#" + data[i].id).prop("required", false);
+              } else {
+                console.log("success");
+              }
+              break;
+            case "option":
+              $("<option></option>")
+                .attr("value", data[i].value)
+                .text(data[i].value)
+                .appendTo("#gender");
+              break;
 
-                break;
-              case "radio":
-                $("<input>")
-                  .attr({
-                    type: data[i].type,
-                    name: data[i].name,
-                    id: data[i].id,
-                    value: data[i].value
-                  })
-                  .appendTo("#" + data[i].did);
-                $("<label>")
-                  .text(data[i].value)
-                  .appendTo("#" + data[i].did);
-                break;
-              case "file":
-                $("<div></div>")
-                  .attr("id", data[i].id)
-                  .text(data[i].title)
-                  .appendTo("#mydata");
-                $("<input>")
-                  .attr({
-                    type: data[i].type,
-                    id: data[i].id,
-                    name: data[i].id,
-                    accept: data[i].accept
-                  })
-                  .attr("onchange", "readURL(this)")
-                  .appendTo("#" + data[i].id);
-                break;
+            case "cvalue":
+              $("<div>    </div>")
+                .attr("id", data[i].did)
+                .text(data[i].title)
+                .appendTo("#mydata");
+              $("</br>").appendTo("#" + data[i].did);
+              break;
+            case "checkbox":
+              $("<input>")
+                .attr({
+                  type: data[i].type,
+                  class: data[i].class,
+                  value: data[i].value
+                })
+                .appendTo("#" + data[i].did);
+              $("<label>")
+                .text(data[i].value)
+                .appendTo("#" + data[i].did);
+              //$('&nbsp').appendTo('#' + data[i].did);
+              break;
+            case "radiobutton":
+              $("<div>    </div>")
+                .attr("id", data[i].did)
+                .text(data[i].title)
+                .appendTo("#mydata");
+              $("</br>").appendTo("#" + data[i].did);
 
-              case "submit":
-                $("<div>    </div>")
-                  .attr("id", data[i].did)
-                  .text(data[i].title)
-                  .appendTo("#mydata");
-                $("</br>").appendTo("#" + data[i].did);
-                $("<input>")
-                  .attr({
-                    type: data[i].type,
-                    id: data[i].id,
-                    name: data[i].id,
-                    maxlength: data[i].maxlength
-                  })
-                  .attr("class", "btn-success")
-                  .appendTo("#" + data[i].did);
-                $("<p >  </p>")
-                  .attr("id", data[i].pid)
-                  .attr("class", "validation")
-                  .appendTo("#" + data[i].did);
-                break;
+              break;
+            case "radio":
+              $("<input>")
+                .attr({
+                  type: data[i].type,
+                  name: data[i].name,
+                  id: data[i].id,
+                  value: data[i].value
+                })
+                .appendTo("#" + data[i].did);
+              $("<label>")
+                .text(data[i].value)
+                .appendTo("#" + data[i].did);
+              break;
+            case "file":
+              $("<div></div>")
+                .attr("id", data[i].id)
+                .text(data[i].title)
+                .appendTo("#mydata");
+              $("<input>")
+                .attr({
+                  type: data[i].type,
+                  id: data[i].id,
+                  name: data[i].id,
+                  accept: data[i].accept
+                })
+                .attr("onchange", "readURL(this)")
+                .appendTo("#" + data[i].id);
+              break;
+            case "select1":
+              $("<div> </div>")
+                .attr("id", data[i].did)
+                .text(data[i].title)
+                .appendTo("#mydata");
+              $("</br>").appendTo("#" + data[i].did);
+              $("<select></select>")
+                .attr("id", data[i].id)
+                .attr("multiple", "multiple")
+                .attr("data-value", "")
+                .appendTo("#" + data[i].did);
 
-              default:
-                console.log("default case ");
-            }
+              break;
+            case "option1":
+              $("<option></option>")
+                .attr("value", data[i].value)
+                .text(data[i].value)
+                .appendTo("#multiple_Select");
+
+              break;
+
+            case "submit":
+              $("<div>    </div>")
+                .attr("id", data[i].did)
+                .text(data[i].title)
+                .appendTo("#mydata");
+              $("</br>").appendTo("#" + data[i].did);
+              $("<input>")
+                .attr({
+                  type: data[i].type,
+                  id: data[i].id,
+                  name: data[i].id,
+                  maxlength: data[i].maxlength
+                })
+                .attr("class", "btn-success")
+                .appendTo("#" + data[i].did);
+              $("<p >  </p>")
+                .attr("id", data[i].pid)
+                .attr("class", "validation")
+                .appendTo("#" + data[i].did);
+              break;
+
+            default:
+              console.log("default case ");
           }
-          $("#mobile").keypress(function(e) {
-            if (
-              e.which != 8 &&
-              e.which != 0 &&
-              (e.which < 48 || e.which > 57)
-            ) {
-              return false;
-            }
-          });
+        }
 
-          $(function() {
-            $("#datepicker").datepicker({
-              dateFormat: "dd-mm-yy"
-            });
-          });
+        $("#multiple_Select").multiselect({
+          onChange: function() {
+            mdrop = this.$select.val();
+            $("#multiple_Select").attr("data-value", mdrop);
+            // console.log(mdrop);
+            //localStorage.setItem("Hobbies 1", mdrop);
+          }
+        });
 
-          $(function() {
-            $("#timer").datetimepicker({
-              format: "LT"
-            });
+        $("#mobile").keypress(function(e) {
+          if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+          }
+        });
+
+        $(function() {
+          $("#datepicker").datepicker({
+            dateFormat: "dd-mm-yy"
+          });
+        });
+
+        $(function() {
+          $("#timer").datetimepicker({
+            format: "LT"
           });
         });
       }
@@ -280,9 +317,6 @@
         var datepicker = $("#datepicker").val();
         var timer = $("#timer").val();
         var gender = $("#gender").val();
-        // var hobbies = $('input[id="hobbies"id="hobbies1"]:checked').val();
-        // console.log(hobbies);
-
         var qualfication = $('input[name="qualification"]:checked').val();
         var rfname = /^[A-Z][a-z]+$/;
         var rlname = /^[A-Z][a-z]+$/;
@@ -314,16 +348,18 @@
           localStorage.setItem("Date Of Birth", datepicker);
           localStorage.setItem("Gender", gender);
           localStorage.setItem("Time", timer);
-          //localStorage.setItem("Hobbies", hobbies);
           localStorage.setItem("File Upload", imgPath);
           localStorage.setItem("Qualification", qualfication);
+          localStorage.setItem(
+            "Hobbies 1",
+            $("#multiple_Select").attr("data-value")
+          );
           var arr = $(".hobbies")
             .map(function() {
               return this.checked;
             })
             .get();
           localStorage.setItem("Hobbies", JSON.stringify(arr));
-
           $("#userdetails").hide();
           $("<label ></label></br>")
             .text(
@@ -369,10 +405,16 @@
               "Qualfication      : " + localStorage.getItem("Qualification")
             )
             .appendTo("#userdisplay");
+          $("<label></label></br>")
+            .text("Hobbies 1      : " + localStorage.getItem("Hobbies 1"))
+            .appendTo("#userdisplay");
           $("<label ></label></br>")
             .text("File Upload              :     ")
+            .attr("for", "imgDisplay")
             .appendTo("#userdisplay");
           $("<img></img>")
+            .attr("width", "400px")
+            .attr("height", "200px")
             .attr("src", localStorage.getItem("File Upload"))
             .appendTo("#userdisplay");
 

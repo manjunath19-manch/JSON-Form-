@@ -104,7 +104,8 @@
   },
   {
     "type": "radio",
-    "id": "radio",
+    "class": "radio",
+
     "did": "dradio",
 
     "value": "BCA  ",
@@ -113,7 +114,7 @@
   {
     "type": "radio",
     "did": "dradio",
-    "id": "radio",
+    "class": "radio",
 
     "value": "MCA ",
     "name": "qualification"
@@ -125,6 +126,31 @@
     "accept": "image/*",
     "did": "dfile",
     "pid": "pfile"
+  },
+  {
+    "type": "select1",
+    "did": "mselect",
+    "id": "multiple_Select",
+    "title": "Hobbies :"
+  },
+  {
+    "type": "option1",
+    "value": "Reading"
+  },
+  {
+    "type": "option1",
+    "value": "Playing",
+    "class": "dmultiple"
+  },
+  {
+    "type": "option1",
+    "value": "cricket",
+    "class": "dmultiple"
+  },
+  {
+    "type": "option1",
+    "value": "swim",
+    "class": "dmultiple"
   },
   {
     "pid": "",
