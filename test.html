@@ -356,11 +356,7 @@
             "Hobbies 1",
             $("#multiple_Select").attr("data-value")
           );
-          var arr = $(".hobbies")
-            .map(function() {
-              return this.checked;
-            })
-            .get();
+
           localStorage.setItem("Hobbies", JSON.stringify(arr));
           $("#userdetails").hide();
           $("<label ></label></br>")
