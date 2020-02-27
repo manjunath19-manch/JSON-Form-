@@ -1,5 +1,8 @@
 [
   {
+    "tagtype": "<table>"
+  },
+  {
     "pid": "pfname",
     "did": "dfname",
     "id": "fname",
@@ -153,6 +156,9 @@
     "type": "option1",
     "value": "swim",
     "class": "dmultiple"
+  },
+  {
+    "tagtype": "</table>"
   },
   {
     "pid": "",

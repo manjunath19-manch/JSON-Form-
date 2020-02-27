@@ -30,9 +30,6 @@
     <table id="tuserdetails">
       <div id="userdetails">
         <form id="mydata" style="margin-left:20px;position:relative;"></form>
-        <tr id="truserdetails">
-          <td id="tduserdetails"></td>
-        </tr>
       </div>
     </table>
 
@@ -62,7 +59,7 @@
           var res = data[i].type;
           switch (res) {
             case "text":
-              $("<tr></tr>").appendTo("#mydata");
+              $("<tr></tr>").appendTo("#tuserdetails");
               $("<div></div>")
                 .attr("id", data[i].did)
                 .text(data[i].title)
