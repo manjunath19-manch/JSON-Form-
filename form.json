@@ -1,14 +1,11 @@
 [
   {
-    "tagtype": "<table>"
-  },
-  {
     "pid": "pfname",
     "did": "dfname",
     "id": "fname",
     "title": "FirstName:",
     "type": "text",
-    "Mandatory": "false"
+    "Mandatory": "true"
   },
   {
     "pid": "plname",
@@ -16,7 +13,7 @@
     "id": "lname",
     "title": "LastName:",
     "type": "text",
-    "Mandatory": "false"
+    "Mandatory": "true"
   },
   {
     "pid": "pemail",
@@ -25,7 +22,7 @@
     "title": "Email:",
     "type": "text",
     "maxlength": "",
-    "Mandatory": "false"
+    "Mandatory": "true"
   },
   {
     "pid": "ppassword",
@@ -34,7 +31,7 @@
     "title": "Password:",
     "type": "password",
     "maxlength": 6,
-    "Mandatory": "false"
+    "Mandatory": "true"
   },
   {
     "pid": "pmobile",
@@ -43,7 +40,7 @@
     "title": "Mobile:",
     "type": "text",
     "maxlength": 10,
-    "Mandatory": "false"
+    "Mandatory": "true"
   },
   {
     "pid": "pdate",
@@ -52,7 +49,7 @@
     "title": "Date of Birth:",
     "type": "text",
     "maxlength": "",
-    "Mandatory": "false"
+    "Mandatory": "true"
   },
   {
     "pid": "ptimer",
@@ -60,7 +57,7 @@
     "id": "timer",
     "title": "Time:",
     "type": "text",
-    "Mandatory": "false"
+    "Mandatory": "true"
   },
   {
     "pid": "pgender",
@@ -68,7 +65,7 @@
     "id": "gender",
     "type": "select",
     "title": "Gender :",
-    "Mandatory": "false"
+    "Mandatory": "true"
   },
   {
     "type": "option",
@@ -83,7 +80,7 @@
     "did": "dhobbies",
     "type": "cvalue",
     "title": "Hobbies :",
-    "Mandatory": "false"
+    "Mandatory": "true"
   },
   {
     "type": "checkbox",
@@ -158,7 +155,60 @@
     "class": "dmultiple"
   },
   {
-    "tagtype": "</table>"
+    "type": "table",
+    "id": "tabuserdetails"
+  },
+  {
+    "pid": "psname",
+    "type": "ttext",
+    "tdid": "tdsname",
+    "id": "Sname",
+    "title": "Student Fname",
+    "did": "dsname"
+  },
+  {
+    "pid": "pslname",
+    "type": "select2",
+    "tdid": "tdslname",
+    "id": "slname",
+    "title": "Gender",
+    "did": "slname"
+  },
+  {
+    "type": "option2",
+    "value": "Male"
+  },
+  {
+    "type": "option2",
+    "value": "Female"
+  },
+  {
+    "pid": "psrollno",
+    "type": "ttext",
+    "id": "srollno",
+    "tdid": "tdsrollno",
+    "title": "Student Rollno"
+  },
+  {
+    "pid": "pstime",
+    "type": "ttime",
+    "id": "stime",
+    "tdid": "tdstime",
+    "title": "Exam Time"
+  },
+  {
+    "pid": "psdob",
+    "type": "ttime",
+    "id": "sdob",
+    "tdid": "tdsdob",
+    "title": "DOB"
+  },
+  {
+    "pid": "psaddr",
+    "type": "saddr",
+    "id": "saddress",
+    "tdid": "tdsaddr",
+    "title": "Address"
   },
   {
     "pid": "",

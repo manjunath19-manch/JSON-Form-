@@ -27,11 +27,10 @@
 
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <table id="tuserdetails">
-      <div id="userdetails">
-        <form id="mydata" style="margin-left:20px;position:relative;"></form>
-      </div>
-    </table>
+
+    <div id="userdetails">
+      <form id="mydata" style="margin-left:20px;position:relative;"></form>
+    </div>
 
     <div id="userdisplay" style="display: none;margin-left: 20px;"></div>
 
@@ -41,8 +40,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 
     <script>
-      $("#userdetails").appendTo("#tuserdetails");
-
+      // $("<table></table>")
+      //   .attr("id", "tabuserdetails")
+      //   .appendTo("#mydata");
       fetch("form.json")
         .then(function(response) {
           return response.json();
@@ -59,7 +59,7 @@
           var res = data[i].type;
           switch (res) {
             case "text":
-              $("<tr></tr>").appendTo("#tuserdetails");
+              // $("<tr></tr>").appendTo("#tuserdetails");
               $("<div></div>")
                 .attr("id", data[i].did)
                 .text(data[i].title)
@@ -170,7 +170,7 @@
                 })
                 .attr("data-value", "")
                 .appendTo("#" + data[i].did);
-              $("<label>")
+              $("<label></label></br>")
                 .text(data[i].value)
                 .appendTo("#" + data[i].did);
               //$('&nbsp').appendTo('#' + data[i].did);
@@ -196,7 +196,7 @@
                   value: data[i].value
                 })
                 .appendTo("#" + data[i].did);
-              $("<label>")
+              $("<label></label></br>")
                 .text(data[i].value)
                 .appendTo("#" + data[i].did);
               break;
@@ -246,6 +246,93 @@
                 .appendTo("#multiple_Select");
 
               break;
+            case "table":
+              $("<table></table>")
+                .attr("id", data[i].id)
+                .appendTo("#mydata");
+              break;
+            case "ttext":
+              $("<tr></tr>")
+                .attr("id", "trsname")
+                .appendTo("#tabuserdetails");
+              $("<td></td>")
+                .attr("id", data[i].tdid)
+                .text(data[i].title)
+                .attr("class", "tdstyle")
+                .appendTo("#trsname");
+
+              //  $("</br>").appendTo("#" + data[i].did);
+              $("<input/>")
+                .attr("type", "text")
+                .attr({
+                  id: data[i].id,
+                  name: data[i].id,
+                  class: data[i].class
+                })
+                .appendTo("#" + data[i].tdid);
+
+              break;
+            case "ttime":
+              $("<tr></tr")
+                .attr("id", "trtime")
+
+                .appendTo("#tabuserdetails");
+              $("<td></td>")
+                .attr("id", data[i].tdid)
+                .attr("class", "tdstyle")
+                .text(data[i].title)
+                .appendTo("#trtime");
+              //  $("</br>").appendTo("#" + data[i].did);
+              $("<input/>")
+                .attr("type", "text")
+                .attr({
+                  id: data[i].id,
+                  name: data[i].id,
+                  class: data[i].class
+                })
+                .appendTo("#" + data[i].tdid);
+              $("<p></p>")
+                .attr("id", data[i].pid)
+                .appendTo("#" + data[i].tdid);
+
+              break;
+            case "saddr":
+              $("<td></td>")
+                .attr("id", data[i].tdid)
+                .attr("class", "tdstyle")
+                .text(data[i].title)
+                .appendTo("#trtime");
+
+              $("<textarea></textarea>")
+                .attr("rows", "0")
+                .attr("cols", "0")
+                .attr({
+                  id: data[i].id,
+                  name: data[i].id,
+                  class: data[i].class
+                })
+                .appendTo("#" + data[i].tdid);
+              break;
+            case "select2":
+              $("<td></td>")
+                .attr("id", "sdrop")
+                .attr("class", "tdstyle")
+                .text("Gender", data[i].title)
+
+                .appendTo("#trsname");
+              $("<select></select>")
+                .attr("id", "sdropselect")
+                .appendTo("#sdrop");
+              $("<p></p>")
+                .attr("id", data[i].pid)
+                .appendTo("#sdrop");
+              break;
+            case "option2":
+              $("<option></option>")
+                .attr("value", data[i].value)
+                .text(data[i].value)
+                .appendTo("#sdropselect");
+              break;
 
             case "submit":
               $("<div>    </div>")
@@ -287,15 +374,30 @@
             return false;
           }
         });
+        $("#srollno").keypress(function(e) {
+          if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+          }
+        });
 
         $(function() {
           $("#datepicker").datepicker({
             dateFormat: "dd-mm-yy"
           });
         });
+        $(function() {
+          $("#sdob").datepicker({
+            dateFormat: "dd-mm-yy"
+          });
+        });
 
         $(function() {
           $("#timer").datetimepicker({
+            format: "LT"
+          });
+        });
+        $(function() {
+          $("#stime").datetimepicker({
             format: "LT"
           });
         });
@@ -345,6 +447,12 @@
         var gender = $("#gender").val();
         var qualfication = $('input[name="qualification"]:checked').val();
         var hobbies = $('input[class="hobbies"]:checked').val();
+        var sfname = $("#Sname").val();
+        var sgender = $("#sdropselect").val();
+        var srollno = $("#srollno").val();
+        var stime = $("#stime").val();
+        var sdob = $("#sdob").val();
+        var saddress = $("#saddress").val();
 
         var rfname = /^[A-Z][a-z]+$/;
         var rlname = /^[A-Z][a-z]+$/;
@@ -385,6 +493,12 @@
             "Hobbies 1",
             $("#multiple_Select").attr("data-value")
           );
+          localStorage.setItem("Student Fname", sfname);
+          localStorage.setItem("Student Gender", sgender);
+          localStorage.setItem("Student Rollno", srollno);
+          localStorage.setItem("Exam Time", stime);
+          localStorage.setItem("DOB", sdob);
+          localStorage.setItem("Address", saddress);
 
           var arr = $('input[class="hobbies"]:checked')
             .map(function() {
@@ -589,6 +703,7 @@
           $("<img></img>")
             .attr("src", localStorage.getItem("File Upload"))
             .appendTo("#tdimg");
+
           // $("<td>")
           //   .attr("class", "td")
           //   .attr("id", "tdimg")
@@ -610,8 +725,83 @@
           //   .attr("height", "200px")
           //   .attr("src", localStorage.getItem("File Upload"))
           //   .appendTo("#userdisplay");
-
           $("</br>").appendTo("#userdisplay");
+
+          $("<table></table></br>")
+            .attr("id", "sdisplaydetails")
+            .appendTo("#userdisplay");
+          $("<tr></tr>")
+            .attr("id", "trsfname")
+            .appendTo("#sdisplaydetails");
+          $("<td></td")
+            .attr("class", "tdstyle")
+            .text("Student Fname :")
+            .appendTo("#trsfname");
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text(localStorage.getItem("Student Fname"))
+            .appendTo("#trsfname");
+          $("<tr></tr>")
+            .attr("id", "trslname")
+            .appendTo("#sdisplaydetails");
+
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text("Student Gender")
+            .appendTo("#trslname");
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text(localStorage.getItem("Student Gender"))
+            .appendTo("#trslname");
+
+          $("<tr></tr>")
+            .attr("id", "trsrollno")
+            .appendTo("#sdisplaydetails");
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text("Student Rollno")
+            .appendTo("#trsrollno");
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text(localStorage.getItem("Student Rollno"))
+            .appendTo("#trsrollno");
+
+          $("<tr></tr>")
+            .attr("id", "texamtime")
+            .appendTo("#sdisplaydetails");
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text("Exam Time")
+            .appendTo("#texamtime");
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text(localStorage.getItem("Exam Time"))
+            .appendTo("#texamtime");
+
+          $("<tr></tr>")
+            .attr("id", "tdob")
+            .appendTo("#sdisplaydetails");
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text("DOB")
+            .appendTo("#tdob");
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text(localStorage.getItem("DOB"))
+            .appendTo("#tdob");
+
+          $("<tr></tr>")
+            .attr("id", "taddress")
+            .appendTo("#sdisplaydetails");
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text("Address")
+            .appendTo("#taddress");
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text(localStorage.getItem("Address"))
+            .appendTo("#taddress");
+
           $("<button />", {
             text: "Back",
             id: "btn",
