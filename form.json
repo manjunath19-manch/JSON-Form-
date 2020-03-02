@@ -5,7 +5,7 @@
     "id": "fname",
     "title": "FirstName:",
     "type": "text",
-    "Mandatory": "true"
+    "Mandatory": "false"
   },
   {
     "pid": "plname",
@@ -13,7 +13,7 @@
     "id": "lname",
     "title": "LastName:",
     "type": "text",
-    "Mandatory": "true"
+    "Mandatory": "false"
   },
   {
     "pid": "pemail",
@@ -22,7 +22,7 @@
     "title": "Email:",
     "type": "text",
     "maxlength": "",
-    "Mandatory": "true"
+    "Mandatory": "false"
   },
   {
     "pid": "ppassword",
@@ -31,7 +31,7 @@
     "title": "Password:",
     "type": "password",
     "maxlength": 6,
-    "Mandatory": "true"
+    "Mandatory": "false"
   },
   {
     "pid": "pmobile",
@@ -40,7 +40,7 @@
     "title": "Mobile:",
     "type": "text",
     "maxlength": 10,
-    "Mandatory": "true"
+    "Mandatory": "false"
   },
   {
     "pid": "pdate",
@@ -49,7 +49,7 @@
     "title": "Date of Birth:",
     "type": "text",
     "maxlength": "",
-    "Mandatory": "true"
+    "Mandatory": "false"
   },
   {
     "pid": "ptimer",
@@ -57,7 +57,7 @@
     "id": "timer",
     "title": "Time:",
     "type": "text",
-    "Mandatory": "true"
+    "Mandatory": "false"
   },
   {
     "pid": "pgender",
@@ -65,7 +65,7 @@
     "id": "gender",
     "type": "select",
     "title": "Gender :",
-    "Mandatory": "true"
+    "Mandatory": "false"
   },
   {
     "type": "option",
@@ -80,7 +80,7 @@
     "did": "dhobbies",
     "type": "cvalue",
     "title": "Hobbies :",
-    "Mandatory": "true"
+    "Mandatory": "false"
   },
   {
     "type": "checkbox",

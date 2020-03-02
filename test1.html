@@ -233,6 +233,7 @@
                 .attr("multiple", "multiple")
                 .attr("data-value", "")
                 .appendTo("#" + data[i].did);
+
               $("<p >  </p>")
                 .attr("id", data[i].pid)
                 .attr("class", "validation")
@@ -293,6 +294,7 @@
                 .appendTo("#" + data[i].tdid);
               $("<p></p>")
                 .attr("id", data[i].pid)
+                .attr("class", "validation")
                 .appendTo("#" + data[i].tdid);
 
               break;
@@ -312,6 +314,10 @@
                   class: data[i].class
                 })
                 .appendTo("#" + data[i].tdid);
+              $("<p></p>")
+                .attr("id", data[i].pid)
+                .attr("class", "validation")
+                .appendTo("#tdsaddr");
               break;
             case "select2":
               $("<td></td>")
@@ -323,8 +329,12 @@
               $("<select></select>")
                 .attr("id", "sdropselect")
                 .appendTo("#sdrop");
+              $("<option></option>")
+                .text("Select a Gender")
+                .appendTo("#sdropselect");
               $("<p></p>")
                 .attr("id", data[i].pid)
+                .attr("class", "validation")
                 .appendTo("#sdrop");
               break;
             case "option2":
@@ -477,7 +487,10 @@
           gender != "Select Gender" &&
           hobbies != "" &&
           qualfication != "" &&
-          $("#multiple_Select").attr("data-value") != ""
+          $("#multiple_Select").attr("data-value") != "" &&
+          sgender != "Select a Gender" &&
+          stime != "" &&
+          saddress != ""
         ) {
           localStorage.setItem("FirstName", firstname);
           localStorage.setItem("lastname", lastname);
@@ -827,6 +840,13 @@
         var gender = $("#gender").val();
         var hobbies = $('input[class="hobbies"]:checked').val();
         var qualfication = $('input[name="qualification"]:checked').val();
+        var sfname = $("#Sname").val();
+        var sgender = $("#sdropselect").val();
+        var srollno = $("#srollno").val();
+        var stime = $("#stime").val();
+        var sdob = $("#sdob").val();
+        var saddress = $("#saddress").val();
+
         //var hobbies1 = $('input[class="dmultiple"]:checked').val();
         //var imgUpload = $("#file").val();
 
@@ -843,7 +863,7 @@
         reg_mobile = rmobile.test(mobile);
 
         if (!reg_fname) {
-          $("#pfname").text("Enter a First Name");
+          $("#pfname").text("Enter a First Name  ");
         } else {
           $("#pfname").text("");
         }
@@ -908,6 +928,21 @@
         } else {
           $("#mid").text("");
         }
+        if (sgender == "Select a Gender") {
+          $("#pslname").text("Please Select the Gender");
+        } else {
+          $("#pslname").text("");
+        }
+        if (!stime) {
+          $("#pstime").text("Please select Time");
+        } else {
+          $("#pstime").text(" ");
+        }
+        if (!saddress) {
+          $("#psaddr").text("Please Enter the Address");
+        } else {
+          $("#psaddr").text("");
+        }
       }
 
       function focusValid(e) {
@@ -925,6 +960,13 @@
         });
         var hobbies = $('input[class="hobbies"]:checked').val();
         var qualfication = $('input[name="qualification"]:checked').val();
+
+        var sfname = $("#Sname").val();
+        var sgender = $("#sdropselect").val();
+        var srollno = $("#srollno").val();
+        var stime = $("#stime").val();
+        var sdob = $("#sdob").val();
+        var saddress = $("#saddress").val();
 
         // var qualfication = $('input[name="qualification"]:checked').val();
 
@@ -1018,6 +1060,21 @@
           return;
         } else {
           $("#mid").text("");
+        }
+        if (sgender == "Select a Gender") {
+          $("#pslname").text("Please Select the Gender");
+        } else {
+          $("#pslname").text("");
+        }
+        if (!stime) {
+          $("#pstime").text("Please select Time");
+        } else {
+          $("#pstime").text(" ");
+        }
+        if (!saddress) {
+          $("#psaddr").text("Please select address");
+        } else {
+          $("#psaddr").text("");
         }
       }
     </script>

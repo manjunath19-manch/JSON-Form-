@@ -1,12 +1,1096 @@
 <html>
   <head>
-    <body>
-      <table>
-        <tr>
-          <td>First Name</td>
-          <td><input type="text" /></td>
-        </tr>
-      </table>
-    </body>
+    <link rel="stylesheet" href="mystyle.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
   </head>
+
+  <body>
+    <header>
+      <img src="logo.png" width="100px" height="100px" class="center" />
+    </header>
+
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <div id="userdetails">
+      <form id="mydata" style="margin-left:20px;position:relative;"></form>
+    </div>
+
+    <div id="userdisplay" style="display: none;margin-left: 20px;"></div>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+
+    <script>
+      // $("<table></table>")
+      //   .attr("id", "tabuserdetails")
+      //   .appendTo("#mydata");
+      fetch("form.json")
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          appendData(data);
+        })
+        .catch(function(err) {
+          console.log("error: " + err);
+        });
+      function appendData(data) {
+        //  $(document).ready(function() {
+
+        for (var i = 0; i < data.length; i++) {
+          var res = data[i].type;
+          switch (res) {
+            case "text":
+              // $("<tr></tr>").appendTo("#tuserdetails");
+              $("<div></div>")
+                .attr("id", data[i].did)
+                .text(data[i].title)
+                .appendTo("#mydata");
+              $("</br>").appendTo("#" + data[i].did);
+              $("<input>")
+                .attr({
+                  type: data[i].type,
+                  id: data[i].id,
+                  name: data[i].id,
+                  class: data[i].class,
+                  pattern: data[i].pattern,
+                  maxlength: data[i].maxlength
+                })
+                .appendTo("#" + data[i].did);
+              $("<p >  </p>")
+                .attr("id", data[i].pid)
+                .attr("class", "validation")
+                .appendTo("#" + data[i].did);
+              if (data[i].Mandatory == "true") {
+                $("#" + data[i].id).prop("required", true);
+                $("#" + data[i].did).prop("class", "required");
+              } else if (data[i].Mandatory == "false") {
+                $("#" + data[i].id).prop("required", false);
+              } else {
+              }
+              break;
+
+            case "password":
+              $("<div>    </div>")
+                .attr("id", data[i].did)
+                .text(data[i].title)
+                .appendTo("#mydata");
+              $("</br>").appendTo("#" + data[i].did);
+              $("<input>")
+                .attr({
+                  type: data[i].type,
+                  id: data[i].id,
+                  name: data[i].id,
+                  maxlength: data[i].maxlength
+                })
+                .appendTo("#" + data[i].did);
+              $("<p >  </p>")
+                .attr("id", data[i].pid)
+                .attr("class", "validation")
+                .appendTo("#" + data[i].did);
+              if (data[i].Mandatory == "true") {
+                $("#" + data[i].id).prop("required", true);
+                $("#" + data[i].did).prop("class", "required");
+              } else if (data[i].Mandatory == "false") {
+                $("#" + data[i].id).prop("required", false);
+              } else {
+                console.log("success");
+              }
+              break;
+
+            case "select":
+              $("<div> </div>")
+                .attr("id", data[i].did)
+                .text(data[i].title)
+                .appendTo("#mydata");
+              $("</br>").appendTo("#" + data[i].did);
+
+              $("<select></select>")
+                .attr("id", data[i].id)
+                .appendTo("#" + data[i].did);
+              $("<option></option>")
+                .text("Select Gender")
+                .appendTo("#gender");
+              $("<p >  </p>")
+                .attr("id", data[i].pid)
+                .attr("class", "validation")
+                .appendTo("#" + data[i].did);
+
+              if (data[i].Mandatory == "true") {
+                $("#" + data[i].id).prop("required", true);
+                $("#" + data[i].did).prop("class", "required");
+              } else if (data[i].Mandatory == "false") {
+                $("#" + data[i].id).prop("required", false);
+              } else {
+                console.log("success");
+              }
+              break;
+            case "option":
+              $("<option></option>")
+                .attr("value", data[i].value)
+                .text(data[i].value)
+                .appendTo("#gender");
+              break;
+
+            case "cvalue":
+              $("<div>    </div>")
+                .attr("id", data[i].did)
+                .text(data[i].title)
+                .appendTo("#mydata");
+              $("<p></p>")
+                .attr("id", data[i].pid)
+                .attr("class", "validation")
+                .appendTo("#mydata");
+              $("</br>").appendTo("#" + data[i].did);
+              break;
+            case "checkbox":
+              $("<input>")
+                .attr({
+                  type: data[i].type,
+                  class: data[i].class,
+                  value: data[i].value
+                })
+                .attr("data-value", "")
+                .appendTo("#" + data[i].did);
+              $("<label></label></br>")
+                .text(data[i].value)
+                .appendTo("#" + data[i].did);
+              //$('&nbsp').appendTo('#' + data[i].did);
+              break;
+            case "radiobutton":
+              $("<div>    </div>")
+                .attr("id", data[i].did)
+                .text(data[i].title)
+                .appendTo("#mydata");
+              $("<p></p>")
+                .attr("id", data[i].pid)
+                .attr("class", "validation")
+                .appendTo("#mydata");
+              $("</br>").appendTo("#" + data[i].did);
+
+              break;
+            case "radio":
+              $("<input>")
+                .attr({
+                  type: data[i].type,
+                  name: data[i].name,
+                  id: data[i].id,
+                  value: data[i].value
+                })
+                .appendTo("#" + data[i].did);
+              $("<label></label></br>")
+                .text(data[i].value)
+                .appendTo("#" + data[i].did);
+              break;
+            case "file":
+              $("<div></div>")
+                .attr("id", data[i].did)
+                .text(data[i].title)
+                .appendTo("#mydata");
+              $("<input>")
+                .attr({
+                  type: data[i].type,
+                  id: data[i].id,
+                  name: data[i].id,
+
+                  accept: data[i].accept
+                })
+                .attr("imgpath", "")
+                .attr("onchange", "readURL(this)")
+                .appendTo("#" + data[i].did);
+              $("<p >  </p>")
+                .attr("id", data[i].pid)
+                .attr("class", "validation")
+                .appendTo("#" + data[i].did);
+
+              break;
+            case "select1":
+              $("<div> </div>")
+                .attr("id", data[i].did)
+                .text(data[i].title)
+                .appendTo("#mydata");
+              $("</br>").appendTo("#" + data[i].did);
+              $("<select></select>")
+                .attr("id", data[i].id)
+                .attr("multiple", "multiple")
+                .attr("data-value", "")
+                .appendTo("#" + data[i].did);
+
+              $("<p >  </p>")
+                .attr("id", data[i].pid)
+                .attr("class", "validation")
+                .appendTo("#" + data[i].did);
+
+              break;
+            case "option1":
+              $("<option></option>")
+                .attr("value", data[i].value)
+                .text(data[i].value)
+                .appendTo("#multiple_Select");
+
+              break;
+            case "table":
+              $("<table></table>")
+                .attr("id", data[i].id)
+                .appendTo("#mydata");
+              break;
+            case "ttext":
+              $("<tr></tr>")
+                .attr("id", "trsname")
+                .appendTo("#tabuserdetails");
+              $("<td></td>")
+                .attr("id", data[i].tdid)
+                .text(data[i].title)
+                .attr("class", "tdstyle")
+                .appendTo("#trsname");
+
+              //  $("</br>").appendTo("#" + data[i].did);
+              $("<input/>")
+                .attr("type", "text")
+                .attr({
+                  id: data[i].id,
+                  name: data[i].id,
+                  class: data[i].class
+                })
+                .appendTo("#" + data[i].tdid);
+
+              break;
+            case "ttime":
+              $("<tr></tr")
+                .attr("id", "trtime")
+
+                .appendTo("#tabuserdetails");
+              $("<td></td>")
+                .attr("id", data[i].tdid)
+                .attr("class", "tdstyle")
+                .text(data[i].title)
+                .appendTo("#trtime");
+              //  $("</br>").appendTo("#" + data[i].did);
+              $("<input/>")
+                .attr("type", "text")
+                .attr({
+                  id: data[i].id,
+                  name: data[i].id,
+                  class: data[i].class
+                })
+                .appendTo("#" + data[i].tdid);
+              $("<p></p>")
+                .attr("id", data[i].pid)
+                .attr("class", "validation")
+                .appendTo("#" + data[i].tdid);
+
+              break;
+            case "saddr":
+              $("<td></td>")
+                .attr("id", data[i].tdid)
+                .attr("class", "tdstyle")
+                .text(data[i].title)
+                .appendTo("#trtime");
+
+              $("<textarea></textarea>")
+                .attr("rows", "0")
+                .attr("cols", "0")
+                .attr({
+                  id: data[i].id,
+                  name: data[i].id,
+                  class: data[i].class
+                })
+                .appendTo("#" + data[i].tdid);
+              $("<p></p>")
+                .attr("id", data[i].pid)
+                .attr("class", "validation")
+                .appendTo("#tdsaddr");
+              break;
+            case "select2":
+              $("<td></td>")
+                .attr("id", "sdrop")
+                .attr("class", "tdstyle")
+                .text("Gender", data[i].title)
+
+                .appendTo("#trsname");
+              $("<select></select>")
+                .attr("id", "sdropselect")
+                .appendTo("#sdrop");
+              $("<option></option>")
+                .text("Select a Gender")
+                .appendTo("#sdropselect");
+              $("<p></p>")
+                .attr("id", data[i].pid)
+                .attr("class", "validation")
+                .appendTo("#sdrop");
+              break;
+            case "option2":
+              $("<option></option>")
+                .attr("value", data[i].value)
+                .text(data[i].value)
+                .appendTo("#sdropselect");
+              break;
+
+            case "submit":
+              $("<div>    </div>")
+                .attr("id", data[i].did)
+                .text(data[i].title)
+                .appendTo("#mydata");
+              $("</br>").appendTo("#" + data[i].did);
+              $("<input>")
+                .attr({
+                  type: data[i].type,
+                  id: data[i].id,
+                  name: data[i].id,
+                  maxlength: data[i].maxlength
+                })
+                .attr("class", "btn-success")
+                .appendTo("#" + data[i].did);
+              $("<p >  </p>")
+                .attr("id", data[i].pid)
+                .attr("class", "validation")
+                .appendTo("#" + data[i].did);
+              break;
+
+            default:
+              console.log("default case ");
+          }
+        }
+
+        $("#multiple_Select").multiselect({
+          onChange: function() {
+            mdrop = this.$select.val();
+            $("#multiple_Select").attr("data-value", mdrop);
+            // console.log(mdrop);
+            //localStorage.setItem("Hobbies 1", mdrop);
+          }
+        });
+
+        $("#mobile").keypress(function(e) {
+          if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+          }
+        });
+        $("#srollno").keypress(function(e) {
+          if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+          }
+        });
+
+        $(function() {
+          $("#datepicker").datepicker({
+            dateFormat: "dd-mm-yy"
+          });
+        });
+        $(function() {
+          $("#sdob").datepicker({
+            dateFormat: "dd-mm-yy"
+          });
+        });
+
+        $(function() {
+          $("#timer").datetimepicker({
+            format: "LT"
+          });
+        });
+        $(function() {
+          $("#stime").datetimepicker({
+            format: "LT"
+          });
+        });
+      }
+
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function(e) {
+            imgPath = e.target.result;
+            $("#file").attr("imgPath", imgPath);
+          };
+
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+
+      $("form").on("submit", function(e) {
+        e.preventDefault();
+
+        var firstname = $("#fname").val();
+        var lastname = $("#lname").val();
+        var email = $("#email").val();
+        var password = $("#password").val();
+        var mobile = $("#mobile").val();
+        var datepicker = $("#datepicker").val();
+
+        submitValid();
+        checkvalid();
+      });
+      $("form").on("focusout", function(e) {
+        e.preventDefault();
+
+        focusValid(e);
+      });
+
+      function checkvalid() {
+        var al = [];
+        var firstname = $("#fname").val();
+        var lastname = $("#lname").val();
+        var email = $("#email").val();
+        var password = $("#password").val();
+        var mobile = $("#mobile").val();
+        var datepicker = $("#datepicker").val();
+        var timer = $("#timer").val();
+        var gender = $("#gender").val();
+        var qualfication = $('input[name="qualification"]:checked').val();
+        var hobbies = $('input[class="hobbies"]:checked').val();
+        var sfname = $("#Sname").val();
+        var sgender = $("#sdropselect").val();
+        var srollno = $("#srollno").val();
+        var stime = $("#stime").val();
+        var sdob = $("#sdob").val();
+        var saddress = $("#saddress").val();
+
+        var rfname = /^[A-Z][a-z]+$/;
+        var rlname = /^[A-Z][a-z]+$/;
+        var remail = /(^[A-Za-z0-9\.]+)@([A-Za-z0-9\.]+).([A-z]{2,8})/;
+        var rpassword = /(^[A-Z]([a-z0-9]){5}$)/;
+        var rmobile = /(^[0-9]{10}$)/;
+
+        reg_fname = rfname.test(firstname);
+        reg_lname = rlname.test(lastname);
+        reg_email = remail.test(email);
+        reg_password = rpassword.test(password);
+        reg_mobile = rmobile.test(mobile);
+
+        if (
+          firstname != "" &&
+          lastname != "" &&
+          email != "" &&
+          password != "" &&
+          mobile != "" &&
+          datepicker != "" &&
+          timer != "" &&
+          gender != "Select Gender" &&
+          hobbies != "" &&
+          qualfication != "" &&
+          $("#multiple_Select").attr("data-value") != "" &&
+          sgender != "Select a Gender" &&
+          stime != "" &&
+          saddress != ""
+        ) {
+          localStorage.setItem("FirstName", firstname);
+          localStorage.setItem("lastname", lastname);
+          localStorage.setItem("email", email);
+          localStorage.setItem("password", password);
+          localStorage.setItem("mobile", mobile);
+          localStorage.setItem("Date Of Birth", datepicker);
+          localStorage.setItem("Gender", gender);
+          localStorage.setItem("Time", timer);
+          localStorage.setItem("Image Upload", imgPath);
+          localStorage.setItem("Qualification", qualfication);
+          localStorage.setItem(
+            "Hobbies 1",
+            $("#multiple_Select").attr("data-value")
+          );
+          localStorage.setItem("Student Fname", sfname);
+          localStorage.setItem("Student Gender", sgender);
+          localStorage.setItem("Student Rollno", srollno);
+          localStorage.setItem("Exam Time", stime);
+          localStorage.setItem("DOB", sdob);
+          localStorage.setItem("Address", saddress);
+
+          var arr = $('input[class="hobbies"]:checked')
+            .map(function() {
+              return $(this).val();
+            })
+            .get();
+
+          localStorage.setItem("Hobbies", JSON.stringify(arr));
+          $("#userdetails").hide();
+          $("<table> </table>")
+            .attr("id", "tuserdisplay")
+            .appendTo("#userdisplay");
+          $("<tr></tr>")
+            .attr("id", "truserdisplayfname")
+            .appendTo("#tuserdisplay");
+          // $("<td></td>")
+          //   .attr("id", "tduserdisplay")
+          //   .appendTo("#truserdisplay");
+          // $("<td></td>")
+          //   .attr("id", "tduserdisplay")
+          //   .appendTo("#truserdisplay1");
+          // $("<tr><td><label ></label></td></tr>")
+          //   .text("First Name           :" + localStorage.getItem("FirstName"))
+          //   .appendTo("#tuserdisplay");
+          $("<td></td>")
+            .attr("class", "td")
+            .text("First Name :")
+            .appendTo("#truserdisplayfname");
+          $("<td></td>")
+            .attr("class", "td")
+            .text(localStorage.getItem("FirstName"))
+            .appendTo("#truserdisplayfname");
+
+          $("<tr></tr>")
+            .attr("id", "truserdisplaylname")
+            .appendTo("#tuserdisplay");
+          $("<td></td>")
+            .attr("class", "td")
+            .text("Last Name :")
+            .appendTo("#truserdisplaylname");
+          $("<td></td>")
+            .attr("class", "td")
+            .text(localStorage.getItem("lastname"))
+            .appendTo("#truserdisplaylname");
+
+          $("<tr></tr>")
+            .attr("id", "truserdisplayemail")
+            .appendTo("#tuserdisplay");
+          $("<td></td>")
+            .attr("class", "td")
+            .text("Email :")
+            .appendTo("#truserdisplayemail");
+          $("<td></td>")
+            .attr("class", "td")
+            .text(localStorage.getItem("email"))
+            .appendTo("#truserdisplayemail");
+
+          // $("<label ></label></br>")
+          //   .text("Email               :     " + localStorage.getItem("email"))
+          //   .appendTo("#userdisplay");
+          $("<tr></tr>")
+            .attr("id", "truserdisplaypassword")
+            .appendTo("#tuserdisplay");
+          $("<td></td>")
+            .attr("class", "td")
+            .text("Password :")
+            .appendTo("#truserdisplaypassword");
+          $("<td></td>")
+            .attr("class", "td")
+            .text(localStorage.getItem("password"))
+            .appendTo("#truserdisplaypassword");
+          // $("<label ></label></br>")
+          //   .text(
+          //     "Password            :     " + localStorage.getItem("password")
+          //   )
+          //   .appendTo("#userdisplay");
+          $("<tr></tr>")
+            .attr("id", "truserdisplaymobile")
+            .appendTo("#tuserdisplay");
+          $("<td></td>")
+            .attr("class", "td")
+            .text("Mobile :")
+            .appendTo("#truserdisplaymobile");
+          $("<td></td>")
+            .attr("class", "td")
+            .text(localStorage.getItem("mobile"))
+            .appendTo("#truserdisplaymobile");
+
+          // $("<label ></label></br>")
+          //   .text("Mobile              :     " + localStorage.getItem("mobile"))
+          //   .appendTo("#userdisplay");
+          $("<tr></tr>")
+            .attr("id", "truserdisplaydob")
+            .appendTo("#tuserdisplay");
+          $("<td></td>")
+            .attr("class", "td")
+            .text("DOB :")
+            .appendTo("#truserdisplaydob");
+          $("<td></td>")
+            .attr("class", "td")
+            .text(localStorage.getItem("Date Of Birth"))
+            .appendTo("#truserdisplaydob");
+          // $("<label ></label></br>")
+          //   .text(
+          //     "Date of Birth       :     " +
+          //       localStorage.getItem("Date Of Birth")
+          //   )
+          //   .appendTo("#userdisplay");
+          $("<tr></tr>")
+            .attr("id", "truserdisplaytime")
+            .appendTo("#tuserdisplay");
+          $("<td></td>")
+            .attr("class", "td")
+            .text("Time :")
+            .appendTo("#truserdisplaytime");
+          $("<td></td>")
+            .attr("class", "td")
+            .text(localStorage.getItem("Time"))
+            .appendTo("#truserdisplaytime");
+
+          // $("<label ></label></br>")
+          //   .text("Time                :     " + localStorage.getItem("Time"))
+          //   .appendTo("#userdisplay");
+
+          $("<tr></tr>")
+            .attr("id", "truserdisplaygender")
+            .appendTo("#tuserdisplay");
+          $("<td></td>")
+            .attr("class", "td")
+            .text("Gender :")
+            .appendTo("#truserdisplaygender");
+          $("<td></td>")
+            .attr("class", "td")
+            .text(localStorage.getItem("Gender"))
+            .appendTo("#truserdisplaygender");
+
+          // $("<label ></label></br>")
+          //   .text("Gender              :     " + localStorage.getItem("Gender"))
+          //   .appendTo("#userdisplay");
+
+          $("<tr></tr>")
+            .attr("id", "truserdisplayhobb")
+            .appendTo("#tuserdisplay");
+          $("<td></td>")
+            .attr("class", "td")
+            .text("Hobbies : ")
+            .appendTo("#truserdisplayhobb");
+          $("<td></td>")
+            .attr("class", "td")
+            .text(JSON.parse(localStorage.getItem("Hobbies")))
+            .appendTo("#truserdisplayhobb");
+
+          // $("<label></label></br>")
+          //   .text(
+          //     "Hobbies      : " + JSON.parse(localStorage.getItem("Hobbies"))
+          //   )
+          //   .appendTo("#userdisplay");
+          $("<tr></tr>")
+            .attr("id", "truserdisplayqual")
+            .appendTo("#tuserdisplay");
+          $("<td></td>")
+            .attr("class", "td")
+            .text("Qualification : ")
+            .appendTo("#truserdisplayqual");
+          $("<td></td>")
+            .attr("class", "td")
+            .text(localStorage.getItem("Qualification"))
+            .appendTo("#truserdisplayqual");
+
+          // $("<label></label></br>")
+          //   .text(
+          //     "Qualfication      : " + localStorage.getItem("Qualification")
+          //   )
+          //   .appendTo("#userdisplay");
+
+          $("<tr></tr>")
+            .attr("id", "truserdisplayhobb1")
+            .appendTo("#tuserdisplay");
+          $("<td></td>")
+            .attr("class", "td")
+            .text("Hobbies 1 : ")
+            .appendTo("#truserdisplayhobb1");
+          $("<td></td>")
+            .attr("class", "td")
+            .text(localStorage.getItem("Hobbies 1"))
+            .appendTo("#truserdisplayhobb1");
+
+          // $("<label></label></br>")
+          //   .text("Hobbies 1      : " + localStorage.getItem("Hobbies 1"))
+          //   .appendTo("#userdisplay");
+
+          $("<tr></tr>")
+            .attr("id", "truserdisplayimg")
+            .appendTo("#tuserdisplay");
+          $("<td></td>")
+            .attr("class", "td")
+            .text("Image Upload : ")
+            .appendTo("#truserdisplayimg");
+          $("<td></td>")
+            .attr("id", "tdimg")
+            .appendTo("#truserdisplayimg");
+          $("<img></img>")
+            .attr("src", localStorage.getItem("File Upload"))
+            .appendTo("#tdimg");
+
+          // $("<td>")
+          //   .attr("class", "td")
+          //   .attr("id", "tdimg")
+          //   .text(localStorage.getItem("Hobbies 1"));
+
+          // $("<img>")
+          //   .attr("width", "400px")
+          //   .attr("height", "200px")
+          //   .attr("src", localStorage.getItem("File Upload"));
+          // $("</img>").appendTo("#tdimg");
+          // $("</td>").appendTo("#truserdisplayimg");
+
+          // $("<label></label></br>")
+          //   .text("Image Upload              :     ")
+          //   .attr("for", "imgDisplay")
+          //   .appendTo("#userdisplay");
+          // $("<img></img>")
+          //   .attr("width", "400px")
+          //   .attr("height", "200px")
+          //   .attr("src", localStorage.getItem("File Upload"))
+          //   .appendTo("#userdisplay");
+          $("</br>").appendTo("#userdisplay");
+
+          $("<table></table></br>")
+            .attr("id", "sdisplaydetails")
+            .appendTo("#userdisplay");
+          $("<tr></tr>")
+            .attr("id", "trsfname")
+            .appendTo("#sdisplaydetails");
+          $("<td></td")
+            .attr("class", "tdstyle")
+            .text("Student Fname :")
+            .appendTo("#trsfname");
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text(localStorage.getItem("Student Fname"))
+            .appendTo("#trsfname");
+          $("<tr></tr>")
+            .attr("id", "trslname")
+            .appendTo("#sdisplaydetails");
+
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text("Student Gender")
+            .appendTo("#trslname");
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text(localStorage.getItem("Student Gender"))
+            .appendTo("#trslname");
+
+          $("<tr></tr>")
+            .attr("id", "trsrollno")
+            .appendTo("#sdisplaydetails");
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text("Student Rollno")
+            .appendTo("#trsrollno");
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text(localStorage.getItem("Student Rollno"))
+            .appendTo("#trsrollno");
+
+          $("<tr></tr>")
+            .attr("id", "texamtime")
+            .appendTo("#sdisplaydetails");
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text("Exam Time")
+            .appendTo("#texamtime");
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text(localStorage.getItem("Exam Time"))
+            .appendTo("#texamtime");
+
+          $("<tr></tr>")
+            .attr("id", "tdob")
+            .appendTo("#sdisplaydetails");
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text("DOB")
+            .appendTo("#tdob");
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text(localStorage.getItem("DOB"))
+            .appendTo("#tdob");
+
+          $("<tr></tr>")
+            .attr("id", "taddress")
+            .appendTo("#sdisplaydetails");
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text("Address")
+            .appendTo("#taddress");
+          $("<td></td>")
+            .attr("class", "tdstyle")
+            .text(localStorage.getItem("Address"))
+            .appendTo("#taddress");
+
+          $("<button />", {
+            text: "Back",
+            id: "btn",
+            click: function() {
+              location.reload();
+            }
+          })
+            .attr("class", "btn btn-primary")
+            .appendTo("#userdisplay");
+          $("#userdisplay").show();
+        } else {
+        }
+      }
+      function submitValid() {
+        var al = [];
+        var firstname = $("#fname").val();
+        var lastname = $("#lname").val();
+        var email = $("#email").val();
+        var password = $("#password").val();
+        var mobile = $("#mobile").val();
+        var datepicker = $("#datepicker").val();
+        var time = $("#timer").val();
+        var gender = $("#gender").val();
+        var hobbies = $('input[class="hobbies"]:checked').val();
+        var qualfication = $('input[name="qualification"]:checked').val();
+        var sfname = $("#Sname").val();
+        var sgender = $("#sdropselect").val();
+        var srollno = $("#srollno").val();
+        var stime = $("#stime").val();
+        var sdob = $("#sdob").val();
+        var saddress = $("#saddress").val();
+
+        //var hobbies1 = $('input[class="dmultiple"]:checked').val();
+        //var imgUpload = $("#file").val();
+
+        var rfname = /^[A-Z][a-z]+$/;
+        var rlname = /^[A-Z][a-z]+$/;
+        var remail = /(^[A-Za-z0-9\.]+)@([A-Za-z0-9\.]+).([A-z]{2,8})/;
+        var rpassword = /(^[A-Z]([a-z0-9]){5}$)/;
+        var rmobile = /(^[0-9]{10}$)/;
+
+        reg_fname = rfname.test(firstname);
+        reg_lname = rlname.test(lastname);
+        reg_email = remail.test(email);
+        reg_password = rpassword.test(password);
+        reg_mobile = rmobile.test(mobile);
+
+        if (!reg_fname) {
+          $("#pfname").text("Enter a First Name  ");
+        } else {
+          $("#pfname").text("");
+        }
+
+        if (!reg_lname) {
+          $("#plname").text("Enter a Last Name");
+        } else {
+          $("#plname").text("");
+        }
+        if (!reg_email) {
+          $("#pemail").text("Enter a Valid Email");
+        } else {
+          $("#pemail").text("");
+        }
+        if (password == "") {
+          $("#ppassword").text("Please Fill the Field");
+        } else if (!reg_password) {
+          $("#ppassword").text(
+            "First Character must Capital and Must be 6 Character Long"
+          );
+        } else {
+          $("#ppassword").text("");
+        }
+        if (!reg_mobile) {
+          $("#pmobile").text("Enter a Valid Mobile Number");
+        } else {
+          $("#pmobile").text("");
+        }
+        if (datepicker == "") {
+          $("#pdate").text("Please Choose a Date");
+        } else {
+          $("#pdate").text("");
+        }
+        if (time == "") {
+          $("#ptimer").text("Please Select  a Time");
+        } else {
+          $("#ptimer").text("");
+        }
+        if (gender == "Select Gender") {
+          $("#pgender").text("Please Select  a Gender");
+        } else {
+          $("#pgender").text("");
+        }
+        if (!hobbies) {
+          $("#phobbies").text("Please Select Any one Checkbox");
+        } else {
+          $("#phobbies").text("");
+        }
+        if (!qualfication) {
+          $("#pradio").text("Please Select the radio button");
+        } else {
+          $("#pradio").text("");
+        }
+        if ($("#file").attr("imgpath") == "") {
+          $("#pfile").text("Please Upload the File");
+        } else {
+          $("#pfile").text("");
+        }
+
+        if ($("#multiple_Select").attr("data-value") == "") {
+          $("#mid").text("Please Select the hobbies");
+        } else {
+          $("#mid").text("");
+        }
+        if (sgender == "Select a Gender") {
+          $("#pslname").text("Please Select the Gender");
+        } else {
+          $("#pslname").text("");
+        }
+        if (!stime) {
+          $("#pstime").text("Please select Time");
+        } else {
+          $("#pstime").text(" ");
+        }
+        if (!saddress) {
+          $("#psaddr").text("Please Enter the Address");
+        } else {
+          $("#psaddr").text("");
+        }
+      }
+
+      function focusValid(e) {
+        var al = [];
+        var firstname = $("#fname").val();
+        var lastname = $("#lname").val();
+        var email = $("#email").val();
+        var password = $("#password").val();
+        var mobile = $("#mobile").val();
+        var datepicker = $("#datepicker").val();
+        var time = $("#timer").val();
+        var gender = $("#gender").val();
+        $('input[id="hobbies"]:checked').each(function(i) {
+          al[i] = $(this).val();
+        });
+        var hobbies = $('input[class="hobbies"]:checked').val();
+        var qualfication = $('input[name="qualification"]:checked').val();
+
+        var sfname = $("#Sname").val();
+        var sgender = $("#sdropselect").val();
+        var srollno = $("#srollno").val();
+        var stime = $("#stime").val();
+        var sdob = $("#sdob").val();
+        var saddress = $("#saddress").val();
+
+        // var qualfication = $('input[name="qualification"]:checked').val();
+
+        var rfname = /^[A-Z][a-z]+$/;
+        var rlname = /^[A-Z][a-z]+$/;
+        var remail = /(^[A-Za-z0-9\.]+)@([A-Za-z0-9\.]+).([A-z]{2,8})/;
+        var rpassword = /(^[A-Z]([a-z0-9]){5}$)/;
+        var rmobile = /(^[0-9]{10}$)/;
+
+        reg_fname = rfname.test(firstname);
+        reg_lname = rlname.test(lastname);
+        reg_email = remail.test(email);
+        reg_password = rpassword.test(password);
+        reg_mobile = rmobile.test(mobile);
+
+        if (!reg_fname) {
+          $("#pfname").text("Enter a First Name");
+          return;
+        } else {
+          $("#pfname").text("");
+        }
+
+        if (!reg_lname) {
+          $("#plname").text("Enter a Last Name");
+          return;
+        } else {
+          $("#plname").text("");
+        }
+        if (!reg_email) {
+          $("#pemail").text("Enter a Valid Email");
+          return;
+        } else {
+          $("#pemail").text("");
+        }
+        if (password == "") {
+          $("#ppassword").text("Please Fill the Field");
+          return;
+        } else if (!reg_password) {
+          $("#ppassword").text(
+            "First Character must Capital and Must be 6 Character Long"
+          );
+          return;
+        } else {
+          $("#ppassword").text("");
+        }
+        if (!reg_mobile) {
+          $("#pmobile").text("Enter a Valid Mobile Number");
+          return;
+        } else {
+          $("#pmobile").text("");
+        }
+        if (datepicker == "") {
+          $("#pdate").text("Please Choose a Date");
+          return;
+        } else {
+          $("#pdate").text("");
+        }
+        if (time == "") {
+          $("#ptimer").text("Please Select  a Time");
+          return;
+        } else {
+          $("#ptimer").text("");
+        }
+        if (gender == "Select Gender") {
+          $("#pgender").text("Please Select  a Gender");
+          return;
+        } else {
+          $("#pgender").text("");
+        }
+        if (!hobbies) {
+          $("#phobbies").text("Please Select Any one Checkbox");
+          return;
+        } else {
+          $("#phobbies").text("");
+        }
+        if (!qualfication) {
+          $("#pradio").text("Please Select the radio button");
+          return;
+        } else {
+          $("#pradio").text("");
+        }
+        if ($("#file").attr("imgpath") == "") {
+          $("#pfile").text("Please Upload the File");
+          return;
+        } else {
+          $("#pfile").text("");
+        }
+
+        if ($("#multiple_Select").attr("data-value") == "") {
+          $("#mid").text("Please Select the hobbies");
+          return;
+        } else {
+          $("#mid").text("");
+        }
+        if (sgender == "Select a Gender") {
+          $("#pslname").text("Please Select the Gender");
+        } else {
+          $("#pslname").text("");
+        }
+        if (!stime) {
+          $("#pstime").text("Please select Time");
+        } else {
+          $("#pstime").text(" ");
+        }
+        if (!saddress) {
+          $("#psaddr").text("Please select address");
+        } else {
+          $("#psaddr").text("");
+        }
+      }
+    </script>
+
+    <br />
+
+    <div class="footer">
+      <p style="text-align: left;color:white">
+        &#169;&nbsp;CopyRight 2020
+        <span id="demo" style="float:right;"></span>
+      </p>
+    </div>
+    <script>
+      var d = new Date();
+      document.getElementById("demo").innerHTML = d;
+    </script>
+  </body>
 </html>
