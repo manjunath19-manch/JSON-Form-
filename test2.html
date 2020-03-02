@@ -53,322 +53,471 @@
         .catch(function(err) {
           console.log("error: " + err);
         });
+
       function appendData(data) {
         //  $(document).ready(function() {
-
+        var dynamicHtml;
         for (var i = 0; i < data.length; i++) {
           var res = data[i].type;
           switch (res) {
             case "text":
-              // $("<tr></tr>").appendTo("#tuserdetails");
-              $("<div></div>")
-                .attr("id", data[i].did)
-                .text(data[i].title)
-                .appendTo("#mydata");
-              $("</br>").appendTo("#" + data[i].did);
-              $("<input>")
-                .attr({
-                  type: data[i].type,
-                  id: data[i].id,
-                  name: data[i].id,
-                  class: data[i].class,
-                  pattern: data[i].pattern,
-                  maxlength: data[i].maxlength
-                })
-                .appendTo("#" + data[i].did);
-              $("<p >  </p>")
-                .attr("id", data[i].pid)
-                .attr("class", "validation")
-                .appendTo("#" + data[i].did);
-              if (data[i].Mandatory == "true") {
-                $("#" + data[i].id).prop("required", true);
-                $("#" + data[i].did).prop("class", "required");
-              } else if (data[i].Mandatory == "false") {
-                $("#" + data[i].id).prop("required", false);
-              } else {
-              }
+              dynamicHtml +=
+                "<div id='" +
+                data[i].did +
+                "'>" +
+                data[i].title +
+                "</br>" +
+                "<input type='" +
+                data[i].type +
+                "'id='" +
+                data[i].id +
+                "'></div>";
+              $("#mydata").html(dynamicHtml);
               break;
-
             case "password":
-              $("<div>    </div>")
-                .attr("id", data[i].did)
-                .text(data[i].title)
-                .appendTo("#mydata");
-              $("</br>").appendTo("#" + data[i].did);
-              $("<input>")
-                .attr({
-                  type: data[i].type,
-                  id: data[i].id,
-                  name: data[i].id,
-                  maxlength: data[i].maxlength
-                })
-                .appendTo("#" + data[i].did);
-              $("<p >  </p>")
-                .attr("id", data[i].pid)
-                .attr("class", "validation")
-                .appendTo("#" + data[i].did);
-              if (data[i].Mandatory == "true") {
-                $("#" + data[i].id).prop("required", true);
-                $("#" + data[i].did).prop("class", "required");
-              } else if (data[i].Mandatory == "false") {
-                $("#" + data[i].id).prop("required", false);
-              } else {
-                console.log("success");
-              }
+              dynamicHtml +=
+                "<div id='" +
+                data[i].did +
+                "'>" +
+                data[i].title +
+                "</br>" +
+                "<input type='" +
+                data[i].type +
+                "'id='" +
+                data[i].id +
+                "'maxlength='" +
+                data[i].maxlength +
+                "'/></div>";
+              $("#mydata").html(dynamicHtml);
               break;
-
             case "select":
-              $("<div> </div>")
-                .attr("id", data[i].did)
-                .text(data[i].title)
-                .appendTo("#mydata");
-              $("</br>").appendTo("#" + data[i].did);
-
-              $("<select></select>")
-                .attr("id", data[i].id)
-                .appendTo("#" + data[i].did);
-              $("<option></option>")
-                .text("Select Gender")
-                .appendTo("#gender");
-              $("<p >  </p>")
-                .attr("id", data[i].pid)
-                .attr("class", "validation")
-                .appendTo("#" + data[i].did);
-
-              if (data[i].Mandatory == "true") {
-                $("#" + data[i].id).prop("required", true);
-                $("#" + data[i].did).prop("class", "required");
-              } else if (data[i].Mandatory == "false") {
-                $("#" + data[i].id).prop("required", false);
-              } else {
-                console.log("success");
-              }
+              dynamicHtml +=
+                "<div id='" +
+                data[i].did +
+                "'>" +
+                data[i].title +
+                "</br>" +
+                "<select id='" +
+                data[i].id +
+                "'>";
               break;
             case "option":
-              $("<option></option>")
-                .attr("value", data[i].value)
-                .text(data[i].value)
-                .appendTo("#gender");
+              dynamicHtml +=
+                "<option value='" +
+                data[i].value +
+                "'>" +
+                data[i].value +
+                "</option>";
               break;
-
             case "cvalue":
-              $("<div>    </div>")
-                .attr("id", data[i].did)
-                .text(data[i].title)
-                .appendTo("#mydata");
-              $("<p></p>")
-                .attr("id", data[i].pid)
-                .attr("class", "validation")
-                .appendTo("#mydata");
-              $("</br>").appendTo("#" + data[i].did);
+              dynamicHtml +=
+                "</select></div><div id='" +
+                data[i].did +
+                "'>" +
+                data[i].title +
+                "</br>";
+
               break;
             case "checkbox":
-              $("<input>")
-                .attr({
-                  type: data[i].type,
-                  class: data[i].class,
-                  value: data[i].value
-                })
-                .attr("data-value", "")
-                .appendTo("#" + data[i].did);
-              $("<label></label></br>")
-                .text(data[i].value)
-                .appendTo("#" + data[i].did);
-              //$('&nbsp').appendTo('#' + data[i].did);
+              dynamicHtml +=
+                "<input type='" +
+                data[i].type +
+                "'value='" +
+                data[i].value +
+                "'class='" +
+                data[i].class +
+                "' /><label>" +
+                data[i].value +
+                "</label></br>";
               break;
             case "radiobutton":
-              $("<div>    </div>")
-                .attr("id", data[i].did)
-                .text(data[i].title)
-                .appendTo("#mydata");
-              $("<p></p>")
-                .attr("id", data[i].pid)
-                .attr("class", "validation")
-                .appendTo("#mydata");
-              $("</br>").appendTo("#" + data[i].did);
-
+              dynamicHtml +=
+                "</div><div id='" +
+                data[i].did +
+                "'>" +
+                data[i].title +
+                "</br>";
               break;
             case "radio":
-              $("<input>")
-                .attr({
-                  type: data[i].type,
-                  name: data[i].name,
-                  id: data[i].id,
-                  value: data[i].value
-                })
-                .appendTo("#" + data[i].did);
-              $("<label></label></br>")
-                .text(data[i].value)
-                .appendTo("#" + data[i].did);
+              dynamicHtml +=
+                "<input type='" +
+                data[i].type +
+                "'id='" +
+                data[i].id +
+                "'name='" +
+                data[i].name +
+                "'value='" +
+                data[i].value +
+                "'/><label>" +
+                data[i].value +
+                "</label></br>";
               break;
             case "file":
-              $("<div></div>")
-                .attr("id", data[i].did)
-                .text(data[i].title)
-                .appendTo("#mydata");
-              $("<input>")
-                .attr({
-                  type: data[i].type,
-                  id: data[i].id,
-                  name: data[i].id,
-
-                  accept: data[i].accept
-                })
-                .attr("imgpath", "")
-                .attr("onchange", "readURL(this)")
-                .appendTo("#" + data[i].did);
-              $("<p >  </p>")
-                .attr("id", data[i].pid)
-                .attr("class", "validation")
-                .appendTo("#" + data[i].did);
-
+              dynamicHtml +=
+                "</div><div id='" +
+                data[i].did +
+                "'>" +
+                data[i].title +
+                "'<input type='" +
+                data[i].type +
+                "'accept='" +
+                data[i].accept +
+                "'/>";
               break;
             case "select1":
-              $("<div> </div>")
-                .attr("id", data[i].did)
-                .text(data[i].title)
-                .appendTo("#mydata");
-              $("</br>").appendTo("#" + data[i].did);
-              $("<select></select>")
-                .attr("id", data[i].id)
-                .attr("multiple", "multiple")
-                .attr("data-value", "")
-                .appendTo("#" + data[i].did);
-
-              $("<p >  </p>")
-                .attr("id", data[i].pid)
-                .attr("class", "validation")
-                .appendTo("#" + data[i].did);
+              dynamicHtml +=
+                "</div><div id='" +
+                data[i].did +
+                "' >" +
+                data[i].title +
+                "<select id='" +
+                data[i].id +
+                "'multiple='multiple'></select></div>";
 
               break;
             case "option1":
-              $("<option></option>")
-                .attr("value", data[i].value)
-                .text(data[i].value)
-                .appendTo("#multiple_Select");
-
+              dynamicHtml += "<option value='" + data[i].value + "'></option>";
               break;
             case "table":
-              $("<table></table>")
-                .attr("id", data[i].id)
-                .appendTo("#mydata");
+              dynamicHtml += "<table id='" + data[i].id + "'><tr>";
               break;
             case "ttext":
-              $("<tr></tr>")
-                .attr("id", "trsname")
-                .appendTo("#tabuserdetails");
-              $("<td></td>")
-                .attr("id", data[i].tdid)
-                .text(data[i].title)
-                .attr("class", "tdstyle")
-                .appendTo("#trsname");
-
-              //  $("</br>").appendTo("#" + data[i].did);
-              $("<input/>")
-                .attr("type", "text")
-                .attr({
-                  id: data[i].id,
-                  name: data[i].id,
-                  class: data[i].class
-                })
-                .appendTo("#" + data[i].tdid);
-
-              break;
-            case "ttime":
-              $("<tr></tr")
-                .attr("id", "trtime")
-
-                .appendTo("#tabuserdetails");
-              $("<td></td>")
-                .attr("id", data[i].tdid)
-                .attr("class", "tdstyle")
-                .text(data[i].title)
-                .appendTo("#trtime");
-              //  $("</br>").appendTo("#" + data[i].did);
-              $("<input/>")
-                .attr("type", "text")
-                .attr({
-                  id: data[i].id,
-                  name: data[i].id,
-                  class: data[i].class
-                })
-                .appendTo("#" + data[i].tdid);
-              $("<p></p>")
-                .attr("id", data[i].pid)
-                .attr("class", "validation")
-                .appendTo("#" + data[i].tdid);
-
-              break;
-            case "saddr":
-              $("<td></td>")
-                .attr("id", data[i].tdid)
-                .attr("class", "tdstyle")
-                .text(data[i].title)
-                .appendTo("#trtime");
-
-              $("<textarea></textarea>")
-                .attr("rows", "0")
-                .attr("cols", "0")
-                .attr({
-                  id: data[i].id,
-                  name: data[i].id,
-                  class: data[i].class
-                })
-                .appendTo("#" + data[i].tdid);
-              $("<p></p>")
-                .attr("id", data[i].pid)
-                .attr("class", "validation")
-                .appendTo("#tdsaddr");
+              dynamicHtml +=
+                "<td class='tdstyle'>" +
+                data[i].title +
+                "<input type='text' id='" +
+                data[i].id +
+                "'</td>";
               break;
             case "select2":
-              $("<td></td>")
-                .attr("id", "sdrop")
-                .attr("class", "tdstyle")
-                .text("Gender", data[i].title)
-
-                .appendTo("#trsname");
-              $("<select></select>")
-                .attr("id", "sdropselect")
-                .appendTo("#sdrop");
-              $("<option></option>")
-                .text("Select a Gender")
-                .appendTo("#sdropselect");
-              $("<p></p>")
-                .attr("id", data[i].pid)
-                .attr("class", "validation")
-                .appendTo("#sdrop");
-              break;
-            case "option2":
-              $("<option></option>")
-                .attr("value", data[i].value)
-                .text(data[i].value)
-                .appendTo("#sdropselect");
+              dynamicHtml += "<td class='tdstyle'>";
               break;
 
-            case "submit":
-              $("<div>    </div>")
-                .attr("id", data[i].did)
-                .text(data[i].title)
-                .appendTo("#mydata");
-              $("</br>").appendTo("#" + data[i].did);
-              $("<input>")
-                .attr({
-                  type: data[i].type,
-                  id: data[i].id,
-                  name: data[i].id,
-                  maxlength: data[i].maxlength
-                })
-                .attr("class", "btn-success")
-                .appendTo("#" + data[i].did);
-              $("<p >  </p>")
-                .attr("id", data[i].pid)
-                .attr("class", "validation")
-                .appendTo("#" + data[i].did);
-              break;
+            // console.log(dynamicHtml);
+
+            // $("#mydata").html(dynamicHtml);
+            // "<div id=" + data[i].id + "></div>"
+            // // <input type='" +
+            // // data[i].text +
+            // // "'id='" +
+            // // data[i].id +
+            // // "'/>"
 
             default:
-              console.log("default case ");
+              break;
           }
+          dynamicHtml += "</div>";
+          $("#mydata").html(dynamicHtml);
+
+          // $("<div></div>")
+          //   .attr("id", data[i].did)
+          //   .text(data[i].title)
+          //   .appendTo("#mydata");
+          // $("</br>").appendTo("#" + data[i].did);
+          // $("<input>")
+          //   .attr({
+          //     type: data[i].type,
+          //     id: data[i].id,
+          //     name: data[i].id,
+          //     class: data[i].class,
+          //     pattern: data[i].pattern,
+          //     maxlength: data[i].maxlength
+          //   })
+          //   .appendTo("#" + data[i].did);
+          // $("<p >  </p>")
+          //   .attr("id", data[i].pid)
+          //   .attr("class", "validation")
+          //   .appendTo("#" + data[i].did);
+          // if (data[i].Mandatory == "true") {
+          //   $("#" + data[i].id).prop("required", true);
+          //   $("#" + data[i].did).prop("class", "required");
+          // } else if (data[i].Mandatory == "false") {
+          //   $("#" + data[i].id).prop("required", false);
+          // } else {
+          // }
+          // break;
+
+          //   case "password":
+          //     $("<div>    </div>")
+          //       .attr("id", data[i].did)
+          //       .text(data[i].title)
+          //       .appendTo("#mydata");
+          //     $("</br>").appendTo("#" + data[i].did);
+          //     $("<input>")
+          //       .attr({
+          //         type: data[i].type,
+          //         id: data[i].id,
+          //         name: data[i].id,
+          //         maxlength: data[i].maxlength
+          //       })
+          //       .appendTo("#" + data[i].did);
+          //     $("<p >  </p>")
+          //       .attr("id", data[i].pid)
+          //       .attr("class", "validation")
+          //       .appendTo("#" + data[i].did);
+          //     if (data[i].Mandatory == "true") {
+          //       $("#" + data[i].id).prop("required", true);
+          //       $("#" + data[i].did).prop("class", "required");
+          //     } else if (data[i].Mandatory == "false") {
+          //       $("#" + data[i].id).prop("required", false);
+          //     } else {
+          //       console.log("success");
+          //     }
+          //     break;
+
+          //   case "select":
+          //     $("<div> </div>")
+          //       .attr("id", data[i].did)
+          //       .text(data[i].title)
+          //       .appendTo("#mydata");
+          //     $("</br>").appendTo("#" + data[i].did);
+
+          //     $("<select></select>")
+          //       .attr("id", data[i].id)
+          //       .appendTo("#" + data[i].did);
+          //     $("<option></option>")
+          //       .text("Select Gender")
+          //       .appendTo("#gender");
+          //     $("<p >  </p>")
+          //       .attr("id", data[i].pid)
+          //       .attr("class", "validation")
+          //       .appendTo("#" + data[i].did);
+
+          //     if (data[i].Mandatory == "true") {
+          //       $("#" + data[i].id).prop("required", true);
+          //       $("#" + data[i].did).prop("class", "required");
+          //     } else if (data[i].Mandatory == "false") {
+          //       $("#" + data[i].id).prop("required", false);
+          //     } else {
+          //       console.log("success");
+          //     }
+          //     break;
+          //   case "option":
+          //     $("<option></option>")
+          //       .attr("value", data[i].value)
+          //       .text(data[i].value)
+          //       .appendTo("#gender");
+          //     break;
+
+          //   case "cvalue":
+          //     $("<div>    </div>")
+          //       .attr("id", data[i].did)
+          //       .text(data[i].title)
+          //       .appendTo("#mydata");
+          //     $("<p></p>")
+          //       .attr("id", data[i].pid)
+          //       .attr("class", "validation")
+          //       .appendTo("#mydata");
+          //     $("</br>").appendTo("#" + data[i].did);
+          //     break;
+          //   case "checkbox":
+          //     $("<input>")
+          //       .attr({
+          //         type: data[i].type,
+          //         class: data[i].class,
+          //         value: data[i].value
+          //       })
+          //       .attr("data-value", "")
+          //       .appendTo("#" + data[i].did);
+          //     $("<label></label></br>")
+          //       .text(data[i].value)
+          //       .appendTo("#" + data[i].did);
+          //     //$('&nbsp').appendTo('#' + data[i].did);
+          //     break;
+          //   case "radiobutton":
+          //     $("<div>    </div>")
+          //       .attr("id", data[i].did)
+          //       .text(data[i].title)
+          //       .appendTo("#mydata");
+          //     $("<p></p>")
+          //       .attr("id", data[i].pid)
+          //       .attr("class", "validation")
+          //       .appendTo("#mydata");
+          //     $("</br>").appendTo("#" + data[i].did);
+
+          //     break;
+          //   case "radio":
+          //     $("<input>")
+          //       .attr({
+          //         type: data[i].type,
+          //         name: data[i].name,
+          //         id: data[i].id,
+          //         value: data[i].value
+          //       })
+          //       .appendTo("#" + data[i].did);
+          //     $("<label></label></br>")
+          //       .text(data[i].value)
+          //       .appendTo("#" + data[i].did);
+          //     break;
+          //   case "file":
+          //     $("<div></div>")
+          //       .attr("id", data[i].did)
+          //       .text(data[i].title)
+          //       .appendTo("#mydata");
+          //     $("<input>")
+          //       .attr({
+          //         type: data[i].type,
+          //         id: data[i].id,
+          //         name: data[i].id,
+
+          //         accept: data[i].accept
+          //       })
+          //       .attr("imgpath", "")
+          //       .attr("onchange", "readURL(this)")
+          //       .appendTo("#" + data[i].did);
+          //     $("<p >  </p>")
+          //       .attr("id", data[i].pid)
+          //       .attr("class", "validation")
+          //       .appendTo("#" + data[i].did);
+
+          //     break;
+          //   case "select1":
+          //     $("<div> </div>")
+          //       .attr("id", data[i].did)
+          //       .text(data[i].title)
+          //       .appendTo("#mydata");
+          //     $("</br>").appendTo("#" + data[i].did);
+          //     $("<select></select>")
+          //       .attr("id", data[i].id)
+          //       .attr("multiple", "multiple")
+          //       .attr("data-value", "")
+          //       .appendTo("#" + data[i].did);
+
+          //     $("<p >  </p>")
+          //       .attr("id", data[i].pid)
+          //       .attr("class", "validation")
+          //       .appendTo("#" + data[i].did);
+
+          //     break;
+          //   case "option1":
+          //     $("<option></option>")
+          //       .attr("value", data[i].value)
+          //       .text(data[i].value)
+          //       .appendTo("#multiple_Select");
+
+          //     break;
+          //   case "table":
+          //     $("<table></table>")
+          //       .attr("id", data[i].id)
+          //       .appendTo("#mydata");
+          //     break;
+          //   case "ttext":
+          //     $("<tr></tr>")
+          //       .attr("id", "trsname")
+          //       .appendTo("#tabuserdetails");
+          //     $("<td></td>")
+          //       .attr("id", data[i].tdid)
+          //       .text(data[i].title)
+          //       .attr("class", "tdstyle")
+          //       .appendTo("#trsname");
+
+          //     //  $("</br>").appendTo("#" + data[i].did);
+          //     $("<input/>")
+          //       .attr("type", "text")
+          //       .attr({
+          //         id: data[i].id,
+          //         name: data[i].id,
+          //         class: data[i].class
+          //       })
+          //       .appendTo("#" + data[i].tdid);
+
+          //     break;
+          //   case "ttime":
+          //     $("<tr></tr")
+          //       .attr("id", "trtime")
+
+          //       .appendTo("#tabuserdetails");
+          //     $("<td></td>")
+          //       .attr("id", data[i].tdid)
+          //       .attr("class", "tdstyle")
+          //       .text(data[i].title)
+          //       .appendTo("#trtime");
+          //     //  $("</br>").appendTo("#" + data[i].did);
+          //     $("<input/>")
+          //       .attr("type", "text")
+          //       .attr({
+          //         id: data[i].id,
+          //         name: data[i].id,
+          //         class: data[i].class
+          //       })
+          //       .appendTo("#" + data[i].tdid);
+          //     $("<p></p>")
+          //       .attr("id", data[i].pid)
+          //       .attr("class", "validation")
+          //       .appendTo("#" + data[i].tdid);
+
+          //     break;
+          //   case "saddr":
+          //     $("<td></td>")
+          //       .attr("id", data[i].tdid)
+          //       .attr("class", "tdstyle")
+          //       .text(data[i].title)
+          //       .appendTo("#trtime");
+
+          //     $("<textarea></textarea>")
+          //       .attr("rows", "0")
+          //       .attr("cols", "0")
+          //       .attr({
+          //         id: data[i].id,
+          //         name: data[i].id,
+          //         class: data[i].class
+          //       })
+          //       .appendTo("#" + data[i].tdid);
+          //     $("<p></p>")
+          //       .attr("id", data[i].pid)
+          //       .attr("class", "validation")
+          //       .appendTo("#tdsaddr");
+          //     break;
+          //   case "select2":
+          //     $("<td></td>")
+          //       .attr("id", "sdrop")
+          //       .attr("class", "tdstyle")
+          //       .text("Gender", data[i].title)
+
+          //       .appendTo("#trsname");
+          //     $("<select></select>")
+          //       .attr("id", "sdropselect")
+          //       .appendTo("#sdrop");
+          //     $("<option></option>")
+          //       .text("Select a Gender")
+          //       .appendTo("#sdropselect");
+          //     $("<p></p>")
+          //       .attr("id", data[i].pid)
+          //       .attr("class", "validation")
+          //       .appendTo("#sdrop");
+          //     break;
+          //   case "option2":
+          //     $("<option></option>")
+          //       .attr("value", data[i].value)
+          //       .text(data[i].value)
+          //       .appendTo("#sdropselect");
+          //     break;
+
+          //   case "submit":
+          //     $("<div>    </div>")
+          //       .attr("id", data[i].did)
+          //       .text(data[i].title)
+          //       .appendTo("#mydata");
+          //     $("</br>").appendTo("#" + data[i].did);
+          //     $("<input>")
+          //       .attr({
+          //         type: data[i].type,
+          //         id: data[i].id,
+          //         name: data[i].id,
+          //         maxlength: data[i].maxlength
+          //       })
+          //       .attr("class", "btn-success")
+          //       .appendTo("#" + data[i].did);
+          //     $("<p >  </p>")
+          //       .attr("id", data[i].pid)
+          //       .attr("class", "validation")
+          //       .appendTo("#" + data[i].did);
+          //     break;
+
+          //   default:
+          //     console.log("default case ");
+          // }
+          //}
         }
 
         $("#multiple_Select").multiselect({
