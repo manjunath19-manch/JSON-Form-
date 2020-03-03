@@ -56,7 +56,7 @@
 
       function appendData(data) {
         //  $(document).ready(function() {
-        var dynamicHtml;
+        var dynamicHtml = "";
         for (var i = 0; i < data.length; i++) {
           var res = data[i].type;
           switch (res) {
@@ -71,8 +71,10 @@
                 data[i].type +
                 "'id='" +
                 data[i].id +
-                "'></div>";
-              $("#mydata").html(dynamicHtml);
+                "'><p id='" +
+                data[i].pid +
+                "'class='validation'></p></div>";
+              // $("#mydata").html(dynamicHtml);
               break;
             case "password":
               dynamicHtml +=
@@ -87,8 +89,10 @@
                 data[i].id +
                 "'maxlength='" +
                 data[i].maxlength +
-                "'/></div>";
-              $("#mydata").html(dynamicHtml);
+                "'/><p id='" +
+                data[i].pid +
+                "'class='validation'</p></div>";
+              //  $("#mydata").html(dynamicHtml);
               break;
             case "select":
               dynamicHtml +=
@@ -111,11 +115,11 @@
               break;
             case "cvalue":
               dynamicHtml +=
-                "</select></div><div id='" +
+                "</select><p id='pgender' class='validation'></p></div><div id='" +
                 data[i].did +
                 "'>" +
                 data[i].title +
-                "</br>";
+                "</br></p>";
 
               break;
             case "checkbox":
@@ -132,7 +136,7 @@
               break;
             case "radiobutton":
               dynamicHtml +=
-                "</div><div id='" +
+                "<p id='phobbies' class='validation'></div><div id='" +
                 data[i].did +
                 "'>" +
                 data[i].title +
@@ -142,8 +146,6 @@
               dynamicHtml +=
                 "<input type='" +
                 data[i].type +
-                "'id='" +
-                data[i].id +
                 "'name='" +
                 data[i].name +
                 "'value='" +
@@ -154,32 +156,40 @@
               break;
             case "file":
               dynamicHtml +=
-                "</div><div id='" +
+                "<p id='pradio' class='validation'></p></div><div id='" +
                 data[i].did +
                 "'>" +
                 data[i].title +
-                "'<input type='" +
+                "<input type='" +
                 data[i].type +
                 "'accept='" +
                 data[i].accept +
-                "'/>";
+                "' imgpath='' id='file' onchange='readURL(this)' />";
               break;
             case "select1":
               dynamicHtml +=
-                "</div><div id='" +
+                "<p id='pfile' class='validation'></p></div><div id='" +
                 data[i].did +
                 "' >" +
                 data[i].title +
                 "<select id='" +
                 data[i].id +
-                "'multiple='multiple'></select></div>";
+                "'multiple='multiple' data-value=''>";
 
               break;
-            case "option1":
-              dynamicHtml += "<option value='" + data[i].value + "'></option>";
+            case "option3":
+              dynamicHtml +=
+                "<option value='" +
+                data[i].value +
+                "'class='dmultiple'>" +
+                data[i].value +
+                "</option>";
               break;
             case "table":
-              dynamicHtml += "<table id='" + data[i].id + "'><tr>";
+              dynamicHtml +=
+                "</select><p id='mid' class='validation'></p></div><table id='" +
+                data[i].id +
+                "'><tr>";
               break;
             case "ttext":
               dynamicHtml +=
@@ -188,9 +198,57 @@
                 "<input type='text' id='" +
                 data[i].id +
                 "'</td>";
+
               break;
+
             case "select2":
-              dynamicHtml += "<td class='tdstyle'>";
+              dynamicHtml +=
+                "<td class='tdstyle'>" +
+                data[i].title +
+                "<select id='sdropselect' >";
+              break;
+            case "option2":
+              dynamicHtml +=
+                "<option value='" +
+                data[i].value +
+                "'>" +
+                data[i].value +
+                "</option>";
+              break;
+            case "tr":
+              dynamicHtml +=
+                "</select><p id='psgender' class='validation'></p>";
+              break;
+
+            case "ttime":
+              dynamicHtml +=
+                "</tr><td class='tdstyle'>" +
+                data[i].title +
+                "<input type='text' id='" +
+                data[i].id +
+                "'><p id='pstime' class='validation'></p></td>";
+              break;
+            case "tdob":
+              dynamicHtml +=
+                "<td class='tdstyle'>" +
+                data[i].title +
+                "<input type='text' id='" +
+                data[i].id +
+                "'></td>";
+
+              break;
+
+            case "saddr":
+              dynamicHtml +=
+                "<td class='tdstyle'>" +
+                data[i].title +
+                "<textarea cols='0' rows='0' id='saddress'/><p id='psaddr' class='validation'  ></p></td></tr> ";
+              break;
+            case "submit":
+              dynamicHtml +=
+                "</table></br><input type='" +
+                data[i].type +
+                "'class='btn btn-success' value='submit' />";
               break;
 
             // console.log(dynamicHtml);
@@ -206,7 +264,7 @@
             default:
               break;
           }
-          dynamicHtml += "</div>";
+
           $("#mydata").html(dynamicHtml);
 
           // $("<div></div>")
@@ -569,7 +627,8 @@
 
           reader.onload = function(e) {
             imgPath = e.target.result;
-            $("#file").attr("imgPath", imgPath);
+            //console.log(imgPath);
+            $("#file").attr("imgpath", imgPath);
           };
 
           reader.readAsDataURL(input.files[0]);
@@ -1052,7 +1111,7 @@
         } else {
           $("#ptimer").text("");
         }
-        if (gender == "Select Gender") {
+        if (gender == "Select a Gender") {
           $("#pgender").text("Please Select  a Gender");
         } else {
           $("#pgender").text("");
@@ -1079,9 +1138,9 @@
           $("#mid").text("");
         }
         if (sgender == "Select a Gender") {
-          $("#pslname").text("Please Select the Gender");
+          $("#psgender").text("Please Select the Gender");
         } else {
-          $("#pslname").text("");
+          $("#psgender").text("");
         }
         if (!stime) {
           $("#pstime").text("Please select Time");
@@ -1212,9 +1271,9 @@
           $("#mid").text("");
         }
         if (sgender == "Select a Gender") {
-          $("#pslname").text("Please Select the Gender");
+          $("#psgender").text("Please Select the Gender");
         } else {
-          $("#pslname").text("");
+          $("#psgender").text("");
         }
         if (!stime) {
           $("#pstime").text("Please select Time");

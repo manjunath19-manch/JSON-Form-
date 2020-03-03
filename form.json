@@ -139,22 +139,22 @@
     "pid": "mid"
   },
   {
-    "type": "option1",
+    "type": "option3",
     "value": "Reading",
     "class": "dmultiple"
   },
   {
-    "type": "option1",
+    "type": "option3",
     "value": "Playing",
     "class": "dmultiple"
   },
   {
-    "type": "option1",
+    "type": "option3",
     "value": "cricket",
     "class": "dmultiple"
   },
   {
-    "type": "option1",
+    "type": "option3",
     "value": "swim",
     "class": "dmultiple"
   },
@@ -171,7 +171,7 @@
     "did": "dsname"
   },
   {
-    "pid": "pslname",
+    "pid": "psgender",
     "type": "select2",
     "tdid": "tdslname",
     "id": "slname",
@@ -180,11 +180,18 @@
   },
   {
     "type": "option2",
+    "value": "Select a Gender"
+  },
+  {
+    "type": "option2",
     "value": "Male"
   },
   {
     "type": "option2",
     "value": "Female"
+  },
+  {
+    "type": "tr"
   },
   {
     "pid": "psrollno",
@@ -202,7 +209,7 @@
   },
   {
     "pid": "psdob",
-    "type": "ttime",
+    "type": "tdob",
     "id": "sdob",
     "tdid": "tdsdob",
     "title": "DOB"
