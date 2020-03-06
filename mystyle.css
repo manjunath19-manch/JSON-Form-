@@ -13,10 +13,8 @@
 }
 
 .center {
-  display: block;
-  margin-left: 500px;
   margin-right: 500px;
-  width: 20%;
+  width: 150px;
 }
 .validation {
   color: red;
@@ -27,6 +25,7 @@
 }
 .hobbies {
   padding: 20px;
+  text-emphasis: none;
 }
 .td {
   font-weight: bold;
@@ -36,8 +35,50 @@ tr#trtime {
 }
 td.tdstyle {
   width: 150px;
-  text-align: center;
-  border: 1px solid black;
-  font-weight: bold;
+  /* text-align: center; */
+  border: 1px solid #c0bcbc;
+  font-weight: none;
+  font-size: 15px;
   padding: 5px;
+  border-radius: 3px;
+}
+form {
+  font-size: 15px;
+  /* text-align: center; */
+}
+.td {
+  font-size: 15px;
+}
+.validation1 {
+  color: grey;
+  margin-bottom: 20px;
+}
+.textstyle {
+  border-radius: 3px;
+  width: 660px;
+  border-width: 1px;
+  padding-left: 7px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.formstyle {
+  /* width: 50%;
+  height: 1200px; */
+  border: 1px solid #c0bcbc;
+  padding: 10px;
+  margin-bottom: 4rem;
+  padding-bottom: 0px;
+  border-radius: 3px;
+  font-size: 14px;
+}
+.multiselect {
+  width: 200px;
+  height: 40px;
+  font-size: 11px;
+}
+.checkbox {
+  font-size: 15px;
+}
+.labeltext {
+  padding-left: 10px;
 }

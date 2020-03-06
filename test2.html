@@ -18,18 +18,29 @@
       rel="stylesheet"
       href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
     />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/mdb.min.css" rel="stylesheet" />
   </head>
 
   <body>
     <header>
-      <img src="logo.png" width="100px" height="100px" class="center" />
+      <img src="logo.png" class="center" />
     </header>
 
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <div id="userdetails">
-      <form id="mydata" style="margin-left:20px;position:relative;"></form>
+    <div class="container">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div id="userdetails">
+          <form
+            id="mydata"
+            style="margin-left:20px;position:relative; ;"
+            class="formstyle"
+          ></form>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
     </div>
 
     <div id="userdisplay" style="display: none;margin-left: 20px;"></div>
@@ -57,6 +68,7 @@
       function appendData(data) {
         //  $(document).ready(function() {
         var dynamicHtml = "";
+
         for (var i = 0; i < data.length; i++) {
           var res = data[i].type;
           switch (res) {
@@ -64,46 +76,50 @@
               dynamicHtml +=
                 "<div id='" +
                 data[i].did +
-                "'>" +
+                "' ><label class='labeltext'>" +
                 data[i].title +
-                "</br>" +
+                "</label>" +
                 "<input type='" +
                 data[i].type +
                 "'id='" +
                 data[i].id +
-                "'><p id='" +
+                "' onblur='' onkeyup='cValidation(this)' onclick=cValidation(this) placeholder='" +
+                data[i].placeholder +
+                "' class='textstyle'><p id='" +
                 data[i].pid +
-                "'class='validation'></p></div>";
+                "'class='validation'  ></p></div>";
               // $("#mydata").html(dynamicHtml);
               break;
             case "password":
               dynamicHtml +=
                 "<div id='" +
                 data[i].did +
-                "'>" +
+                "' ><label class='labeltext'>" +
                 data[i].title +
-                "</br>" +
+                "</label>" +
                 "<input type='" +
                 data[i].type +
                 "'id='" +
                 data[i].id +
                 "'maxlength='" +
                 data[i].maxlength +
-                "'/><p id='" +
+                "'onkeyup='cValidation(this)' placeholder='" +
+                data[i].placeholder +
+                "' class='textstyle'/><p id='" +
                 data[i].pid +
-                "'class='validation'</p></div>";
+                "'class='validation'</p><p id='message'></p></div>";
               //  $("#mydata").html(dynamicHtml);
               break;
             case "select":
               dynamicHtml +=
                 "<div id='" +
                 data[i].did +
-                "'>" +
+                "'><label class='labeltext'>" +
                 data[i].title +
-                "</br>" +
+                "</label></br>" +
                 "<select id='" +
                 data[i].id +
-                "'>";
+                "'onchange='fgender()'>";
               break;
             case "option":
               dynamicHtml +=
@@ -117,9 +133,9 @@
               dynamicHtml +=
                 "</select><p id='pgender' class='validation'></p></div><div id='" +
                 data[i].did +
-                "'>" +
+                "'><label class='labeltext'>" +
                 data[i].title +
-                "</br></p>";
+                "</label></br>";
 
               break;
             case "checkbox":
@@ -130,7 +146,7 @@
                 data[i].value +
                 "'class='" +
                 data[i].class +
-                "' /><label>" +
+                "'onclick='ccheckbox()' /><label>" +
                 data[i].value +
                 "</label></br>";
               break;
@@ -138,9 +154,9 @@
               dynamicHtml +=
                 "<p id='phobbies' class='validation'></div><div id='" +
                 data[i].did +
-                "'>" +
+                "'><label class='labeltext'>" +
                 data[i].title +
-                "</br>";
+                "</label></br>";
               break;
             case "radio":
               dynamicHtml +=
@@ -150,7 +166,7 @@
                 data[i].name +
                 "'value='" +
                 data[i].value +
-                "'/><label>" +
+                "'onclick='checkradio()'/><label>" +
                 data[i].value +
                 "</label></br>";
               break;
@@ -158,23 +174,23 @@
               dynamicHtml +=
                 "<p id='pradio' class='validation'></p></div><div id='" +
                 data[i].did +
-                "'>" +
+                "' ><label class='labeltext'>" +
                 data[i].title +
-                "<input type='" +
+                "</label><input type='" +
                 data[i].type +
                 "'accept='" +
                 data[i].accept +
-                "' imgpath='' id='file' onchange='readURL(this)' />";
+                "' imgpath='' id='file' onchange='readURL(this)' onkeyup='cValidation(this)' />";
               break;
             case "select1":
               dynamicHtml +=
                 "<p id='pfile' class='validation'></p></div><div id='" +
                 data[i].did +
-                "' >" +
+                "' ><label class='labeltext'>" +
                 data[i].title +
-                "<select id='" +
+                "</label><select id='" +
                 data[i].id +
-                "'multiple='multiple' data-value=''>";
+                "'multiple='multiple' data-value='' onchange='mhobbies()'>";
 
               break;
             case "option3":
@@ -193,19 +209,21 @@
               break;
             case "ttext":
               dynamicHtml +=
-                "<td class='tdstyle'>" +
+                "<td class='tdstyle'  ><label class='labeltext'>" +
                 data[i].title +
-                "<input type='text' id='" +
+                "</label><input type='text' id='" +
                 data[i].id +
-                "'</td>";
+                "' onkeyup='cValidation(this)'placeholder='" +
+                data[i].placeholder +
+                "' /></td>";
 
               break;
 
             case "select2":
               dynamicHtml +=
-                "<td class='tdstyle'>" +
+                "<td class='tdstyle'><label class='labeltext'>" +
                 data[i].title +
-                "<select id='sdropselect' >";
+                "</label></br><select id='sdropselect' onchange='sgender()' >";
               break;
             case "option2":
               dynamicHtml +=
@@ -222,33 +240,39 @@
 
             case "ttime":
               dynamicHtml +=
-                "</tr><td class='tdstyle'>" +
+                "</tr><td class='tdstyle'><label class='labeltext'>" +
                 data[i].title +
-                "<input type='text' id='" +
+                "</label><input type='text' id='" +
                 data[i].id +
+                "'onkeyup='cValidation(this)'onclick=cValidation(this) placeholder='" +
+                data[i].placeholder +
                 "'><p id='pstime' class='validation'></p></td>";
               break;
             case "tdob":
               dynamicHtml +=
-                "<td class='tdstyle'>" +
+                "<td class='tdstyle'><label class='labeltext'>" +
                 data[i].title +
-                "<input type='text' id='" +
+                "</label><input type='text' id='" +
                 data[i].id +
+                "' placeholder='" +
+                data[i].placeholder +
                 "'></td>";
 
               break;
 
             case "saddr":
               dynamicHtml +=
-                "<td class='tdstyle'>" +
+                "<td class='tdstyle'><label class='labeltext'>" +
                 data[i].title +
-                "<textarea cols='0' rows='0' id='saddress'/><p id='psaddr' class='validation'  ></p></td></tr> ";
+                "</label><textarea cols='0' rows='0' id='saddress' onkeyup='cValidation(this)' placeholder=" +
+                data[i].placeholder +
+                "'/><p id='psaddr' class='validation'  ></p></td></tr> ";
               break;
             case "submit":
               dynamicHtml +=
                 "</table></br><input type='" +
                 data[i].type +
-                "'class='btn btn-success' value='submit' />";
+                "'class='btn btn-success' style='font-size:12px;' value='submit' />";
               break;
 
             // console.log(dynamicHtml);
@@ -629,6 +653,11 @@
             imgPath = e.target.result;
             //console.log(imgPath);
             $("#file").attr("imgpath", imgPath);
+            if ($("#file").attr("imgpath") == "") {
+              $("#pfile").text("Please Upload the File");
+            } else {
+              $("#pfile").text("");
+            }
           };
 
           reader.readAsDataURL(input.files[0]);
@@ -638,21 +667,296 @@
       $("form").on("submit", function(e) {
         e.preventDefault();
 
-        var firstname = $("#fname").val();
-        var lastname = $("#lname").val();
-        var email = $("#email").val();
-        var password = $("#password").val();
-        var mobile = $("#mobile").val();
-        var datepicker = $("#datepicker").val();
+        // var firstname = $("#fname").val();
+        // var lastname = $("#lname").val();
+        // var email = $("#email").val();
+        // var password = $("#password").val();
+        // var mobile = $("#mobile").val();
+        // var datepicker = $("#datepicker").val();
 
         submitValid();
         checkvalid();
       });
       $("form").on("focusout", function(e) {
         e.preventDefault();
-
-        focusValid(e);
+        // focusValid();
       });
+      function cValidation(obj) {
+        var al = [];
+        var firstname = $("#fname").val();
+        var lastname = $("#lname").val();
+        var email = $("#email").val();
+        var password = $("#password").val();
+        var mobile = $("#mobile").val();
+        var datepicker = $("#datepicker").val();
+        var time = $("#timer").val();
+        var gender = $("#gender").val();
+        var hobbies = $('input[class="hobbies"]:checked').val();
+        var qualfication = $('input[name="qualification"]:checked').val();
+        var sfname = $("#Sname").val();
+        var sgender = $("#sdropselect").val();
+        var srollno = $("#srollno").val();
+        var stime = $("#stime").val();
+
+        var sdob = $("#sdob").val();
+        var saddress = $("#saddress").val();
+
+        //var hobbies1 = $('input[class="dmultiple"]:checked').val();
+        //var imgUpload = $("#file").val();
+
+        var rfname = /^[A-Z][a-z]+$/;
+        var rlname = /^[A-Z][a-z]+$/;
+        var remail = /(^[A-Za-z0-9\.]+)@([A-Za-z0-9\.]+).([A-z]{2,8})/;
+        var rpassword = /(^[A-Z]([a-z0-9]){5}$)/;
+        var rmobile = /(^[0-9]{10}$)/;
+
+        reg_fname = rfname.test(firstname);
+        reg_lname = rlname.test(lastname);
+        reg_email = remail.test(email);
+        reg_password = rpassword.test(password);
+        reg_mobile = rmobile.test(mobile);
+        var fid = $(obj).attr("id");
+        switch (fid) {
+          case "fname":
+            if (firstname == "") {
+              $("#pfname").text("");
+            } else if (!reg_fname) {
+              $("#pfname").text("Please Enter First Letter Capital");
+            } else {
+              $("#pfname").text("");
+            }
+            break;
+          case "lname":
+            if (lastname == "") {
+              $("#plname").text("");
+            } else if (!reg_lname) {
+              $("#plname").text("Please Enter First Letter Capital");
+            } else {
+              $("#plname").text("");
+            }
+            break;
+          case "email":
+            if (email == "") {
+              $("#pemail").text("");
+            } else if (!reg_email) {
+              $("#pemail").text("Please Enter a Valid Email");
+            } else {
+              $("#pemail").text("");
+            }
+            break;
+
+          case "password":
+            if (password == "") {
+              $("#ppassword").text("");
+            } else if (!reg_password) {
+              $("#ppassword").hide();
+
+              $("#message")
+                .attr("class", "validation1")
+                .text(
+                  "First Character must Capital and Must be 6 Character Long"
+                );
+            } else {
+              $("#message").text("");
+              $("#ppassword").text("");
+            }
+            // if (password == "") {
+            //   $("#ppassword").text("");
+            // } else if (!reg_password) {
+            //   $("#ppassword").text("Please Enter a Valid Password");
+            // } else {
+            //   $("#ppassword").text("");
+            // }
+            break;
+          case "mobile":
+            if (mobile == "") {
+              $("#pmobile").text("");
+            } else if (!reg_mobile) {
+              $("#pmobile").text("Please Enter a Valid Mobile Number");
+            } else {
+              $("#pmobile").text("");
+            }
+            break;
+          case "datepicker":
+            if (datepicker != "") {
+              $("#pdate").text("");
+            }
+            break;
+          case "timer":
+            if (time != "") {
+              $("#ptimer").text("");
+            }
+            break;
+          case "gender":
+            if (gender != "Select a Gender") {
+              $("#pgender").text("");
+            }
+            break;
+          case "sdropselect":
+            if (sgender != "Select a Gender") {
+              $("#psgender").text("");
+            }
+            break;
+          case "stime":
+            if (stime != "") {
+              $("#pstime").text("");
+            }
+            break;
+          case "saddress":
+            if (saddress != "") {
+              $("#psaddr").text("");
+            }
+            break;
+          case "file":
+            if ($("#file").attr("imgpath") != "") {
+              $("#pfile").text("");
+            } else {
+              $("#pfile").text("");
+            }
+
+            break;
+        }
+      }
+      function sgender() {
+        if (sgender == "Select a Gender") {
+          $("#psgender").text("Please Select the Gender");
+        } else {
+          $("#psgender").text("");
+        }
+      }
+      function fgender() {
+        if (gender == "Select a Gender") {
+          $("#pgender").text("Please Select  a Gender");
+        } else {
+          $("#pgender").text("");
+        }
+      }
+      // var firstname = $("#fname").val();
+      // var rfname = /^[A-Z][a-z]+$/;
+      // var reg_fname = rfname.test(firstname);
+
+      // if (firstname == "") {
+      //   $("#pfname").text("");
+      // } else if (!reg_fname) {
+      //   $("#pfname").text("Please Enter a Valid First Name");
+      // } else {
+      //   $("#pfname").text("");
+      // }
+      // }
+      // function checklname() {
+      //   var lastname = $("#lname").val();
+      //   var rlname = /^[A-Z][a-z]+$/;
+      //   reg_lname = rlname.test(lastname);
+
+      //   if (lastname == "") {
+      //     $("#plname").text("");
+      //   } else if (!reg_lname) {
+      //     $("#plname").text("Please Enter a Valid Last Name");
+      //   } else {
+      //     $("#plname").text("");
+      //   }
+      // }
+
+      // function checkemail() {
+      //   var email = $("#email").val();
+      //   var remail = /(^[A-Za-z0-9\.]+)@([A-Za-z0-9\.]+).([A-z]{2,8})/;
+      //   reg_email = remail.test(email);
+
+      //   if (email == "") {
+      //     $("#pemail").text("");
+      //   } else if (!reg_lname) {
+      //     $("#pemail").text("Please Enter a Valid Email");
+      //   } else {
+      //     $("#pemail").text("");
+      //   }
+      // }
+
+      // function checkpassword() {
+      //   var password = $("#password").val();
+      //   var rpassword = /(^[A-Z]([a-z0-9]){5}$)/;
+      //   reg_password = rpassword.test(password);
+      //   if (password == "") {
+      //     $("#ppassword").text("");
+      //   } else if (!reg_lname) {
+      //     $("#ppassword").text("Please Enter a Valid Password");
+      //   } else {
+      //     $("#ppassword").text("");
+      //   }
+      // }
+      // function checkmobile() {
+      //   var mobile = $("#mobile").val();
+      //   var rmobile = /(^[0-9]{10}$)/;
+      //   reg_mobile = rmobile.test(mobile);
+      //   if (mobile == "") {
+      //     $("#pmobile").text("");
+      //   } else if (!reg_lname) {
+      //     $("#pmobile").text("Please Enter a Valid Mobile Number");
+      //   } else {
+      //     $("#pmobile").text("");
+      //   }
+      // }
+      // function checkdob() {
+      //   var datepicker = $("#datepicker").val();
+      //   if (datepicker != "") {
+      //     $("#pdate").text("");
+      //   }
+      // }
+      // function checktime() {
+      //   var time = $("#timer").val();
+      //   if (time != "") {
+      //     $("#ptimer").text("");
+      //   }
+      // }
+      // function checkgender() {
+      //   var gender = $("#gender").val();
+      //   if (gender != "Select a Gender") {
+      //     $("#pgender").text("");
+      //   }
+      // }
+
+      // function checkhobbies() {
+      //   var hobbies = $('input[class="hobbies"]:checked').val();
+      //   if (hobbies != "") {
+      //     $("#phobbies").text("");
+      //   }
+      // }
+      // function checkqual() {
+      //   var qualfication = $('input[name="qualification"]:checked').val();
+      //   if (qualfication != "") {
+      //     $("#pradio").text("");
+      //   }
+      // }
+      // function checkImg() {
+      //   if ($("#file").attr("imgpath") != "") {
+      //     $("#pfile").text("");
+      //   }
+      // }
+
+      // function checkmulti() {
+      //   if ($("#multiple_Select").attr("data-value") != "") {
+      //     $("#mid").text("");
+      //   }
+      // }
+
+      // function sgender()() {
+      //   var sgender = $("#sdropselect").val();
+      //   if (sgender != "Select a Gender") {
+      //     "#psgender".text("");
+      //   }
+      // }
+
+      // function checkstime() {
+      //   var stime = $("#stime").val();
+      //   if (stime != "") {
+      //     $("#pstime").text(" ");
+      //   }
+      // }
+      // function checksaddr() {
+      //   var saddress = $("#saddress").val();
+      //   if (saddress != "") {
+      //     $("#psaddr").text("");
+      //   }
+      // }
 
       function checkvalid() {
         var al = [];
@@ -732,6 +1036,7 @@
           $("#userdetails").hide();
           $("<table> </table>")
             .attr("id", "tuserdisplay")
+            .attr("class", "")
             .appendTo("#userdisplay");
           $("<tr></tr>")
             .attr("id", "truserdisplayfname")
@@ -923,7 +1228,9 @@
             .attr("id", "tdimg")
             .appendTo("#truserdisplayimg");
           $("<img></img>")
-            .attr("src", localStorage.getItem("File Upload"))
+            .attr("src", localStorage.getItem("Image Upload"))
+            .attr("height", "250")
+            .attr("width", "500")
             .appendTo("#tdimg");
 
           // $("<td>")
@@ -1037,6 +1344,31 @@
         } else {
         }
       }
+      function mhobbies() {
+        if ($("#multiple_Select").attr("data-value") == "") {
+          $("#mid").text("Please Select the hobbies");
+        } else {
+          $("#mid").text("");
+        }
+      }
+      function ccheckbox() {
+        var hobbies = $('input[class="hobbies"]:checked').val();
+
+        if (!hobbies) {
+          $("#phobbies").text("Please Select Any one Checkbox");
+        } else {
+          $("#phobbies").text("");
+        }
+      }
+      function checkradio() {
+        var qualfication = $('input[name="qualification"]:checked').val();
+        if (!qualfication) {
+          $("#pradio").text("Please Select the radio button");
+        } else {
+          $("#pradio").text("");
+        }
+      }
+
       function submitValid() {
         var al = [];
         var firstname = $("#fname").val();
@@ -1153,8 +1485,17 @@
           $("#psaddr").text("");
         }
       }
+      // function validMessage(obj) {
+      //   var id = $(obj).attr("id");
+      //   if ($("#" + id).val()) {
+      //     $(obj)
+      //       .next("p")
+      //       .remove();
+      //   } else {
+      //   }
+      // }
 
-      function focusValid(e) {
+      function focusValid() {
         var al = [];
         var firstname = $("#fname").val();
         var lastname = $("#lname").val();
@@ -1193,80 +1534,67 @@
 
         if (!reg_fname) {
           $("#pfname").text("Enter a First Name");
-          return;
         } else {
           $("#pfname").text("");
         }
 
         if (!reg_lname) {
           $("#plname").text("Enter a Last Name");
-          return;
         } else {
           $("#plname").text("");
         }
         if (!reg_email) {
           $("#pemail").text("Enter a Valid Email");
-          return;
         } else {
           $("#pemail").text("");
         }
         if (password == "") {
           $("#ppassword").text("Please Fill the Field");
-          return;
         } else if (!reg_password) {
           $("#ppassword").text(
             "First Character must Capital and Must be 6 Character Long"
           );
-          return;
         } else {
           $("#ppassword").text("");
         }
         if (!reg_mobile) {
           $("#pmobile").text("Enter a Valid Mobile Number");
-          return;
         } else {
           $("#pmobile").text("");
         }
         if (datepicker == "") {
           $("#pdate").text("Please Choose a Date");
-          return;
         } else {
           $("#pdate").text("");
         }
         if (time == "") {
           $("#ptimer").text("Please Select  a Time");
-          return;
         } else {
           $("#ptimer").text("");
         }
-        if (gender == "Select Gender") {
+        if (gender == "Select a Gender") {
           $("#pgender").text("Please Select  a Gender");
-          return;
         } else {
           $("#pgender").text("");
         }
         if (!hobbies) {
           $("#phobbies").text("Please Select Any one Checkbox");
-          return;
         } else {
           $("#phobbies").text("");
         }
         if (!qualfication) {
           $("#pradio").text("Please Select the radio button");
-          return;
         } else {
           $("#pradio").text("");
         }
         if ($("#file").attr("imgpath") == "") {
           $("#pfile").text("Please Upload the File");
-          return;
         } else {
           $("#pfile").text("");
         }
 
         if ($("#multiple_Select").attr("data-value") == "") {
           $("#mid").text("Please Select the hobbies");
-          return;
         } else {
           $("#mid").text("");
         }
@@ -1281,17 +1609,197 @@
           $("#pstime").text(" ");
         }
         if (!saddress) {
-          $("#psaddr").text("Please select address");
+          $("#psaddr").text("Please Enter the Address");
         } else {
           $("#psaddr").text("");
         }
+
+        // if (firstname == "") {
+        //   $("#pfname").text("");
+        // } else if (!reg_fname) {
+        //   $("#pfname").text("Enter a First Name");
+        // } else {
+        //   $("#pfname").text("");
+        // }
+
+        // if (lastname == "") {
+        //   $("#plname").text("");
+        // } else if (!reg_lname) {
+        //   $("#plname").text("Enter a Last Name");
+        // } else {
+        //   $("#plname").text("");
+        // }
+        // if (email == "") {
+        //   $("#pemail").text("");
+        // } else if (!reg_email) {
+        //   $("#pemail").text("Enter a email Name");
+        // } else {
+        //   $("#pemail").text("");
+        // }
+
+        // if (password == "") {
+        //   $("#ppassword").text("");
+        // } else if (!reg_password) {
+        //   $("#ppassword").text("Enter a Password");
+        // } else {
+        //   $("#ppassword").text("");
+        // }
+
+        // if (mobile == "") {
+        //   $("#pmobile").text("");
+        // } else if (!reg_mobile) {
+        //   $("#pmobile").text("Enter a Mobile Number");
+        // } else {
+        //   $("#pmobile").text("");
+        // }
+
+        // if (datepicker == "") {
+        //   $("#pdate").text("");
+        // } else if (datepicker == "") {
+        //   $("#pdate").text("Please  choose the date");
+        // } else {
+        //   $("#pdate").text("");
+        // }
+
+        // if (time == "") {
+        //   $("#ptimer").text("");
+        // } else if (time == "") {
+        //   $("#ptimer").text("Please choose the time");
+        // } else {
+        //   $("#ptimer").text("");
+        // }
+
+        // if (gender == "") {
+        //   $("#plname").text("");
+        // } else if (!reg_fname) {
+        //   $("#pfname").text("Enter a First Name");
+        // } else {
+        //   $("#pfname").text("");
+        // }
+
+        // if (hobbies == "") {
+        //   $("#plname").text("");
+        // } else if (!reg_fname) {
+        //   $("#pfname").text("Enter a First Name");
+        // } else {
+        //   $("#pfname").text("");
+        // }
+
+        // if (qualfication == "") {
+        //   $("#plname").text("");
+        // } else if (!reg_fname) {
+        //   $("#pfname").text("Enter a First Name");
+        // } else {
+        //   $("#pfname").text("");
+        // }
+
+        // if (!reg_email) {
+        //   $("#pemail").text("Enter a Valid Email");
+        // } else {
+        //   $("#pemail").text("");
+        // }
+        // if (password == "") {
+        //   $("#ppassword").text("Please Fill the Field");
+        // } else if (!reg_password) {
+        //   $("#ppassword").text(
+        //     "First Character must Capital and Must be 6 Character Long"
+        //   );
+        // } else {
+        //   $("#ppassword").text("");
+        // }
+        // if (!reg_mobile) {
+        //   $("#pmobile").text("Enter a Valid Mobile Number");
+        // } else {
+        //   $("#pmobile").text("");
+        // }
+        // if (datepicker == "") {
+        //   $("#pdate").text("Please Choose a Date");
+        // } else {
+        //   $("#pdate").text("");
+        // }
+        // if (time == "") {
+        //   $("#ptimer").text("Please Select  a Time");
+        // } else {
+        //   $("#ptimer").text("");
+        // }
+        // if (gender == "Select a Gender") {
+        //   $("#pgender").text("Please Select  a Gender");
+        // } else {
+        //   $("#pgender").text("");
+        // }
+        // if (!hobbies) {
+        //   $("#phobbies").text("Please Select Any one Checkbox");
+        // } else {
+        //   $("#phobbies").text("");
+        // }
+        // if (!qualfication) {
+        //   $("#pradio").text("Please Select the radio button");
+        // } else {
+        //   $("#pradio").text("");
+        // }
+        // if ($("#file").attr("imgpath") == "") {
+        //   $("#pfile").text("Please Upload the File");
+        // } else {
+        //   $("#pfile").text("");
+        // }
+
+        // if ($("#multiple_Select").attr("data-value") == "") {
+        //   $("#mid").text("Please Select the hobbies");
+        // } else {
+        //   $("#mid").text("");
+        // }
+        // if (sgender == "Select a Gender") {
+        //   $("#psgender").text("Please Select the Gender");
+        // } else {
+        //   $("#psgender").text("");
+        // }
+        // if (!stime) {
+        //   $("#pstime").text("Please select Time");
+        // } else {
+        //   $("#pstime").text(" ");
+        // }
+        // if (!saddress) {
+        //   $("#psaddr").text("Please Enter the address");
+        // } else {
+        //   $("#psaddr").text("");
+        // }
+        // if (firstname == "") {
+        //   $("#pfname").text("");
+        // }
+        // if (lastname == "") {
+        //   $("#plname").text("");
+        // }
+        // if (email == "") {
+        //   $("#pemail").text("");
+        // }
+        // if (password == "") {
+        //   $("#ppassword").text("");
+        // }
+        // if (mobile == "") {
+        //   $("#pmobile").text("");
+        // }
+        // if (datepicker == "") {
+        //   $("#pdate").text("");
+        // }
+        // if (time == "") {
+        //   $("#ptimer").text("");
+        // }
+        // if (gender != "") {
+        //   $("#pgender").text("");
+        // }
+        // if (hobbies == "") {
+        //   $("#phobbies").text("");
+        // }
+        // if (qualfication == "") {
+        //   $("#pradio").text(" ");
+        // }
       }
     </script>
 
     <br />
 
     <div class="footer">
-      <p style="text-align: left;color:white">
+      <p style="text-align: left;color:white;font-size:15px;">
         &#169;&nbsp;CopyRight 2020
         <span id="demo" style="float:right;"></span>
       </p>

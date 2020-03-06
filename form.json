@@ -3,69 +3,76 @@
     "pid": "pfname",
     "did": "dfname",
     "id": "fname",
-    "title": "FirstName:",
+    "title": "FirstName",
     "type": "text",
-    "Mandatory": "false"
+    "placeholder": "FirstName",
+    "Mandatory": "true"
   },
   {
     "pid": "plname",
     "did": "dlname",
     "id": "lname",
-    "title": "LastName:",
+    "title": "LastName",
     "type": "text",
-    "Mandatory": "false"
+    "placeholder": "LastName",
+    "Mandatory": "true"
   },
   {
     "pid": "pemail",
     "did": "demail",
     "id": "email",
-    "title": "Email:",
+    "title": "Email",
     "type": "text",
+    "placeholder": "Email",
     "maxlength": "",
-    "Mandatory": "false"
+    "Mandatory": "true"
   },
   {
     "pid": "ppassword",
     "did": "dpassword",
     "id": "password",
-    "title": "Password:",
+    "title": "Password",
     "type": "password",
     "maxlength": 6,
-    "Mandatory": "false"
+    "placeholder": "Password",
+    "Mandatory": "true"
   },
   {
     "pid": "pmobile",
     "did": "dmobile",
     "id": "mobile",
-    "title": "Mobile:",
+    "title": "Mobile",
     "type": "text",
     "maxlength": 10,
-    "Mandatory": "false"
+    "placeholder": "Mobile",
+    "Mandatory": "true"
   },
   {
     "pid": "pdate",
     "did": "ddate",
     "id": "datepicker",
-    "title": "Date of Birth:",
+    "title": "Date",
     "type": "text",
+    "placeholder": "Date",
     "maxlength": "",
-    "Mandatory": "false"
+    "Mandatory": "true"
   },
   {
     "pid": "ptimer",
     "did": "dtimer",
     "id": "timer",
-    "title": "Time:",
+    "title": "Time",
+    "placeholder": "Time",
     "type": "text",
-    "Mandatory": "false"
+    "Mandatory": "true"
   },
   {
     "pid": "pgender",
     "did": "dgender",
     "id": "gender",
     "type": "select",
-    "title": "Gender :",
-    "Mandatory": "false"
+    "title": "Gender:",
+    "Mandatory": "true"
   },
   {
     "type": "option",
@@ -84,7 +91,7 @@
     "did": "dhobbies",
     "type": "cvalue",
     "title": "Hobbies :",
-    "Mandatory": "false"
+    "Mandatory": "true"
   },
   {
     "type": "checkbox",
@@ -167,7 +174,8 @@
     "type": "ttext",
     "tdid": "tdsname",
     "id": "Sname",
-    "title": "Student Fname",
+    "placeholder": "Name",
+    "title": "Student Name",
     "did": "dsname"
   },
   {
@@ -197,6 +205,7 @@
     "pid": "psrollno",
     "type": "ttext",
     "id": "srollno",
+    "placeholder": "Rollno",
     "tdid": "tdsrollno",
     "title": "Student Rollno"
   },
@@ -205,12 +214,14 @@
     "type": "ttime",
     "id": "stime",
     "tdid": "tdstime",
+    "placeholder": "Exam Time",
     "title": "Exam Time"
   },
   {
     "pid": "psdob",
     "type": "tdob",
     "id": "sdob",
+    "placeholder": "Date of Birth",
     "tdid": "tdsdob",
     "title": "DOB"
   },
@@ -219,6 +230,7 @@
     "type": "saddr",
     "id": "saddress",
     "tdid": "tdsaddr",
+    "placeholder": "Address ",
     "title": "Address"
   },
   {
