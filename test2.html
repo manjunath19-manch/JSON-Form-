@@ -1,14 +1,18 @@
+<!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <link rel="stylesheet" href="mystyle.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    />
+
+    <link rel="stylesheet" href="bootstrap.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css"
@@ -18,14 +22,14 @@
       rel="stylesheet"
       href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
     />
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/mdb.min.css" rel="stylesheet" />
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/mdb.min.css" rel="stylesheet" /> -->
   </head>
 
   <body>
-    <header>
+    <div class="jumbotron jumbotron-fluid">
       <img src="logo.png" class="center" />
-    </header>
+    </div>
 
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -33,17 +37,17 @@
       <div class="col-md-2"></div>
       <div class="col-md-8">
         <div id="userdetails">
-          <form
-            id="mydata"
-            style="margin-left:20px;position:relative; ;"
-            class="formstyle"
-          ></form>
+          <form id="mydata" style="margin-left:20px; " class="formstyle"></form>
         </div>
         <div class="col-md-2"></div>
       </div>
     </div>
 
-    <div id="userdisplay" style="display: none;margin-left: 20px;"></div>
+    <div
+      class="container"
+      id="userdisplay"
+      style="margin-left: 20px;margin-bottom:45px; "
+    ></div>
 
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
@@ -66,7 +70,6 @@
         });
 
       function appendData(data) {
-        //  $(document).ready(function() {
         var dynamicHtml = "";
 
         for (var i = 0; i < data.length; i++) {
@@ -76,7 +79,7 @@
               dynamicHtml +=
                 "<div id='" +
                 data[i].did +
-                "' ><label class='labeltext'>" +
+                "' class='form-group'><label class='labeltext'>" +
                 data[i].title +
                 "</label>" +
                 "<input type='" +
@@ -85,7 +88,7 @@
                 data[i].id +
                 "' onblur='' onkeyup='cValidation(this)' onclick=cValidation(this) placeholder='" +
                 data[i].placeholder +
-                "' class='textstyle'><p id='" +
+                "' class='form-control'  autocomplete='off'><p id='" +
                 data[i].pid +
                 "'class='validation'  ></p></div>";
               // $("#mydata").html(dynamicHtml);
@@ -94,7 +97,7 @@
               dynamicHtml +=
                 "<div id='" +
                 data[i].did +
-                "' ><label class='labeltext'>" +
+                "'class='form-group' ><label class='labeltext'>" +
                 data[i].title +
                 "</label>" +
                 "<input type='" +
@@ -105,7 +108,7 @@
                 data[i].maxlength +
                 "'onkeyup='cValidation(this)' placeholder='" +
                 data[i].placeholder +
-                "' class='textstyle'/><p id='" +
+                "' class='form-control' autocomplete='off'/><p id='" +
                 data[i].pid +
                 "'class='validation'</p><p id='message'></p></div>";
               //  $("#mydata").html(dynamicHtml);
@@ -203,7 +206,7 @@
               break;
             case "table":
               dynamicHtml +=
-                "</select><p id='mid' class='validation'></p></div><table id='" +
+                "</select><p id='mid' class='validation'></p></div><table class='table' id='" +
                 data[i].id +
                 "'><tr>";
               break;
@@ -215,7 +218,7 @@
                 data[i].id +
                 "' onkeyup='cValidation(this)'placeholder='" +
                 data[i].placeholder +
-                "' /></td>";
+                "' autocomplete='off' class='form-control'/><p></p></td>";
 
               break;
 
@@ -246,7 +249,7 @@
                 data[i].id +
                 "'onkeyup='cValidation(this)'onclick=cValidation(this) placeholder='" +
                 data[i].placeholder +
-                "'><p id='pstime' class='validation'></p></td>";
+                "'autocomplete='off'class='form-control'><p id='pstime' class='validation'></p></td>";
               break;
             case "tdob":
               dynamicHtml +=
@@ -256,7 +259,7 @@
                 data[i].id +
                 "' placeholder='" +
                 data[i].placeholder +
-                "'></td>";
+                "'autocomplete='off' class='form-control'></td>";
 
               break;
 
@@ -266,340 +269,20 @@
                 data[i].title +
                 "</label><textarea cols='0' rows='0' id='saddress' onkeyup='cValidation(this)' placeholder=" +
                 data[i].placeholder +
-                "'/><p id='psaddr' class='validation'  ></p></td></tr> ";
+                "' class='form-control'/><p id='psaddr' class='validation'  ></p></td></tr> ";
               break;
             case "submit":
               dynamicHtml +=
-                "</table></br><input type='" +
+                "</table></br><div class='col text-center'><input type='" +
                 data[i].type +
-                "'class='btn btn-success' style='font-size:12px;' value='submit' />";
+                "'class='btn btn-success' style='font-size:15px;' align='ceneter' autocomplete='off'/></div></div></div>";
               break;
-
-            // console.log(dynamicHtml);
-
-            // $("#mydata").html(dynamicHtml);
-            // "<div id=" + data[i].id + "></div>"
-            // // <input type='" +
-            // // data[i].text +
-            // // "'id='" +
-            // // data[i].id +
-            // // "'/>"
 
             default:
               break;
           }
 
           $("#mydata").html(dynamicHtml);
-
-          // $("<div></div>")
-          //   .attr("id", data[i].did)
-          //   .text(data[i].title)
-          //   .appendTo("#mydata");
-          // $("</br>").appendTo("#" + data[i].did);
-          // $("<input>")
-          //   .attr({
-          //     type: data[i].type,
-          //     id: data[i].id,
-          //     name: data[i].id,
-          //     class: data[i].class,
-          //     pattern: data[i].pattern,
-          //     maxlength: data[i].maxlength
-          //   })
-          //   .appendTo("#" + data[i].did);
-          // $("<p >  </p>")
-          //   .attr("id", data[i].pid)
-          //   .attr("class", "validation")
-          //   .appendTo("#" + data[i].did);
-          // if (data[i].Mandatory == "true") {
-          //   $("#" + data[i].id).prop("required", true);
-          //   $("#" + data[i].did).prop("class", "required");
-          // } else if (data[i].Mandatory == "false") {
-          //   $("#" + data[i].id).prop("required", false);
-          // } else {
-          // }
-          // break;
-
-          //   case "password":
-          //     $("<div>    </div>")
-          //       .attr("id", data[i].did)
-          //       .text(data[i].title)
-          //       .appendTo("#mydata");
-          //     $("</br>").appendTo("#" + data[i].did);
-          //     $("<input>")
-          //       .attr({
-          //         type: data[i].type,
-          //         id: data[i].id,
-          //         name: data[i].id,
-          //         maxlength: data[i].maxlength
-          //       })
-          //       .appendTo("#" + data[i].did);
-          //     $("<p >  </p>")
-          //       .attr("id", data[i].pid)
-          //       .attr("class", "validation")
-          //       .appendTo("#" + data[i].did);
-          //     if (data[i].Mandatory == "true") {
-          //       $("#" + data[i].id).prop("required", true);
-          //       $("#" + data[i].did).prop("class", "required");
-          //     } else if (data[i].Mandatory == "false") {
-          //       $("#" + data[i].id).prop("required", false);
-          //     } else {
-          //       console.log("success");
-          //     }
-          //     break;
-
-          //   case "select":
-          //     $("<div> </div>")
-          //       .attr("id", data[i].did)
-          //       .text(data[i].title)
-          //       .appendTo("#mydata");
-          //     $("</br>").appendTo("#" + data[i].did);
-
-          //     $("<select></select>")
-          //       .attr("id", data[i].id)
-          //       .appendTo("#" + data[i].did);
-          //     $("<option></option>")
-          //       .text("Select Gender")
-          //       .appendTo("#gender");
-          //     $("<p >  </p>")
-          //       .attr("id", data[i].pid)
-          //       .attr("class", "validation")
-          //       .appendTo("#" + data[i].did);
-
-          //     if (data[i].Mandatory == "true") {
-          //       $("#" + data[i].id).prop("required", true);
-          //       $("#" + data[i].did).prop("class", "required");
-          //     } else if (data[i].Mandatory == "false") {
-          //       $("#" + data[i].id).prop("required", false);
-          //     } else {
-          //       console.log("success");
-          //     }
-          //     break;
-          //   case "option":
-          //     $("<option></option>")
-          //       .attr("value", data[i].value)
-          //       .text(data[i].value)
-          //       .appendTo("#gender");
-          //     break;
-
-          //   case "cvalue":
-          //     $("<div>    </div>")
-          //       .attr("id", data[i].did)
-          //       .text(data[i].title)
-          //       .appendTo("#mydata");
-          //     $("<p></p>")
-          //       .attr("id", data[i].pid)
-          //       .attr("class", "validation")
-          //       .appendTo("#mydata");
-          //     $("</br>").appendTo("#" + data[i].did);
-          //     break;
-          //   case "checkbox":
-          //     $("<input>")
-          //       .attr({
-          //         type: data[i].type,
-          //         class: data[i].class,
-          //         value: data[i].value
-          //       })
-          //       .attr("data-value", "")
-          //       .appendTo("#" + data[i].did);
-          //     $("<label></label></br>")
-          //       .text(data[i].value)
-          //       .appendTo("#" + data[i].did);
-          //     //$('&nbsp').appendTo('#' + data[i].did);
-          //     break;
-          //   case "radiobutton":
-          //     $("<div>    </div>")
-          //       .attr("id", data[i].did)
-          //       .text(data[i].title)
-          //       .appendTo("#mydata");
-          //     $("<p></p>")
-          //       .attr("id", data[i].pid)
-          //       .attr("class", "validation")
-          //       .appendTo("#mydata");
-          //     $("</br>").appendTo("#" + data[i].did);
-
-          //     break;
-          //   case "radio":
-          //     $("<input>")
-          //       .attr({
-          //         type: data[i].type,
-          //         name: data[i].name,
-          //         id: data[i].id,
-          //         value: data[i].value
-          //       })
-          //       .appendTo("#" + data[i].did);
-          //     $("<label></label></br>")
-          //       .text(data[i].value)
-          //       .appendTo("#" + data[i].did);
-          //     break;
-          //   case "file":
-          //     $("<div></div>")
-          //       .attr("id", data[i].did)
-          //       .text(data[i].title)
-          //       .appendTo("#mydata");
-          //     $("<input>")
-          //       .attr({
-          //         type: data[i].type,
-          //         id: data[i].id,
-          //         name: data[i].id,
-
-          //         accept: data[i].accept
-          //       })
-          //       .attr("imgpath", "")
-          //       .attr("onchange", "readURL(this)")
-          //       .appendTo("#" + data[i].did);
-          //     $("<p >  </p>")
-          //       .attr("id", data[i].pid)
-          //       .attr("class", "validation")
-          //       .appendTo("#" + data[i].did);
-
-          //     break;
-          //   case "select1":
-          //     $("<div> </div>")
-          //       .attr("id", data[i].did)
-          //       .text(data[i].title)
-          //       .appendTo("#mydata");
-          //     $("</br>").appendTo("#" + data[i].did);
-          //     $("<select></select>")
-          //       .attr("id", data[i].id)
-          //       .attr("multiple", "multiple")
-          //       .attr("data-value", "")
-          //       .appendTo("#" + data[i].did);
-
-          //     $("<p >  </p>")
-          //       .attr("id", data[i].pid)
-          //       .attr("class", "validation")
-          //       .appendTo("#" + data[i].did);
-
-          //     break;
-          //   case "option1":
-          //     $("<option></option>")
-          //       .attr("value", data[i].value)
-          //       .text(data[i].value)
-          //       .appendTo("#multiple_Select");
-
-          //     break;
-          //   case "table":
-          //     $("<table></table>")
-          //       .attr("id", data[i].id)
-          //       .appendTo("#mydata");
-          //     break;
-          //   case "ttext":
-          //     $("<tr></tr>")
-          //       .attr("id", "trsname")
-          //       .appendTo("#tabuserdetails");
-          //     $("<td></td>")
-          //       .attr("id", data[i].tdid)
-          //       .text(data[i].title)
-          //       .attr("class", "tdstyle")
-          //       .appendTo("#trsname");
-
-          //     //  $("</br>").appendTo("#" + data[i].did);
-          //     $("<input/>")
-          //       .attr("type", "text")
-          //       .attr({
-          //         id: data[i].id,
-          //         name: data[i].id,
-          //         class: data[i].class
-          //       })
-          //       .appendTo("#" + data[i].tdid);
-
-          //     break;
-          //   case "ttime":
-          //     $("<tr></tr")
-          //       .attr("id", "trtime")
-
-          //       .appendTo("#tabuserdetails");
-          //     $("<td></td>")
-          //       .attr("id", data[i].tdid)
-          //       .attr("class", "tdstyle")
-          //       .text(data[i].title)
-          //       .appendTo("#trtime");
-          //     //  $("</br>").appendTo("#" + data[i].did);
-          //     $("<input/>")
-          //       .attr("type", "text")
-          //       .attr({
-          //         id: data[i].id,
-          //         name: data[i].id,
-          //         class: data[i].class
-          //       })
-          //       .appendTo("#" + data[i].tdid);
-          //     $("<p></p>")
-          //       .attr("id", data[i].pid)
-          //       .attr("class", "validation")
-          //       .appendTo("#" + data[i].tdid);
-
-          //     break;
-          //   case "saddr":
-          //     $("<td></td>")
-          //       .attr("id", data[i].tdid)
-          //       .attr("class", "tdstyle")
-          //       .text(data[i].title)
-          //       .appendTo("#trtime");
-
-          //     $("<textarea></textarea>")
-          //       .attr("rows", "0")
-          //       .attr("cols", "0")
-          //       .attr({
-          //         id: data[i].id,
-          //         name: data[i].id,
-          //         class: data[i].class
-          //       })
-          //       .appendTo("#" + data[i].tdid);
-          //     $("<p></p>")
-          //       .attr("id", data[i].pid)
-          //       .attr("class", "validation")
-          //       .appendTo("#tdsaddr");
-          //     break;
-          //   case "select2":
-          //     $("<td></td>")
-          //       .attr("id", "sdrop")
-          //       .attr("class", "tdstyle")
-          //       .text("Gender", data[i].title)
-
-          //       .appendTo("#trsname");
-          //     $("<select></select>")
-          //       .attr("id", "sdropselect")
-          //       .appendTo("#sdrop");
-          //     $("<option></option>")
-          //       .text("Select a Gender")
-          //       .appendTo("#sdropselect");
-          //     $("<p></p>")
-          //       .attr("id", data[i].pid)
-          //       .attr("class", "validation")
-          //       .appendTo("#sdrop");
-          //     break;
-          //   case "option2":
-          //     $("<option></option>")
-          //       .attr("value", data[i].value)
-          //       .text(data[i].value)
-          //       .appendTo("#sdropselect");
-          //     break;
-
-          //   case "submit":
-          //     $("<div>    </div>")
-          //       .attr("id", data[i].did)
-          //       .text(data[i].title)
-          //       .appendTo("#mydata");
-          //     $("</br>").appendTo("#" + data[i].did);
-          //     $("<input>")
-          //       .attr({
-          //         type: data[i].type,
-          //         id: data[i].id,
-          //         name: data[i].id,
-          //         maxlength: data[i].maxlength
-          //       })
-          //       .attr("class", "btn-success")
-          //       .appendTo("#" + data[i].did);
-          //     $("<p >  </p>")
-          //       .attr("id", data[i].pid)
-          //       .attr("class", "validation")
-          //       .appendTo("#" + data[i].did);
-          //     break;
-
-          //   default:
-          //     console.log("default case ");
-          // }
-          //}
         }
 
         $("#multiple_Select").multiselect({
@@ -760,13 +443,7 @@
               $("#message").text("");
               $("#ppassword").text("");
             }
-            // if (password == "") {
-            //   $("#ppassword").text("");
-            // } else if (!reg_password) {
-            //   $("#ppassword").text("Please Enter a Valid Password");
-            // } else {
-            //   $("#ppassword").text("");
-            // }
+
             break;
           case "mobile":
             if (mobile == "") {
@@ -831,132 +508,6 @@
           $("#pgender").text("");
         }
       }
-      // var firstname = $("#fname").val();
-      // var rfname = /^[A-Z][a-z]+$/;
-      // var reg_fname = rfname.test(firstname);
-
-      // if (firstname == "") {
-      //   $("#pfname").text("");
-      // } else if (!reg_fname) {
-      //   $("#pfname").text("Please Enter a Valid First Name");
-      // } else {
-      //   $("#pfname").text("");
-      // }
-      // }
-      // function checklname() {
-      //   var lastname = $("#lname").val();
-      //   var rlname = /^[A-Z][a-z]+$/;
-      //   reg_lname = rlname.test(lastname);
-
-      //   if (lastname == "") {
-      //     $("#plname").text("");
-      //   } else if (!reg_lname) {
-      //     $("#plname").text("Please Enter a Valid Last Name");
-      //   } else {
-      //     $("#plname").text("");
-      //   }
-      // }
-
-      // function checkemail() {
-      //   var email = $("#email").val();
-      //   var remail = /(^[A-Za-z0-9\.]+)@([A-Za-z0-9\.]+).([A-z]{2,8})/;
-      //   reg_email = remail.test(email);
-
-      //   if (email == "") {
-      //     $("#pemail").text("");
-      //   } else if (!reg_lname) {
-      //     $("#pemail").text("Please Enter a Valid Email");
-      //   } else {
-      //     $("#pemail").text("");
-      //   }
-      // }
-
-      // function checkpassword() {
-      //   var password = $("#password").val();
-      //   var rpassword = /(^[A-Z]([a-z0-9]){5}$)/;
-      //   reg_password = rpassword.test(password);
-      //   if (password == "") {
-      //     $("#ppassword").text("");
-      //   } else if (!reg_lname) {
-      //     $("#ppassword").text("Please Enter a Valid Password");
-      //   } else {
-      //     $("#ppassword").text("");
-      //   }
-      // }
-      // function checkmobile() {
-      //   var mobile = $("#mobile").val();
-      //   var rmobile = /(^[0-9]{10}$)/;
-      //   reg_mobile = rmobile.test(mobile);
-      //   if (mobile == "") {
-      //     $("#pmobile").text("");
-      //   } else if (!reg_lname) {
-      //     $("#pmobile").text("Please Enter a Valid Mobile Number");
-      //   } else {
-      //     $("#pmobile").text("");
-      //   }
-      // }
-      // function checkdob() {
-      //   var datepicker = $("#datepicker").val();
-      //   if (datepicker != "") {
-      //     $("#pdate").text("");
-      //   }
-      // }
-      // function checktime() {
-      //   var time = $("#timer").val();
-      //   if (time != "") {
-      //     $("#ptimer").text("");
-      //   }
-      // }
-      // function checkgender() {
-      //   var gender = $("#gender").val();
-      //   if (gender != "Select a Gender") {
-      //     $("#pgender").text("");
-      //   }
-      // }
-
-      // function checkhobbies() {
-      //   var hobbies = $('input[class="hobbies"]:checked').val();
-      //   if (hobbies != "") {
-      //     $("#phobbies").text("");
-      //   }
-      // }
-      // function checkqual() {
-      //   var qualfication = $('input[name="qualification"]:checked').val();
-      //   if (qualfication != "") {
-      //     $("#pradio").text("");
-      //   }
-      // }
-      // function checkImg() {
-      //   if ($("#file").attr("imgpath") != "") {
-      //     $("#pfile").text("");
-      //   }
-      // }
-
-      // function checkmulti() {
-      //   if ($("#multiple_Select").attr("data-value") != "") {
-      //     $("#mid").text("");
-      //   }
-      // }
-
-      // function sgender()() {
-      //   var sgender = $("#sdropselect").val();
-      //   if (sgender != "Select a Gender") {
-      //     "#psgender".text("");
-      //   }
-      // }
-
-      // function checkstime() {
-      //   var stime = $("#stime").val();
-      //   if (stime != "") {
-      //     $("#pstime").text(" ");
-      //   }
-      // }
-      // function checksaddr() {
-      //   var saddress = $("#saddress").val();
-      //   if (saddress != "") {
-      //     $("#psaddr").text("");
-      //   }
-      // }
 
       function checkvalid() {
         var al = [];
@@ -1097,11 +648,6 @@
             .attr("class", "td")
             .text(localStorage.getItem("password"))
             .appendTo("#truserdisplaypassword");
-          // $("<label ></label></br>")
-          //   .text(
-          //     "Password            :     " + localStorage.getItem("password")
-          //   )
-          //   .appendTo("#userdisplay");
           $("<tr></tr>")
             .attr("id", "truserdisplaymobile")
             .appendTo("#tuserdisplay");
@@ -1114,9 +660,6 @@
             .text(localStorage.getItem("mobile"))
             .appendTo("#truserdisplaymobile");
 
-          // $("<label ></label></br>")
-          //   .text("Mobile              :     " + localStorage.getItem("mobile"))
-          //   .appendTo("#userdisplay");
           $("<tr></tr>")
             .attr("id", "truserdisplaydob")
             .appendTo("#tuserdisplay");
@@ -1128,12 +671,6 @@
             .attr("class", "td")
             .text(localStorage.getItem("Date Of Birth"))
             .appendTo("#truserdisplaydob");
-          // $("<label ></label></br>")
-          //   .text(
-          //     "Date of Birth       :     " +
-          //       localStorage.getItem("Date Of Birth")
-          //   )
-          //   .appendTo("#userdisplay");
           $("<tr></tr>")
             .attr("id", "truserdisplaytime")
             .appendTo("#tuserdisplay");
@@ -1145,11 +682,6 @@
             .attr("class", "td")
             .text(localStorage.getItem("Time"))
             .appendTo("#truserdisplaytime");
-
-          // $("<label ></label></br>")
-          //   .text("Time                :     " + localStorage.getItem("Time"))
-          //   .appendTo("#userdisplay");
-
           $("<tr></tr>")
             .attr("id", "truserdisplaygender")
             .appendTo("#tuserdisplay");
@@ -1161,11 +693,6 @@
             .attr("class", "td")
             .text(localStorage.getItem("Gender"))
             .appendTo("#truserdisplaygender");
-
-          // $("<label ></label></br>")
-          //   .text("Gender              :     " + localStorage.getItem("Gender"))
-          //   .appendTo("#userdisplay");
-
           $("<tr></tr>")
             .attr("id", "truserdisplayhobb")
             .appendTo("#tuserdisplay");
@@ -1178,11 +705,6 @@
             .text(JSON.parse(localStorage.getItem("Hobbies")))
             .appendTo("#truserdisplayhobb");
 
-          // $("<label></label></br>")
-          //   .text(
-          //     "Hobbies      : " + JSON.parse(localStorage.getItem("Hobbies"))
-          //   )
-          //   .appendTo("#userdisplay");
           $("<tr></tr>")
             .attr("id", "truserdisplayqual")
             .appendTo("#tuserdisplay");
@@ -1195,12 +717,6 @@
             .text(localStorage.getItem("Qualification"))
             .appendTo("#truserdisplayqual");
 
-          // $("<label></label></br>")
-          //   .text(
-          //     "Qualfication      : " + localStorage.getItem("Qualification")
-          //   )
-          //   .appendTo("#userdisplay");
-
           $("<tr></tr>")
             .attr("id", "truserdisplayhobb1")
             .appendTo("#tuserdisplay");
@@ -1212,10 +728,6 @@
             .attr("class", "td")
             .text(localStorage.getItem("Hobbies 1"))
             .appendTo("#truserdisplayhobb1");
-
-          // $("<label></label></br>")
-          //   .text("Hobbies 1      : " + localStorage.getItem("Hobbies 1"))
-          //   .appendTo("#userdisplay");
 
           $("<tr></tr>")
             .attr("id", "truserdisplayimg")
@@ -1233,27 +745,6 @@
             .attr("width", "500")
             .appendTo("#tdimg");
 
-          // $("<td>")
-          //   .attr("class", "td")
-          //   .attr("id", "tdimg")
-          //   .text(localStorage.getItem("Hobbies 1"));
-
-          // $("<img>")
-          //   .attr("width", "400px")
-          //   .attr("height", "200px")
-          //   .attr("src", localStorage.getItem("File Upload"));
-          // $("</img>").appendTo("#tdimg");
-          // $("</td>").appendTo("#truserdisplayimg");
-
-          // $("<label></label></br>")
-          //   .text("Image Upload              :     ")
-          //   .attr("for", "imgDisplay")
-          //   .appendTo("#userdisplay");
-          // $("<img></img>")
-          //   .attr("width", "400px")
-          //   .attr("height", "200px")
-          //   .attr("src", localStorage.getItem("File Upload"))
-          //   .appendTo("#userdisplay");
           $("</br>").appendTo("#userdisplay");
 
           $("<table></table></br>")
@@ -1334,12 +825,14 @@
           $("<button />", {
             text: "Back",
             id: "btn",
+
             click: function() {
               location.reload();
             }
           })
             .attr("class", "btn btn-primary")
             .appendTo("#userdisplay");
+
           $("#userdisplay").show();
         } else {
         }
@@ -1387,9 +880,6 @@
         var stime = $("#stime").val();
         var sdob = $("#sdob").val();
         var saddress = $("#saddress").val();
-
-        //var hobbies1 = $('input[class="dmultiple"]:checked').val();
-        //var imgUpload = $("#file").val();
 
         var rfname = /^[A-Z][a-z]+$/;
         var rlname = /^[A-Z][a-z]+$/;
@@ -1485,15 +975,6 @@
           $("#psaddr").text("");
         }
       }
-      // function validMessage(obj) {
-      //   var id = $(obj).attr("id");
-      //   if ($("#" + id).val()) {
-      //     $(obj)
-      //       .next("p")
-      //       .remove();
-      //   } else {
-      //   }
-      // }
 
       function focusValid() {
         var al = [];
@@ -1517,8 +998,6 @@
         var stime = $("#stime").val();
         var sdob = $("#sdob").val();
         var saddress = $("#saddress").val();
-
-        // var qualfication = $('input[name="qualification"]:checked').val();
 
         var rfname = /^[A-Z][a-z]+$/;
         var rlname = /^[A-Z][a-z]+$/;
@@ -1613,190 +1092,8 @@
         } else {
           $("#psaddr").text("");
         }
-
-        // if (firstname == "") {
-        //   $("#pfname").text("");
-        // } else if (!reg_fname) {
-        //   $("#pfname").text("Enter a First Name");
-        // } else {
-        //   $("#pfname").text("");
-        // }
-
-        // if (lastname == "") {
-        //   $("#plname").text("");
-        // } else if (!reg_lname) {
-        //   $("#plname").text("Enter a Last Name");
-        // } else {
-        //   $("#plname").text("");
-        // }
-        // if (email == "") {
-        //   $("#pemail").text("");
-        // } else if (!reg_email) {
-        //   $("#pemail").text("Enter a email Name");
-        // } else {
-        //   $("#pemail").text("");
-        // }
-
-        // if (password == "") {
-        //   $("#ppassword").text("");
-        // } else if (!reg_password) {
-        //   $("#ppassword").text("Enter a Password");
-        // } else {
-        //   $("#ppassword").text("");
-        // }
-
-        // if (mobile == "") {
-        //   $("#pmobile").text("");
-        // } else if (!reg_mobile) {
-        //   $("#pmobile").text("Enter a Mobile Number");
-        // } else {
-        //   $("#pmobile").text("");
-        // }
-
-        // if (datepicker == "") {
-        //   $("#pdate").text("");
-        // } else if (datepicker == "") {
-        //   $("#pdate").text("Please  choose the date");
-        // } else {
-        //   $("#pdate").text("");
-        // }
-
-        // if (time == "") {
-        //   $("#ptimer").text("");
-        // } else if (time == "") {
-        //   $("#ptimer").text("Please choose the time");
-        // } else {
-        //   $("#ptimer").text("");
-        // }
-
-        // if (gender == "") {
-        //   $("#plname").text("");
-        // } else if (!reg_fname) {
-        //   $("#pfname").text("Enter a First Name");
-        // } else {
-        //   $("#pfname").text("");
-        // }
-
-        // if (hobbies == "") {
-        //   $("#plname").text("");
-        // } else if (!reg_fname) {
-        //   $("#pfname").text("Enter a First Name");
-        // } else {
-        //   $("#pfname").text("");
-        // }
-
-        // if (qualfication == "") {
-        //   $("#plname").text("");
-        // } else if (!reg_fname) {
-        //   $("#pfname").text("Enter a First Name");
-        // } else {
-        //   $("#pfname").text("");
-        // }
-
-        // if (!reg_email) {
-        //   $("#pemail").text("Enter a Valid Email");
-        // } else {
-        //   $("#pemail").text("");
-        // }
-        // if (password == "") {
-        //   $("#ppassword").text("Please Fill the Field");
-        // } else if (!reg_password) {
-        //   $("#ppassword").text(
-        //     "First Character must Capital and Must be 6 Character Long"
-        //   );
-        // } else {
-        //   $("#ppassword").text("");
-        // }
-        // if (!reg_mobile) {
-        //   $("#pmobile").text("Enter a Valid Mobile Number");
-        // } else {
-        //   $("#pmobile").text("");
-        // }
-        // if (datepicker == "") {
-        //   $("#pdate").text("Please Choose a Date");
-        // } else {
-        //   $("#pdate").text("");
-        // }
-        // if (time == "") {
-        //   $("#ptimer").text("Please Select  a Time");
-        // } else {
-        //   $("#ptimer").text("");
-        // }
-        // if (gender == "Select a Gender") {
-        //   $("#pgender").text("Please Select  a Gender");
-        // } else {
-        //   $("#pgender").text("");
-        // }
-        // if (!hobbies) {
-        //   $("#phobbies").text("Please Select Any one Checkbox");
-        // } else {
-        //   $("#phobbies").text("");
-        // }
-        // if (!qualfication) {
-        //   $("#pradio").text("Please Select the radio button");
-        // } else {
-        //   $("#pradio").text("");
-        // }
-        // if ($("#file").attr("imgpath") == "") {
-        //   $("#pfile").text("Please Upload the File");
-        // } else {
-        //   $("#pfile").text("");
-        // }
-
-        // if ($("#multiple_Select").attr("data-value") == "") {
-        //   $("#mid").text("Please Select the hobbies");
-        // } else {
-        //   $("#mid").text("");
-        // }
-        // if (sgender == "Select a Gender") {
-        //   $("#psgender").text("Please Select the Gender");
-        // } else {
-        //   $("#psgender").text("");
-        // }
-        // if (!stime) {
-        //   $("#pstime").text("Please select Time");
-        // } else {
-        //   $("#pstime").text(" ");
-        // }
-        // if (!saddress) {
-        //   $("#psaddr").text("Please Enter the address");
-        // } else {
-        //   $("#psaddr").text("");
-        // }
-        // if (firstname == "") {
-        //   $("#pfname").text("");
-        // }
-        // if (lastname == "") {
-        //   $("#plname").text("");
-        // }
-        // if (email == "") {
-        //   $("#pemail").text("");
-        // }
-        // if (password == "") {
-        //   $("#ppassword").text("");
-        // }
-        // if (mobile == "") {
-        //   $("#pmobile").text("");
-        // }
-        // if (datepicker == "") {
-        //   $("#pdate").text("");
-        // }
-        // if (time == "") {
-        //   $("#ptimer").text("");
-        // }
-        // if (gender != "") {
-        //   $("#pgender").text("");
-        // }
-        // if (hobbies == "") {
-        //   $("#phobbies").text("");
-        // }
-        // if (qualfication == "") {
-        //   $("#pradio").text(" ");
-        // }
       }
     </script>
-
-    <br />
 
     <div class="footer">
       <p style="text-align: left;color:white;font-size:15px;">

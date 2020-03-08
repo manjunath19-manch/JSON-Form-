@@ -55,11 +55,10 @@ form {
 }
 .textstyle {
   border-radius: 3px;
-  width: 660px;
+  width: 687px;
   border-width: 1px;
   padding-left: 7px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 0px;
 }
 .formstyle {
   /* width: 50%;
@@ -67,7 +66,7 @@ form {
   border: 1px solid #c0bcbc;
   padding: 10px;
   margin-bottom: 4rem;
-  padding-bottom: 0px;
+  padding-bottom: 12px;
   border-radius: 3px;
   font-size: 14px;
 }
