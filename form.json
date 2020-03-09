@@ -3,18 +3,18 @@
     "pid": "pfname",
     "did": "dfname",
     "id": "fname",
-    "title": "FirstName",
+    "title": "First Name",
     "type": "text",
-    "placeholder": "FirstName",
+    "placeholder": "First name",
     "Mandatory": "true"
   },
   {
     "pid": "plname",
     "did": "dlname",
     "id": "lname",
-    "title": "LastName",
+    "title": "Last Name",
     "type": "text",
-    "placeholder": "LastName",
+    "placeholder": "Last name",
     "Mandatory": "true"
   },
   {

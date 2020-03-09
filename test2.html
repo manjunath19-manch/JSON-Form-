@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"
     />
     <link rel="stylesheet" href="mystyle.css" />
     <link
@@ -22,12 +26,16 @@
       rel="stylesheet"
       href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
     />
+
     <!-- <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/mdb.min.css" rel="stylesheet" /> -->
   </head>
 
   <body>
-    <div class="jumbotron jumbotron-fluid">
+    <div
+      class="jumbotron"
+      style="padding-bottom:5px;padding-top: 5px;margin-left: 0px;"
+    >
       <img src="logo.png" class="center" />
     </div>
 
@@ -37,7 +45,11 @@
       <div class="col-md-2"></div>
       <div class="col-md-8">
         <div id="userdetails">
-          <form id="mydata" style="margin-left:20px; " class="formstyle"></form>
+          <form
+            id="mydata"
+            style="margin-left:20px;background-color: #f9f9f9; "
+            class="formstyle"
+          ></form>
         </div>
         <div class="col-md-2"></div>
       </div>
@@ -111,20 +123,35 @@
                 "' class='form-control' autocomplete='off'/><p id='" +
                 data[i].pid +
                 "'class='validation'</p><p id='message'></p></div>";
-              //  $("#mydata").html(dynamicHtml);
               break;
             case "select":
+              // dynamicHtml +=
+              //   "<div id='" +
+              //   data[i].did +
+              //   "'><label class='labeltext'>" +
+              //   data[i].title +
+              //   "</label></br>" +
+              //   "<select id='" +
+              //   data[i].id +
+              //   "'onchange='fgender()'>";
+
               dynamicHtml +=
                 "<div id='" +
                 data[i].did +
-                "'><label class='labeltext'>" +
+                "' class=''><label class='labeltext'>" +
                 data[i].title +
                 "</label></br>" +
                 "<select id='" +
                 data[i].id +
-                "'onchange='fgender()'>";
+                "'onchange='fgender()' class='form-control'>";
               break;
             case "option":
+              // dynamicHtml +=
+              //   "<option value='" +
+              //   data[i].value +
+              //   "'>" +
+              //   data[i].value +
+              //   "</option>";
               dynamicHtml +=
                 "<option value='" +
                 data[i].value +
@@ -136,7 +163,7 @@
               dynamicHtml +=
                 "</select><p id='pgender' class='validation'></p></div><div id='" +
                 data[i].did +
-                "'><label class='labeltext'>" +
+                "'><label>" +
                 data[i].title +
                 "</label></br>";
 
@@ -149,7 +176,7 @@
                 data[i].value +
                 "'class='" +
                 data[i].class +
-                "'onclick='ccheckbox()' /><label>" +
+                "'onclick='ccheckbox()' / ><label style='padding-left:4px;'>" +
                 data[i].value +
                 "</label></br>";
               break;
@@ -157,7 +184,7 @@
               dynamicHtml +=
                 "<p id='phobbies' class='validation'></div><div id='" +
                 data[i].did +
-                "'><label class='labeltext'>" +
+                "'><label>" +
                 data[i].title +
                 "</label></br>";
               break;
@@ -169,7 +196,7 @@
                 data[i].name +
                 "'value='" +
                 data[i].value +
-                "'onclick='checkradio()'/><label>" +
+                "'onclick='checkradio()'/><label style='padding-left:4px;'>" +
                 data[i].value +
                 "</label></br>";
               break;
@@ -177,13 +204,14 @@
               dynamicHtml +=
                 "<p id='pradio' class='validation'></p></div><div id='" +
                 data[i].did +
-                "' ><label class='labeltext'>" +
+                "' ><label class='custom-file-label' for='file'>" +
                 data[i].title +
                 "</label><input type='" +
                 data[i].type +
                 "'accept='" +
                 data[i].accept +
-                "' imgpath='' id='file' onchange='readURL(this)' onkeyup='cValidation(this)' />";
+                "' imgpath='' id='file' onchange='readURL(this)' onkeyup='cValidation(this)' class='custom-file-input' />";
+
               break;
             case "select1":
               dynamicHtml +=
@@ -191,7 +219,7 @@
                 data[i].did +
                 "' ><label class='labeltext'>" +
                 data[i].title +
-                "</label><select id='" +
+                "</label></br><select id='" +
                 data[i].id +
                 "'multiple='multiple' data-value='' onchange='mhobbies()'>";
 
@@ -226,7 +254,7 @@
               dynamicHtml +=
                 "<td class='tdstyle'><label class='labeltext'>" +
                 data[i].title +
-                "</label></br><select id='sdropselect' onchange='sgender()' >";
+                "</label></br><select id='sdropselect' onchange='sgender()'class='form-control' >";
               break;
             case "option2":
               dynamicHtml +=
@@ -275,7 +303,7 @@
               dynamicHtml +=
                 "</table></br><div class='col text-center'><input type='" +
                 data[i].type +
-                "'class='btn btn-success' style='font-size:15px;' align='ceneter' autocomplete='off'/></div></div></div>";
+                "'class='btn btn-success' style='font-size:15px;'  autocomplete='off'/></div></div></div>";
               break;
 
             default:
@@ -334,7 +362,6 @@
 
           reader.onload = function(e) {
             imgPath = e.target.result;
-            //console.log(imgPath);
             $("#file").attr("imgpath", imgPath);
             if ($("#file").attr("imgpath") == "") {
               $("#pfile").text("Please Upload the File");
@@ -349,21 +376,13 @@
 
       $("form").on("submit", function(e) {
         e.preventDefault();
-
-        // var firstname = $("#fname").val();
-        // var lastname = $("#lname").val();
-        // var email = $("#email").val();
-        // var password = $("#password").val();
-        // var mobile = $("#mobile").val();
-        // var datepicker = $("#datepicker").val();
-
         submitValid();
         checkvalid();
       });
-      $("form").on("focusout", function(e) {
-        e.preventDefault();
-        // focusValid();
-      });
+      // $("form").on("focusout", function(e) {
+      //   e.preventDefault();
+      //   // focusValid();
+      // });
       function cValidation(obj) {
         var al = [];
         var firstname = $("#fname").val();
@@ -587,7 +606,7 @@
           $("#userdetails").hide();
           $("<table> </table>")
             .attr("id", "tuserdisplay")
-            .attr("class", "")
+            .attr("class", "table")
             .appendTo("#userdisplay");
           $("<tr></tr>")
             .attr("id", "truserdisplayfname")
@@ -747,7 +766,7 @@
 
           $("</br>").appendTo("#userdisplay");
 
-          $("<table></table></br>")
+          $("<table ></table></br>")
             .attr("id", "sdisplaydetails")
             .appendTo("#userdisplay");
           $("<tr></tr>")
@@ -755,7 +774,7 @@
             .appendTo("#sdisplaydetails");
           $("<td></td")
             .attr("class", "tdstyle")
-            .text("Student Fname :")
+            .text("Student Name :")
             .appendTo("#trsfname");
           $("<td></td>")
             .attr("class", "tdstyle")
