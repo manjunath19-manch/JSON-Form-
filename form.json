@@ -44,7 +44,7 @@
     "title": "Mobile",
     "type": "text",
     "maxlength": 10,
-    "placeholder": "Mobile",
+    "placeholder": "Enter only 10 digit mobile number",
     "Mandatory": "true"
   },
   {
