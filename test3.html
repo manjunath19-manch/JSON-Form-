@@ -45,10 +45,12 @@
     />
     <link id="bsdp-css" href="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet"></link>
     <!-- Material Design Bootstrap -->
-    <link
+    <!-- <link
       href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/css/mdb.min.css"
       rel="stylesheet"
-    />
+    /> -->
+    
+
     <link rel="stylesheet" href="glyphicons.css" />
     <!-- <link href="https:/./fonts.googleapis.com/css2?family=Mina&display=swap" rel="stylesheet"> -->
     <!-- <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet"/> -->
@@ -75,11 +77,13 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"
     ></script>
     <!-- Bootstrap core JavaScript -->
+    
     <script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"
     ></script>
     <!-- MDB core JavaScript -->
+   
 
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 
@@ -146,7 +150,7 @@
                 data[i].id +
                 "' onchange='cValidation(this)' onkeyup='cValidation(this)' onclick=cValidation(this) placeholder='" +
                 data[i].placeholder +
-                "' class='form-control '  autocomplete='off'><p id='" +
+                "' class='form-control required'  autocomplete='off' ><p id='" +
                 data[i].pid +
                 "'class='validation'  ></p></div>";
               // $("#mydata").html(dynamicHtml);
@@ -209,7 +213,7 @@
               dynamicHtml +=
                 "</select><p id='pgender' class='validation'></p></div><div id='" +
                 data[i].did +
-                "'><label class='labeltext'>" +
+                "' ><label class='labeltext'>" +
                 data[i].title +
                 "</label></br>";
 
@@ -222,7 +226,7 @@
                 data[i].value +
                 "'class='" +
                 data[i].class +
-                "'onclick='ccheckbox()' / ><label style='padding-left:4px;padding-right:10px;'>" +
+                "'onclick='ccheckbox()' style='margin-left:0px;' / ><label style='padding-left:5px;padding-right:10px;'>" +
                 data[i].value +
                 "</label>";
               break;
@@ -242,7 +246,7 @@
                 data[i].name +
                 "'value='" +
                 data[i].value +
-                "'onclick='checkradio()' /><label class='radio-inline' style='padding-left:4px;padding-right:10px;'>" +
+                "'onclick='checkradio()' style='margin-left:0px;'id='"+data[i].id+"' /><label class='radio-inline'  style='padding-left:5px;padding-right:10px;'>" +
                 data[i].value +
                 "</label>";
               break;
@@ -280,11 +284,11 @@
               dynamicHtml +=
                 "</select><p id='mid' class='validation'></p></div><table class='table' id='" +
                 data[i].id +
-                "'><tr>";
+                "' style='border-radius:4px'><tr>";
               break;
             case "ttext":
               dynamicHtml +=
-                "<td class='tdstyle'  ><label class='labeltext'>" +
+                "<td class='tdstyle'  ><label class='tlabeltext'>" +
                 data[i].title +
                 "</label><input type='text' id='" +
                 data[i].id +
@@ -296,7 +300,7 @@
 
             case "select2":
               dynamicHtml +=
-                "<td class='tdstyle'><label class='labeltext'>" +
+                "<td class='tdstyle'><label class='tlabeltext'>" +
                 data[i].title +
                 "</label></br><select id='sdropselect' onchange='sgender()'class='form-control' >";
               break;
@@ -315,7 +319,7 @@
 
             case "ttime":
               dynamicHtml +=
-                "</tr><td class='tdstyle'><label class='labeltext'>" +
+                "</tr><td class='tdstyle'><label class='tlabeltext'>" +
                 data[i].title +
                 "</label><input type='text' id='" +
                 data[i].id +
@@ -325,7 +329,7 @@
               break;
             case "tdob":
               dynamicHtml +=
-                "<td class='tdstyle'><label class='labeltext'>" +
+                "<td class='tdstyle'><label class='tlabeltext'>" +
                 data[i].title +
                 "</label><input type='text' id='" +
                 data[i].id +
@@ -337,7 +341,7 @@
 
             case "saddr":
               dynamicHtml +=
-                "<td class='tdstyle'><label class='labeltext'>" +
+                "<td class='tdstyle'><label class='tlabeltext'>" +
                 data[i].title +
                 "</label><textarea cols='0' rows='0' id='saddress' onkeyup='cValidation(this)' placeholder=" +
                 data[i].placeholder +
@@ -347,7 +351,7 @@
               dynamicHtml +=
                 "</table></br><div class='col text-center'><input type='" +
                 data[i].type +
-                "'class='btn btn-success' style='border-radius:50px;'  autocomplete='off'/></div></div></div>";
+                "'class='btn btn-success' style='border-radius:50px;width:130px;'  autocomplete='off'/></div></div></div>";
               break;
 
             default:
@@ -473,7 +477,7 @@
             if (firstname == "") {
               $("#pfname").text("");
             } else if (!reg_fname) {
-              $("#pfname").text("Please a Enter First Letter Capital");
+              $("#pfname").text("Please a Enter First Letter Capital only");
             } else {
               $("#pfname").text("");
               $("#fname").attr("status", "valid");
@@ -483,7 +487,7 @@
             if (lastname == "") {
               $("#plname").text("");
             } else if (!reg_lname) {
-              $("#plname").text("Please Enter First Letter Capital");
+              $("#plname").text("Please Enter First Letter Capital only");
             } else {
               $("#plname").text("");
             }

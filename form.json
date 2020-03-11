@@ -116,7 +116,7 @@
   {
     "type": "radio",
     "class": "radio",
-
+    "id": "",
     "did": "dradio",
 
     "value": "BCA ",
@@ -126,7 +126,7 @@
     "type": "radio",
     "did": "dradio",
     "class": "radio",
-
+    "id": "radiostyle",
     "value": "MCA ",
     "name": "qualification"
   },
