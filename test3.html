@@ -137,9 +137,11 @@
         for (var i = 0; i < data.length; i++) {
           var res = data[i].type;
           switch (res) {
+            case "divcontainer":dynamicHtml+="<div class='container-fluid'><div class='row'>"
+                        break;
             case "text":
               dynamicHtml +=
-                "<div id='" +
+                "<div class=col-md-"+data[i].width+"><div id='" +
                 data[i].did +
                 "' class='form-group'><label  class='labeltext'>" +
                 data[i].title +
@@ -152,12 +154,12 @@
                 data[i].placeholder +
                 "' class='form-control required'  autocomplete='off' ><p id='" +
                 data[i].pid +
-                "'class='validation'  ></p></div>";
+                "'class='validation'></p></div></div>";
               // $("#mydata").html(dynamicHtml);
               break;
             case "password":
               dynamicHtml +=
-                "<div id='" +
+                "<div class=col-md-"+data[i].width+"><div id='" +
                 data[i].did +
                 "'class='form-group' ><label class='labeltext'>" +
                 data[i].title +
@@ -172,7 +174,7 @@
                 data[i].placeholder +
                 "' class='form-control' autocomplete='off'/><p id='" +
                 data[i].pid +
-                "'class='validation'</p><p id='message'></p></div>";
+                "'class='validation'</p><p id='message'></p></div></div>";
               break;
             case "select":
               // dynamicHtml +=
@@ -186,7 +188,7 @@
               //   "'onchange='fgender()'>";
 
               dynamicHtml +=
-                "<div id='" +
+                "<div class=col-md-"+data[i].width+"><div id='" +
                 data[i].did +
                 "' class=''><label class='labeltext'>" +
                 data[i].title +
@@ -211,7 +213,7 @@
               break;
             case "cvalue":
               dynamicHtml +=
-                "</select><p id='pgender' class='validation'></p></div><div id='" +
+                "</select></div><p id='pgender' class='validation'></p></div><div class=col-md-"+data[i].width+"><div id='" +
                 data[i].did +
                 "' ><label class='labeltext'>" +
                 data[i].title +
@@ -232,14 +234,14 @@
               break;
             case "radiobutton":
               dynamicHtml +=
-                "<p id='phobbies' class='validation'></div><div id='" +
+                "<p id='phobbies' class='validation'></div></div><div class=col-md-"+data[i].width+"><div id='" +
                 data[i].did +
                 "'><label class='labeltext '>" +
                 data[i].title +
                 "</label></br>";
               break;
             case "radio":
-              dynamicHtml +=
+              dynamicHtml +=  
                 "<input type='" +
                 data[i].type +
                 "'name='" +
@@ -252,7 +254,7 @@
               break;
             case "file":
               dynamicHtml +=
-                "<p id='pradio' class='validation'></p></div><label class='labeltext ' '> Image Upload :</label><div id='" +
+                "<p id='pradio' class='validation'></p></div></div><div class=col-md-"+data[i].width+"><label class='labeltext ' '> Image Upload :</label><div id='" +
                 data[i].did +
                 "' class='custom-file' ><input type='" +
                 data[i].type +
@@ -263,7 +265,7 @@
               break;
             case "select1":
               dynamicHtml +=
-                "<p id='pfile' class='validation'></p></br></div><div id='" +
+                "<p id='pfile' class='validation'></p></br></div></div><div class=col-md-"+data[i].width+"><div id='" +
                 data[i].did +
                 "' ><label class='labeltext'>" +
                 data[i].title +
@@ -282,7 +284,7 @@
               break;
             case "table":
               dynamicHtml +=
-                "</select><p id='mid' class='validation'></p></div><div class='container'><div class='col-md-12'><table class='table table-responsive' id='" +
+                "</select><p id='mid' class='validation'></p></div></div><div class='container'><div class='col-md-12'><table class='table' id='" +
                 data[i].id +
                 "' style='border-radius:4px'><tr>";
               break;
@@ -360,6 +362,9 @@
                 data[i].type +
                 "'class='btn btn-success' style='border-radius:50px;width:130px;'  autocomplete='off'/></div></div></div>";
               break;
+              case "closediv":
+                  dynamicHtml+="</div></div></div>"
+                      break
 
             default:
               break;

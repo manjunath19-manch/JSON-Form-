@@ -1,8 +1,12 @@
 [
   {
+    "type": "divcontainer"
+  },
+  {
     "pid": "pfname",
     "did": "dfname",
     "id": "fname",
+    "width": "6",
     "title": "First Name",
     "type": "text",
     "placeholder": "First name",
@@ -12,6 +16,7 @@
     "pid": "plname",
     "did": "dlname",
     "id": "lname",
+    "width": "6",
     "title": "Last Name",
     "type": "text",
     "placeholder": "Last name",
@@ -20,6 +25,7 @@
   {
     "pid": "pemail",
     "did": "demail",
+    "width": "4",
     "id": "email",
     "title": "Email",
     "type": "text",
@@ -31,6 +37,7 @@
     "pid": "ppassword",
     "did": "dpassword",
     "id": "password",
+    "width": "4",
     "title": "Password",
     "type": "password",
     "maxlength": 6,
@@ -41,6 +48,7 @@
     "pid": "pmobile",
     "did": "dmobile",
     "id": "mobile",
+    "width": "4",
     "title": "Mobile",
     "type": "text",
     "maxlength": 10,
@@ -51,6 +59,7 @@
     "pid": "pdate",
     "did": "ddate",
     "id": "datepicker",
+    "width": "6",
     "title": "Date",
     "type": "text",
     "placeholder": "Date",
@@ -61,6 +70,7 @@
     "pid": "ptimer",
     "did": "dtimer",
     "id": "timer",
+    "width": "6",
     "title": "Time",
     "placeholder": "Time",
     "type": "text",
@@ -71,6 +81,7 @@
     "did": "dgender",
     "id": "gender",
     "type": "select",
+    "width": "6",
     "title": "Gender:",
     "Mandatory": "true"
   },
@@ -90,6 +101,7 @@
     "pid": "phobbies",
     "did": "dhobbies",
     "type": "cvalue",
+    "width": "6",
     "title": "Hobbies :",
     "Mandatory": "true"
   },
@@ -108,8 +120,8 @@
   {
     "pid": "pradio",
     "did": "dradio",
+    "width": "4",
     "type": "radiobutton",
-    "value": "BCA",
     "name": "qualification",
     "title": "Qualification :"
   },
@@ -133,6 +145,7 @@
   {
     "type": "file",
     "id": "file",
+    "width": "6",
     "title": "Image Upload :",
     "accept": "image/*",
     "did": "dfile",
@@ -141,6 +154,7 @@
   {
     "type": "select1",
     "did": "mselect",
+    "width": "6",
     "id": "multiple_Select",
     "title": "Hobbies :",
     "pid": "mid"
@@ -265,6 +279,9 @@
   },
   {
     "type": "tableclose"
+  },
+  {
+    "type": "closediv"
   },
 
   {
