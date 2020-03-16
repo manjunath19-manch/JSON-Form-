@@ -199,6 +199,9 @@
     "value": "Female"
   },
   {
+    "type": "closeSelect"
+  },
+  {
     "type": "tr"
   },
   {
@@ -233,6 +236,37 @@
     "placeholder": "Address ",
     "title": "Address"
   },
+  {
+    "pid": "pslname",
+    "type": "ttext",
+    "tdid": "tdslname",
+    "id": "Slname",
+    "placeholder": "Student Last Name",
+    "title": "Student Last Name",
+    "did": "dsname"
+  },
+  {
+    "pid": "pslname",
+    "type": "ttext",
+    "tdid": "tdslname",
+    "id": "tsfname",
+    "placeholder": "Student Father Name",
+    "title": "Student Father Name",
+    "did": "dsname"
+  },
+  {
+    "pid": "psaddr",
+    "type": "saddr",
+    "tdid": "tdslname",
+    "id": "tsaddr",
+    "placeholder": "Student Complete Street",
+    "title": "Student Complete Street",
+    "did": "dsname"
+  },
+  {
+    "type": "tableclose"
+  },
+
   {
     "pid": "",
     "id": "",

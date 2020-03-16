@@ -282,19 +282,19 @@
               break;
             case "table":
               dynamicHtml +=
-                "</select><p id='mid' class='validation'></p></div><table class='table' id='" +
+                "</select><p id='mid' class='validation'></p></div><div class='container'><div class='col-md-12'><table class='table table-responsive' id='" +
                 data[i].id +
                 "' style='border-radius:4px'><tr>";
               break;
             case "ttext":
               dynamicHtml +=
-                "<td class='tdstyle'  ><label class='tlabeltext'>" +
+                "<td class='tdstyle ' ><label class='tlabeltext'>" +
                 data[i].title +
                 "</label><input type='text' id='" +
                 data[i].id +
                 "' onkeyup='cValidation(this)'placeholder='" +
                 data[i].placeholder +
-                "' autocomplete='off' class='form-control'/><p></p></td>";
+                "' autocomplete='off' class='form-control'/><p></p></td></div>";
 
               break;
 
@@ -312,10 +312,14 @@
                 data[i].value +
                 "</option>";
               break;
-            case "tr":
-              dynamicHtml +=
+            case "closeSelect":
+            dynamicHtml +=
                 "</select><p id='psgender' class='validation'></p>";
-              break;
+                    break
+            // case "tr":
+            //   dynamicHtml +=
+            //     "</select><p id='psgender' class='validation'></p>";
+            //   break;
 
             case "ttime":
               dynamicHtml +=
@@ -343,13 +347,16 @@
               dynamicHtml +=
                 "<td class='tdstyle'><label class='tlabeltext'>" +
                 data[i].title +
-                "</label><textarea cols='0' rows='0' id='saddress' onkeyup='cValidation(this)' placeholder=" +
+                "</label><textarea cols='0' rows='0' id='"+data[i].id+"' onkeyup='cValidation(this)' placeholder='" +
                 data[i].placeholder +
                 "' class='form-control'/><p id='psaddr' class='validation'  ></p></td></tr> ";
               break;
+              case "tableclose":
+                    dynamicHtml+=  "</table></div></div></br>"
+                  break
             case "submit":
               dynamicHtml +=
-                "</table></br><div class='col text-center'><input type='" +
+                "<div class='col text-center'><input type='" +
                 data[i].type +
                 "'class='btn btn-success' style='border-radius:50px;width:130px;'  autocomplete='off'/></div></div></div>";
               break;
