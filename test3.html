@@ -137,7 +137,7 @@
         for (var i = 0; i < data.length; i++) {
           var res = data[i].type;
           switch (res) {
-            case "divcontainer":dynamicHtml+="<div class='container-fluid'><div class='row'>"
+            case "divcontainer":dynamicHtml+="<div class='container'><div class='row'>"
                         break;
             case "text":
               dynamicHtml +=
@@ -146,7 +146,7 @@
                 "' class='form-group'><label  class='labeltext'>" +
                 data[i].title +
                 "</label>" +
-                "<input type='" +
+                "<div><input type='" +
                 data[i].type +
                 "'id='" +
                 data[i].id +
@@ -154,7 +154,7 @@
                 data[i].placeholder +
                 "' class='form-control required'  autocomplete='off' ><p id='" +
                 data[i].pid +
-                "'class='validation'></p></div></div>";
+                "'class='validation'></p></div></div></div>";
               // $("#mydata").html(dynamicHtml);
               break;
             case "password":

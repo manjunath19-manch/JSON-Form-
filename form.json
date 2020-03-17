@@ -19,7 +19,7 @@
     "width": "6",
     "title": "Last Name",
     "type": "text",
-    "placeholder": "Last name",
+    "placeholder": "Last Name",
     "Mandatory": "true"
   },
   {
@@ -59,7 +59,7 @@
     "pid": "pdate",
     "did": "ddate",
     "id": "datepicker",
-    "width": "6",
+    "width": "4",
     "title": "Date",
     "type": "text",
     "placeholder": "Date",
@@ -70,7 +70,7 @@
     "pid": "ptimer",
     "did": "dtimer",
     "id": "timer",
-    "width": "6",
+    "width": "4",
     "title": "Time",
     "placeholder": "Time",
     "type": "text",
@@ -81,7 +81,7 @@
     "did": "dgender",
     "id": "gender",
     "type": "select",
-    "width": "6",
+    "width": "4",
     "title": "Gender:",
     "Mandatory": "true"
   },
