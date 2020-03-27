@@ -43,7 +43,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link id="bsdp-css" href="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet"></link>
+    <link id="bsdp-css" rel="stylesheet" href="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker3.min.css" ></link>
     <!-- Material Design Bootstrap -->
     <!-- <link
       href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/css/mdb.min.css"
@@ -54,6 +54,9 @@
     <link rel="stylesheet" href="glyphicons.css" />
     <!-- <link href="https:/./fonts.googleapis.com/css2?family=Mina&display=swap" rel="stylesheet"> -->
     <!-- <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet"/> -->
+    <link rel="stylesheet" href="chosen.css">
+    <link rel="stylesheet" href="ImageSelect.css">
+
 
     <!-- <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/mdb.min.css" rel="stylesheet" /> -->
@@ -86,6 +89,9 @@
    
 
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="chosen.jquery.js"></script>
+    <script src="ImageSelect.jquery.js"></script>
+
 
     <div class="container">
       <div class="row h-100 justify-content-center align-items-center">
@@ -141,12 +147,12 @@
                         break;
             case "text":
               dynamicHtml +=
-                "<div class=col-md-"+data[i].width+"><div id='" +
+                "<div class=col-md-"+data[i].width+ "><div id='" +
                 data[i].did +
                 "' class='form-group'><label  class='labeltext'>" +
                 data[i].title +
                 "</label>" +
-                "<div><input type='" +
+                "<input type='" +
                 data[i].type +
                 "'id='" +
                 data[i].id +
@@ -154,7 +160,7 @@
                 data[i].placeholder +
                 "' class='form-control required'  autocomplete='off' ><p id='" +
                 data[i].pid +
-                "'class='validation'></p></div></div></div>";
+                "'class='validation'></p></div></div>";
               // $("#mydata").html(dynamicHtml);
               break;
             case "password":
@@ -282,9 +288,32 @@
                 data[i].value +
                 "</option>";
               break;
+            case"closeSelect1":dynamicHtml+="</select><p id='mid' class='validation'></p></div>"
+                  break
+            case "dropdownWithImage":
+              dynamicHtml +=
+                "<p id='pfile' class='validation'></p></br></div></div><div class=col-md-"+data[i].width+"><div id='" +
+                data[i].did +
+                "'class='form-group' ><label class='labeltext'>" +
+                data[i].title +
+                "</label></br><select id='" +
+                data[i].id +
+                "'  class='my-select' onchange='cValidation(this)' ><option>Select Country</option>";
+
+              break;
+            case "dropOption":
+              dynamicHtml +=
+                "<option value='" +
+                data[i].value +
+                "'class='dmultiple' data-img-src='"+data[i].path+"' >" +
+                data[i].value +
+                "</option>";
+              break;
+            case"closeDropdownImage":dynamicHtml+="</select><p id='"+data[i].pid+"' class='validation'></p></div>"
+                  break
             case "table":
               dynamicHtml +=
-                "</select><p id='mid' class='validation'></p></div></div><div class='container'><div class='col-md-12'><table class='table' id='" +
+                "<div class='container'><div class='col-md-12'><table class='table' id='" +
                 data[i].id +
                 "' style='border-radius:4px'><tr>";
               break;
@@ -373,6 +402,9 @@
           $("#mydata").html(dynamicHtml);
         }
 
+        $(".my-select").chosen({width:"50%"});
+
+
         $("#multiple_Select").multiselect({
           onChange: function() {
             mdrop = this.$select.val();
@@ -381,6 +413,18 @@
             //localStorage.setItem("Hobbies 1", mdrop);
           }
         });
+        $("#multiple_Select12").multiselect({
+          enableHTML: true,
+          // element='country img\france.png',
+        optionLabel: function(element) {
+        // // return '<img src="'+$(element).attr('data-img')+'"> '+$(element).text();
+         return '<img src="country img/india.png" style="height:40px;width:40px;"> '+$(element).text();
+         },
+         
+        });
+
+
+
 
         $("#mobile").keypress(function(e) {
           if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
@@ -460,6 +504,7 @@
         var time = $("#timer").val();
         var gender = $("#gender").val();
         var hobbies = $('input[class="hobbies"]:checked').val();
+        var country = $("#multiple_Select1").val();
         var qualfication = $('input[name="qualification"]:checked').val();
         var sfname = $("#Sname").val();
         var sgender = $("#sdropselect").val();
@@ -578,6 +623,18 @@
             }
 
             break;
+          case "multiple_Select1":
+          if(country=="Select Country" )
+        {
+          $('#pdropImg').text("Please select a Country")
+
+        }
+        else{
+          $('#pdropImg').text("")
+
+        }
+
+          break;
         }
       }
       function sgender() {
@@ -607,12 +664,14 @@
         var gender = $("#gender").val();
         var qualfication = $('input[name="qualification"]:checked').val();
         var hobbies = $('input[class="hobbies"]:checked').val();
+        var country = $('#multiple_Select1').val();
         var sfname = $("#Sname").val();
         var sgender = $("#sdropselect").val();
         var srollno = $("#srollno").val();
         var stime = $("#stime").val();
         var sdob = $("#sdob").val();
         var saddress = $("#saddress").val();
+        
 
         var rfname = /^[A-Z][a-z]+$/;
         var rlname = /^[A-Z][a-z]+$/;
@@ -637,6 +696,7 @@
           gender != "Select Gender" &&
           hobbies != "" &&
           qualfication != "" &&
+          country!="Select Country"&&
           $("#multiple_Select").attr("data-value") != "" &&
           sgender != "Select a Gender" &&
           stime != "" &&
@@ -656,6 +716,7 @@
             "Hobbies 1",
             $("#multiple_Select").attr("data-value")
           );
+          localStorage.setItem("Country",country);
           localStorage.setItem("Student Fname", sfname);
           localStorage.setItem("Student Gender", sgender);
           localStorage.setItem("Student Rollno", srollno);
@@ -815,6 +876,18 @@
             .text(localStorage.getItem("Hobbies 1"))
             .appendTo("#truserdisplayhobb1");
 
+            $("<tr></tr>")
+            .attr("id", "truserdisplayCountry")
+            .appendTo("#tuserdisplay");
+          $("<td></td>")
+            .attr("class", "td")
+            .text("Country : ")
+            .appendTo("#truserdisplayCountry");
+          $("<td></td>")
+            .attr("class", "td")
+            .text(localStorage.getItem("Country"))
+            .appendTo("#truserdisplayCountry");
+
           $("<tr></tr>")
             .attr("id", "truserdisplayimg")
             .appendTo("#tuserdisplay");
@@ -960,6 +1033,8 @@
         var gender = $("#gender").val();
         var hobbies = $('input[class="hobbies"]:checked').val();
         var qualfication = $('input[name="qualification"]:checked').val();
+        var country = $('#multiple_Select1').val();
+
         var sfname = $("#Sname").val();
         var sgender = $("#sdropselect").val();
         var srollno = $("#srollno").val();
@@ -1038,6 +1113,15 @@
           $("#pfile").text("Please Upload the File");
         } else {
           $("#pfile").text("");
+        }
+        if(country=="Select Country" )
+        {
+          $('#pdropImg').text("Please select a Country")
+
+        }
+        else{
+          $('#pdropImg').text("")
+
         }
 
         if ($("#multiple_Select").attr("data-value") == "") {

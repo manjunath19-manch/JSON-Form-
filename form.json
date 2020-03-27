@@ -7,7 +7,7 @@
     "did": "dfname",
     "id": "fname",
     "width": "6",
-    "title": "First Name",
+    "title": "What is founder of the computer and who is the founder of Internet.What is founder of the computer and who is the founder of Internet",
     "type": "text",
     "placeholder": "First name",
     "Mandatory": "true"
@@ -17,7 +17,7 @@
     "did": "dlname",
     "id": "lname",
     "width": "6",
-    "title": "Last Name",
+    "title": "What is founder of the computer and who is the founder of Internet.What is founder of the computer and who is the founder of Internet",
     "type": "text",
     "placeholder": "Last Name",
     "Mandatory": "true"
@@ -178,6 +178,44 @@
     "type": "option3",
     "value": "swim",
     "class": "dmultiple"
+  },
+  {
+    "type": "closeSelect1"
+  },
+  {
+    "type": "dropdownWithImage",
+    "width": "12",
+    "id": "multiple_Select1",
+    "title": "Country :"
+  },
+  {
+    "type": "dropOption",
+    "value": "India",
+    "path": "country img/india.png"
+  },
+  {
+    "type": "dropOption",
+    "value": "USA",
+    "path": "country img/usa.png"
+  },
+  {
+    "type": "dropOption",
+    "value": "Japan",
+    "path": "country img/japan.png"
+  },
+  {
+    "type": "dropOption",
+    "value": "UK",
+    "path": "country img/uk.png"
+  },
+  {
+    "type": "dropOption",
+    "value": "Germany",
+    "path": "country img/germany.png"
+  },
+  {
+    "type": "closeDropdownImage",
+    "pid": "pdropImg"
   },
   {
     "type": "table",
