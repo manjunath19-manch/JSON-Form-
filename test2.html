@@ -6,17 +6,14 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"
-    />
+
     <link rel="stylesheet" href="mystyle.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css"
     />
 
-    <link rel="stylesheet" href="bootstrap.css" />
+    <!-- <link rel="stylesheet" href="bootstrap.css" /> -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css"
@@ -31,35 +28,79 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto:wght@300;400&display=swap"
       rel="stylesheet"
     />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <!-- Bootstrap core CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link id="bsdp-css" rel="stylesheet" href="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker3.min.css" ></link>
+    
+    
 
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Mina&display=swap" rel="stylesheet"> -->
+    <link rel="stylesheet" href="glyphicons.css" />
+    <!-- <link href="https:/./fonts.googleapis.com/css2?family=Mina&display=swap" rel="stylesheet"> -->
     <!-- <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet"/> -->
+    <link rel="stylesheet" href="chosen.css">
+    <link rel="stylesheet" href="ImageSelect.css">
+
 
     <!-- <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/mdb.min.css" rel="stylesheet" /> -->
   </head>
 
-  <body style="font-family: Roboto,Open Sans, sans-serif;color:#000">
+  <body>
     <div
-      class="jumbotron"
+      class="headerstyle"
       style="padding-bottom:5px;padding-top: 5px;margin-left: 0px;"
     >
-      <img src="logo.png" class="center" />
+      <a href="test3.html"> <img src="logo.png" class="center"/></a>
     </div>
+    <!-- JQuery -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+    ></script>
+    <!-- Bootstrap tooltips -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"
+    ></script>
+    <!-- Bootstrap core JavaScript -->
+    
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"
+    ></script>
+    <!-- MDB core JavaScript -->
+   
 
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="chosen.jquery.js"></script>
+    <script src="ImageSelect.jquery.js"></script>
+
+
     <div class="container">
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
-        <div id="userdetails">
-          <form
-            id="mydata"
-            style="margin-left:20px;background-color: #f9f9f9; "
-            class="formstyle"
-          ></form>
+      <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-md-8"></div>
+
+        <div class="col-md-8 ">
+          <div id="userdetails">
+            <form
+              id="mydata"
+              style="margin-left:25px;background-color: #f9f9f9; "
+              class="formstyle"
+            ></form>
+          </div>
+          <div class="col-md-2"></div>
         </div>
-        <div class="col-md-2"></div>
       </div>
     </div>
 
@@ -72,57 +113,67 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 
     <script>
+      var data1=[];
+
       // $("<table></table>")
       //   .attr("id", "tabuserdetails")
       //   .appendTo("#mydata");
-      fetch("form.json")
+      fetch("form1.json")
         .then(function(response) {
           return response.json();
         })
         .then(function(data) {
           appendData(data);
+         
         })
         .catch(function(err) {
           console.log("error: " + err);
         });
 
-      function appendData(data) {
+
+      function appendData(data)
+      {
+        data1=data;
+       
         var dynamicHtml = "";
 
         for (var i = 0; i < data.length; i++) {
           var res = data[i].type;
           switch (res) {
+            case "divcontainer":dynamicHtml+="<div class='container'><div class='row'>"
+                        break;
             case "text":
               dynamicHtml +=
-                "<div id='" +
+                "<div class=col-md-"+data[i].width+ "><div id='" +
                 data[i].did +
-                "' class='form-group'><label class='labeltext'>" +
+                "' class='form-group'><label  class='labeltext'>" +
                 data[i].title +
                 "</label>" +
                 "<input type='" +
                 data[i].type +
-                "'id='" +
+                "'id= text_" +
                 data[i].id +
-                "' onblur='' onkeyup='cValidation(this)' onclick=cValidation(this) placeholder='" +
+                " onchange='cValidation(this)' onkeyup='cValidation(this)' onclick=cValidation(this) placeholder='" +
                 data[i].placeholder +
-                "' class='form-control'  autocomplete='off'><p id='" +
+                "' class='form-control required'  autocomplete='off' ><p id='" +
                 data[i].pid +
-                "'class='validation'  ></p></div>";
+                "'class='validation'></p></div></div>";
               // $("#mydata").html(dynamicHtml);
               break;
             case "password":
               dynamicHtml +=
-                "<div id='" +
+                "<div class=col-md-"+data[i].width+"><div id='" +
                 data[i].did +
-                "'class='form-group' ><label class='labeltext'>" +
+                "'class='form-group'><label class='labeltext'>" +
                 data[i].title +
                 "</label>" +
                 "<input type='" +
                 data[i].type +
-                "'id='" +
+                "' id='password_"+
                 data[i].id +
                 "'maxlength='" +
                 data[i].maxlength +
@@ -130,7 +181,7 @@
                 data[i].placeholder +
                 "' class='form-control' autocomplete='off'/><p id='" +
                 data[i].pid +
-                "'class='validation'</p><p id='message'></p></div>";
+                "'class='validation'</p><p id='message'></p></div></div>";
               break;
             case "select":
               // dynamicHtml +=
@@ -144,14 +195,14 @@
               //   "'onchange='fgender()'>";
 
               dynamicHtml +=
-                "<div id='" +
+                "<div class=col-md-"+data[i].width+"><div id='" +
                 data[i].did +
                 "' class=''><label class='labeltext'>" +
                 data[i].title +
                 "</label></br>" +
-                "<select id='" +
+                "<select id=select_" +
                 data[i].id +
-                "'onchange='fgender()' class='form-control'>";
+                " onchange='cValidation(this)' class='form-control'>";
               break;
             case "option":
               // dynamicHtml +=
@@ -169,9 +220,9 @@
               break;
             case "cvalue":
               dynamicHtml +=
-                "</select><p id='pgender' class='validation'></p></div><div id='" +
+                "</select></div><p id='pgender' class='validation'></p></div><div class=col-md-"+data[i].width+"><div id='" +
                 data[i].did +
-                "'><label>" +
+                "' ><label class='labeltext'>" +
                 data[i].title +
                 "</label></br>";
 
@@ -184,52 +235,50 @@
                 data[i].value +
                 "'class='" +
                 data[i].class +
-                "'onclick='ccheckbox()' / ><label style='padding-left:4px;'>" +
+                "'onclick='ccheckbox()' style='margin-left:0px;' / ><label style='padding-left:5px;padding-right:10px;'>" +
                 data[i].value +
-                "</label></br>";
+                "</label>";
               break;
             case "radiobutton":
               dynamicHtml +=
-                "<p id='phobbies' class='validation'></div><div id='" +
+                "<p id='phobbies' class='validation'></div></div><div class=col-md-"+data[i].width+"><div id='" +
                 data[i].did +
-                "'><label>" +
+                "'><label class='labeltext '>" +
                 data[i].title +
                 "</label></br>";
               break;
             case "radio":
-              dynamicHtml +=
+              dynamicHtml +=  
                 "<input type='" +
                 data[i].type +
                 "'name='" +
                 data[i].name +
                 "'value='" +
                 data[i].value +
-                "'onclick='checkradio()'/><label style='padding-left:4px;'>" +
+                "'onclick='checkradio()' style='margin-left:0px;'id='"+data[i].id+"' /><label class='radio-inline'  style='padding-left:5px;padding-right:10px;'>" +
                 data[i].value +
-                "</label></br>";
+                "</label>";
               break;
             case "file":
               dynamicHtml +=
-                "<p id='pradio' class='validation'></p></div><div id='" +
+                "<p id='pradio' class='validation'></p></div></div><div class=col-md-"+data[i].width+"><label class='labeltext ' '> Image Upload :</label><div id='" +
                 data[i].did +
-                "'class='custom-file' ><label class='custom-file-label' for='file'>" +
-                data[i].title +
-                "</label><input type='" +
+                "' class='custom-file' ><input type='" +
                 data[i].type +
                 "'accept='" +
                 data[i].accept +
-                "' imgpath='' id='file' onchange='readURL(this)' onkeyup='cValidation(this)' class='custom-file-input' />";
+                "' imgpath='' id=file_"+data[i].id+" onchange='readURL(this)' onkeyup='cValidation(this)' class='custom-file-input ' /><label for='file' class='custom-file-label filestyle' >Choose File</label>";
 
               break;
             case "select1":
               dynamicHtml +=
-                "<p id='pfile' class='validation'></p></div><div id='" +
+                "<p id='pfile' class='validation'></p></br></div></div><div class=col-md-"+data[i].width+"><div id='" +
                 data[i].did +
                 "' ><label class='labeltext'>" +
                 data[i].title +
-                "</label></br><select id='" +
+                "</label></br><select id=Select_" +
                 data[i].id +
-                "'multiple='multiple' data-value='' onchange='mhobbies()' >";
+                " multiple='multiple' data-value='' onchange='mhobbies()' >";
 
               break;
             case "option3":
@@ -240,27 +289,50 @@
                 data[i].value +
                 "</option>";
               break;
+            case"closeSelect1":dynamicHtml+="</select><p id='mid' class='validation'></p></div></div>"
+                  break
+            case "dropdownWithImage":
+              dynamicHtml +=
+                "<div class=col-md-"+data[i].width+"><div id='" +
+                data[i].did +
+                "'class='form-group' ><label class='labeltext'>" +
+                data[i].title +
+                "</label></br><select id=select_" +
+                data[i].id +
+                " class='my-select' onchange='cValidation(this)' ><option>Select Country</option>";
+
+              break;
+            case "dropOption":
+              dynamicHtml +=
+                "<option value='" +
+                data[i].value +
+                "'class='dmultiple' data-img-src='"+data[i].path+"' >" +
+                data[i].value +
+                "</option>";
+              break;
+            case"closeDropdownImage":dynamicHtml+="</select><p id='"+data[i].pid+"' class='validation'></p></div></div>"
+                  break
             case "table":
               dynamicHtml +=
-                "</select><p id='mid' class='validation'></p></div><table class='table' id='" +
+                "<div class='container'><table class='table' id='" +
                 data[i].id +
-                "'><tr>";
+                "' style='border-radius:4px'><tr>";
               break;
             case "ttext":
               dynamicHtml +=
-                "<td class='tdstyle'  ><label class='labeltext'>" +
+                "<td class='tdstyle ' ><label class='tlabeltext'>" +
                 data[i].title +
-                "</label><input type='text' id='" +
+                "</label><input type='text' id=tText_" +
                 data[i].id +
-                "' onkeyup='cValidation(this)'placeholder='" +
+                " onkeyup='cValidation(this)'placeholder='" +
                 data[i].placeholder +
-                "' autocomplete='off' class='form-control'/><p></p></td>";
+                "' autocomplete='off' class='form-control'/><p></p></td></div>";
 
               break;
 
             case "select2":
               dynamicHtml +=
-                "<td class='tdstyle'><label class='labeltext'>" +
+                "<td class='tdstyle'><label class='tlabeltext'>" +
                 data[i].title +
                 "</label></br><select id='sdropselect' onchange='sgender()'class='form-control' >";
               break;
@@ -272,28 +344,32 @@
                 data[i].value +
                 "</option>";
               break;
-            case "tr":
-              dynamicHtml +=
+            case "closeSelect":
+            dynamicHtml +=
                 "</select><p id='psgender' class='validation'></p>";
-              break;
+                    break
+            // case "tr":
+            //   dynamicHtml +=
+            //     "</select><p id='psgender' class='validation'></p>";
+            //   break;
 
             case "ttime":
               dynamicHtml +=
-                "</tr><td class='tdstyle'><label class='labeltext'>" +
+                "</tr><td class='tdstyle'><label class='tlabeltext'>" +
                 data[i].title +
-                "</label><input type='text' id='" +
+                "</label><input type='text' id=tTime_" +
                 data[i].id +
-                "'onkeyup='cValidation(this)'onclick=cValidation(this) placeholder='" +
+                " onkeyup='cValidation(this)'onclick=cValidation(this) placeholder='" +
                 data[i].placeholder +
                 "'autocomplete='off'class='form-control'><p id='pstime' class='validation'></p></td>";
               break;
             case "tdob":
               dynamicHtml +=
-                "<td class='tdstyle'><label class='labeltext'>" +
+                "<td class='tdstyle'><label class='tlabeltext'>" +
                 data[i].title +
-                "</label><input type='text' id='" +
+                "</label><input type='text' id=tDob_" +
                 data[i].id +
-                "' placeholder='" +
+                " placeholder='" +
                 data[i].placeholder +
                 "'autocomplete='off' class='form-control'></td>";
 
@@ -301,18 +377,24 @@
 
             case "saddr":
               dynamicHtml +=
-                "<td class='tdstyle'><label class='labeltext'>" +
+                "<td class='tdstyle'><label class='tlabeltext'>" +
                 data[i].title +
-                "</label><textarea cols='0' rows='0' id='saddress' onkeyup='cValidation(this)' placeholder=" +
+                "</label><textarea cols='0' rows='0' id=textArea_"+data[i].id+" onkeyup='cValidation(this)' placeholder='" +
                 data[i].placeholder +
                 "' class='form-control'/><p id='psaddr' class='validation'  ></p></td></tr> ";
               break;
+              case "tableclose":
+                    dynamicHtml+=  "</table></div></div></br>"
+                  break
             case "submit":
               dynamicHtml +=
-                "</table></br><div class='col text-center'><input type='" +
+                "<div class='col text-center'><input type='" +
                 data[i].type +
-                "'class='btn btn-success' style='font-size:15px;'  autocomplete='off'/></div></div></div>";
+                "'class='btn btn-success' style='border-radius:50px;width:130px;'  autocomplete='off'/></div></div></div>";
               break;
+              case "closediv":
+                  dynamicHtml+="</div></div></div>"
+                      break
 
             default:
               break;
@@ -321,57 +403,86 @@
           $("#mydata").html(dynamicHtml);
         }
 
-        $("#multiple_Select").multiselect({
+        $(".my-select").chosen({width:"100%"});
+
+
+        $("#Select_19").multiselect({
           onChange: function() {
             mdrop = this.$select.val();
-            $("#multiple_Select").attr("data-value", mdrop);
+            $("#Select_19").attr("data-value", mdrop);
             // console.log(mdrop);
             //localStorage.setItem("Hobbies 1", mdrop);
           }
         });
+        $("#multiple_Select12").multiselect({
+          enableHTML: true,
+          // element='country img\france.png',
+        optionLabel: function(element) {
+        // // return '<img src="'+$(element).attr('data-img')+'"> '+$(element).text();
+         return '<img src="country img/india.png" style="height:40px;width:40px;"> '+$(element).text();
+         },
+         
+        });
 
-        $("#mobile").keypress(function(e) {
+
+
+
+        $("#text_5").keypress(function(e) {
           if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
             return false;
           }
         });
-        $("#srollno").keypress(function(e) {
+        $("#tText_40").keypress(function(e) {
+          if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+          }
+        });
+        $("#text_6").keypress(function(e) {
           if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
             return false;
           }
         });
 
         $(function() {
-          $("#datepicker").datepicker({
-            dateFormat: "dd-mm-yy"
+          $("#text_6").datepicker({
+            dateFormat: "dd/mm/yy"
           });
         });
         $(function() {
-          $("#sdob").datepicker({
-            dateFormat: "dd-mm-yy"
+          $("#tDob_42").datepicker({
+            dateFormat: "dd/mm/yy"
           });
         });
 
         $(function() {
-          $("#timer").datetimepicker({
+          $("#text_7").datetimepicker({
             format: "LT"
           });
         });
         $(function() {
-          $("#stime").datetimepicker({
+          $("#tTime_41").datetimepicker({
             format: "LT"
           });
         });
+
+
       }
+     
 
       function readURL(input) {
+        var filename = $("#file_18").val();
+        var cleanFilename = filename.replace("C:\\fakepath\\", "");
+        $("#file_18")
+          .next(".custom-file-label")
+          .html(cleanFilename);
+
         if (input.files && input.files[0]) {
           var reader = new FileReader();
 
           reader.onload = function(e) {
             imgPath = e.target.result;
-            $("#file").attr("imgpath", imgPath);
-            if ($("#file").attr("imgpath") == "") {
+            $("#file_18").attr("imgpath", imgPath);
+            if ($("#file_18").attr("imgpath") == "") {
               $("#pfile").text("Please Upload the File");
             } else {
               $("#pfile").text("");
@@ -386,6 +497,12 @@
         e.preventDefault();
         submitValid();
         checkvalid();
+        
+        
+        //var firstname = JSON.stringify(localStorage.getItem("Country"));
+        
+      
+
       });
       // $("form").on("focusout", function(e) {
       //   e.preventDefault();
@@ -393,23 +510,24 @@
       // });
       function cValidation(obj) {
         var al = [];
-        var firstname = $("#fname").val();
-        var lastname = $("#lname").val();
-        var email = $("#email").val();
-        var password = $("#password").val();
-        var mobile = $("#mobile").val();
-        var datepicker = $("#datepicker").val();
-        var time = $("#timer").val();
-        var gender = $("#gender").val();
+        var firstname = $("#text_1").val();
+        var lastname = $("#text_2").val();
+        var email = $("#text_3").val();
+        var password = $("#password_4").val();
+        var mobile = $("#text_5").val();
+        var datepicker = $("#text_6").val();
+        var time = $("#text_7").val();
+        var gender = $("#select_8").val();
         var hobbies = $('input[class="hobbies"]:checked').val();
+        var country = $("#select_25").val();
         var qualfication = $('input[name="qualification"]:checked').val();
-        var sfname = $("#Sname").val();
+        var sfname = $("#tText_33").val();
         var sgender = $("#sdropselect").val();
-        var srollno = $("#srollno").val();
-        var stime = $("#stime").val();
+        var srollno = $("#tText_40").val();
+        var stime = $("#tTime_41").val();
 
-        var sdob = $("#sdob").val();
-        var saddress = $("#saddress").val();
+        var sdob = $("#tDob_42").val();
+        var saddress = $("#textArea_43").val();
 
         //var hobbies1 = $('input[class="dmultiple"]:checked').val();
         //var imgUpload = $("#file").val();
@@ -427,25 +545,26 @@
         reg_mobile = rmobile.test(mobile);
         var fid = $(obj).attr("id");
         switch (fid) {
-          case "fname":
+          case "text_1":
             if (firstname == "") {
               $("#pfname").text("");
             } else if (!reg_fname) {
-              $("#pfname").text("Please Enter First Letter Capital");
+              $("#pfname").text("Please a Enter First Letter Capital only");
             } else {
               $("#pfname").text("");
+              $("#fname").attr("status", "valid");
             }
             break;
-          case "lname":
+          case "text_2":
             if (lastname == "") {
               $("#plname").text("");
             } else if (!reg_lname) {
-              $("#plname").text("Please Enter First Letter Capital");
+              $("#plname").text("Please Enter First Letter Capital only");
             } else {
               $("#plname").text("");
             }
             break;
-          case "email":
+          case "text_3":
             if (email == "") {
               $("#pemail").text("");
             } else if (!reg_email) {
@@ -455,7 +574,7 @@
             }
             break;
 
-          case "password":
+          case "password_4":
             if (password == "") {
               $("#ppassword").text("");
             } else if (!reg_password) {
@@ -472,7 +591,7 @@
             }
 
             break;
-          case "mobile":
+          case "text_5":
             if (mobile == "") {
               $("#pmobile").text("");
             } else if (!reg_mobile) {
@@ -481,19 +600,25 @@
               $("#pmobile").text("");
             }
             break;
-          case "datepicker":
+          case "text_6":
             if (datepicker != "") {
               $("#pdate").text("");
             }
             break;
-          case "timer":
+          case "text_7":
             if (time != "") {
               $("#ptimer").text("");
             }
+            
             break;
-          case "gender":
+          case "select_8":
+            
             if (gender != "Select a Gender") {
               $("#pgender").text("");
+            }
+            else
+            {
+              $("#pgender").text("Please Select a Gender");
             }
             break;
           case "sdropselect":
@@ -501,24 +626,36 @@
               $("#psgender").text("");
             }
             break;
-          case "stime":
+          case "tTime_41":
             if (stime != "") {
               $("#pstime").text("");
             }
             break;
-          case "saddress":
+          case "textArea_43":
             if (saddress != "") {
               $("#psaddr").text("");
             }
             break;
-          case "file":
-            if ($("#file").attr("imgpath") != "") {
+          case "file_18":
+            if ($("#file_18").attr("imgpath") != "") {
               $("#pfile").text("");
             } else {
-              $("#pfile").text("");
+              $("#pfile").text("Please chose a Image");
             }
 
             break;
+          case "select_25":
+          if(country=="Select Country" )
+        {
+          $('#pdropImg').text("Please select a Country")
+
+        }
+        else{
+          $('#pdropImg').text("")
+
+        }
+
+          break;
         }
       }
       function sgender() {
@@ -538,22 +675,42 @@
 
       function checkvalid() {
         var al = [];
-        var firstname = $("#fname").val();
-        var lastname = $("#lname").val();
-        var email = $("#email").val();
-        var password = $("#password").val();
-        var mobile = $("#mobile").val();
-        var datepicker = $("#datepicker").val();
-        var timer = $("#timer").val();
-        var gender = $("#gender").val();
-        var qualfication = $('input[name="qualification"]:checked').val();
+        // var firstname = $("#text_1").val();
+        // var lastname = $("#text_2").val();
+        // var email = $("#text_3").val();
+        // var password = $("#password_4").val();
+        // var mobile = $("#text_5").val();
+        // var datepicker = $("#text_6").val();
+        // var timer = $("#text_7").val();
+        // var gender = $("#select_8").val();
+        // var qualfication = $('input[name="qualification"]:checked').val();
+        // var hobbies = $('input[class="hobbies"]:checked').val();
+        // var country = $('#select_25').val();
+        // var sfname = $("#tText_13").val();
+        // var sgender = $("#sdropselect").val();
+        // var srollno = $("#tText_15").val();
+        // var stime = $("#tTime_16").val();
+        // var sdob = $("#tDob_17").val();
+        // var saddress = $("#textArea_18").val();
+        var firstname = $("#text_1").val();
+        var lastname = $("#text_2").val();
+        var email = $("#text_3").val();
+        var password = $("#password_4").val();
+        var mobile = $("#text_5").val();
+        var datepicker = $("#text_6").val();
+        var timer = $("#text_7").val();
+        var gender = $("#select_8").val();
         var hobbies = $('input[class="hobbies"]:checked').val();
-        var sfname = $("#Sname").val();
+        var country = $("#select_25").val();
+        var qualfication = $('input[name="qualification"]:checked').val();
+        var sfname = $("#tText_33").val();
         var sgender = $("#sdropselect").val();
-        var srollno = $("#srollno").val();
-        var stime = $("#stime").val();
-        var sdob = $("#sdob").val();
-        var saddress = $("#saddress").val();
+        var srollno = $("#tText_40").val();
+        var stime = $("#tTime_41").val();
+
+        var sdob = $("#tDob_42").val();
+        var saddress = $("#textArea_43").val();
+        
 
         var rfname = /^[A-Z][a-z]+$/;
         var rlname = /^[A-Z][a-z]+$/;
@@ -567,6 +724,10 @@
         reg_password = rpassword.test(password);
         reg_mobile = rmobile.test(mobile);
 
+       
+        
+       
+
         if (
           firstname != "" &&
           lastname != "" &&
@@ -578,40 +739,87 @@
           gender != "Select Gender" &&
           hobbies != "" &&
           qualfication != "" &&
+          country!="Select Country"&&
           $("#multiple_Select").attr("data-value") != "" &&
           sgender != "Select a Gender" &&
           stime != "" &&
           saddress != ""
         ) {
-          localStorage.setItem("FirstName", firstname);
-          localStorage.setItem("lastname", lastname);
-          localStorage.setItem("email", email);
-          localStorage.setItem("password", password);
-          localStorage.setItem("mobile", mobile);
-          localStorage.setItem("Date Of Birth", datepicker);
-          localStorage.setItem("Gender", gender);
-          localStorage.setItem("Time", timer);
+          
+          localStorage.setItem("FirstName",firstname);
+          localStorage.setItem("lastname",lastname);
+          localStorage.setItem("email",email);
+          localStorage.setItem("password",password);
+          localStorage.setItem("mobile",mobile);
+          localStorage.setItem("Date Of Birth",datepicker);
+          localStorage.setItem("Gender",gender);
+          localStorage.setItem("Time",timer);
           localStorage.setItem("Image Upload", imgPath);
-          localStorage.setItem("Qualification", qualfication);
+          localStorage.setItem("Qualification",qualfication);
           localStorage.setItem(
             "Hobbies 1",
-            $("#multiple_Select").attr("data-value")
+            $("#Select_19").attr("data-value")
           );
-          localStorage.setItem("Student Fname", sfname);
-          localStorage.setItem("Student Gender", sgender);
-          localStorage.setItem("Student Rollno", srollno);
-          localStorage.setItem("Exam Time", stime);
-          localStorage.setItem("DOB", sdob);
-          localStorage.setItem("Address", saddress);
+          localStorage.setItem("Country",country);
+          localStorage.setItem("Student Fname",sfname);
+          localStorage.setItem("Student Gender",sgender);
+          localStorage.setItem("Student Rollno",srollno);
+          localStorage.setItem("Exam Time",stime);
+          localStorage.setItem("DOB",sdob);
+          localStorage.setItem("Address",saddress);
 
           var arr = $('input[class="hobbies"]:checked')
             .map(function() {
               return $(this).val();
             })
             .get();
+          // console.log(JSON.stringify(localStorage.getItem("FirstName")));
+          // console.log(JSON.stringify(localStorage.getItem("lastname")));
+          // console.log(JSON.stringify(localStorage.getItem("email")));
+          // console.log(JSON.stringify(localStorage.getItem("password")));
+          // console.log(JSON.stringify(localStorage.getItem("mobile")));
+          // console.log(JSON.stringify(localStorage.getItem("Date Of Birth")));
+          // console.log(JSON.stringify(localStorage.getItem("Gender")));
+          // console.log(JSON.stringify(localStorage.getItem("Time")));
+          // console.log(JSON.stringify(localStorage.getItem("Image Upload")));
+          // console.log(JSON.stringify(localStorage.getItem("Qualification")));
+          // console.log(JSON.stringify(localStorage.getItem("Country")));
+          // console.log(JSON.stringify(localStorage.getItem("Student Fname")));
+          // console.log(JSON.stringify(localStorage.getItem("Student Gender")));
+          // console.log(JSON.stringify(localStorage.getItem("Student Rollno")));
+          // console.log(JSON.stringify(localStorage.getItem("Exam Time")));
+          // console.log(JSON.stringify(localStorage.getItem("DOB")));
+          // console.log(JSON.stringify(localStorage.getItem("Address")));
+         
+          
+            
+          
+          
+
 
           localStorage.setItem("Hobbies", JSON.stringify(arr));
           $("#userdetails").hide();
+          // var vname=[];
+          // var evalue=[firstname,lastname];
+        
+          // data1.forEach(function(data){
+          //   vname.push(data1.id);
+
+          // })
+          // var filldata={};
+
+          // vname.forEach(function(data,index){
+          //   filldata[data]=evalue[index];
+          // })
+
+          // console.log(filldata)
+
+
+
+
+
+
+
           $("<table> </table>")
             .attr("id", "tuserdisplay")
             .attr("class", "table")
@@ -756,6 +964,18 @@
             .text(localStorage.getItem("Hobbies 1"))
             .appendTo("#truserdisplayhobb1");
 
+            $("<tr></tr>")
+            .attr("id", "truserdisplayCountry")
+            .appendTo("#tuserdisplay");
+          $("<td></td>")
+            .attr("class", "td")
+            .text("Country : ")
+            .appendTo("#truserdisplayCountry");
+          $("<td></td>")
+            .attr("class", "td")
+            .text(localStorage.getItem("Country"))
+            .appendTo("#truserdisplayCountry");
+
           $("<tr></tr>")
             .attr("id", "truserdisplayimg")
             .appendTo("#tuserdisplay");
@@ -849,7 +1069,7 @@
             .text(localStorage.getItem("Address"))
             .appendTo("#taddress");
 
-          $("<button />", {
+          $("<button></button>", {
             text: "Back",
             id: "btn",
 
@@ -891,22 +1111,28 @@
 
       function submitValid() {
         var al = [];
-        var firstname = $("#fname").val();
-        var lastname = $("#lname").val();
-        var email = $("#email").val();
-        var password = $("#password").val();
-        var mobile = $("#mobile").val();
-        var datepicker = $("#datepicker").val();
-        var time = $("#timer").val();
-        var gender = $("#gender").val();
+        var firstname = $("#text_1").val();
+        var lastname = $("#text_2").val();
+        var email = $("#text_3").val();
+        var password = $("#password_4").val();
+        var mobile = $("#text_5").val();
+        var datepicker = $("#text_6").val();
+        var time = $("#text_7").val();
+        var imgAdress = $("#file_18").val();
+        var img = imgAdress.replace("C:\\fakepath\\","C:\\")
+        
+        var gender = $("#select_8").val();
         var hobbies = $('input[class="hobbies"]:checked').val();
+        var country = $("#select_25").val();
         var qualfication = $('input[name="qualification"]:checked').val();
-        var sfname = $("#Sname").val();
+        var sfname = $("#tText_33").val();
         var sgender = $("#sdropselect").val();
-        var srollno = $("#srollno").val();
-        var stime = $("#stime").val();
-        var sdob = $("#sdob").val();
-        var saddress = $("#saddress").val();
+        var srollno = $("#tText_40").val();
+        var stime = $("#tTime_41").val();
+
+        var sdob = $("#tDob_42").val();
+        var saddress = $("#textArea_43").val();
+        
 
         var rfname = /^[A-Z][a-z]+$/;
         var rlname = /^[A-Z][a-z]+$/;
@@ -919,15 +1145,62 @@
         reg_email = remail.test(email);
         reg_password = rpassword.test(password);
         reg_mobile = rmobile.test(mobile);
+       
+        var vname=[];
+        
+        
+       
+        var formValue=[firstname,lastname,email,password,mobile,datepicker,time,gender,hobbies,qualfication,img,$("#Select_19").attr("data-value")
+        ,country,sfname,sgender,srollno,stime,sdob,saddress];
+          // var formValue=[firstname,lastname,email];
+
+         
+        
+          
+
+          data1.forEach(function(prediction) {
+              vname.push(prediction.id);
+
+                 });
+                 console.log(vname);
+          // for(var i=1;i<data1.length;i++)
+          // {
+          //   vname.push(data1[i].id);
+          // }
+         
+
+         
+               
+         
+           
+
+         
+         
+          var filldata={};
+
+          vname.forEach(function(prediction,index){
+            filldata[prediction]=formValue[index];
+           
+            
+            
+          })
+
+          console.log(filldata)
+
+
+
+
+
+
 
         if (!reg_fname) {
-          $("#pfname").text("Enter a First Name  ");
+          $("#pfname").text("Please Enter a First Letter Capital only ");
         } else {
           $("#pfname").text("");
         }
 
         if (!reg_lname) {
-          $("#plname").text("Enter a Last Name");
+          $("#plname").text("Please Enter a First Letter Capital only");
         } else {
           $("#plname").text("");
         }
@@ -975,13 +1248,22 @@
         } else {
           $("#pradio").text("");
         }
-        if ($("#file").attr("imgpath") == "") {
+        if ($("#file_11").attr("imgpath") == "") {
           $("#pfile").text("Please Upload the File");
         } else {
           $("#pfile").text("");
         }
+        if(country=="Select Country" )
+        {
+          $('#pdropImg').text("Please select a Country")
 
-        if ($("#multiple_Select").attr("data-value") == "") {
+        }
+        else{
+          $('#pdropImg').text("")
+
+        }
+
+        if ($("#Select_11").attr("data-value") == "") {
           $("#mid").text("Please Select the hobbies");
         } else {
           $("#mid").text("");
@@ -1003,123 +1285,123 @@
         }
       }
 
-      function focusValid() {
-        var al = [];
-        var firstname = $("#fname").val();
-        var lastname = $("#lname").val();
-        var email = $("#email").val();
-        var password = $("#password").val();
-        var mobile = $("#mobile").val();
-        var datepicker = $("#datepicker").val();
-        var time = $("#timer").val();
-        var gender = $("#gender").val();
-        $('input[id="hobbies"]:checked').each(function(i) {
-          al[i] = $(this).val();
-        });
-        var hobbies = $('input[class="hobbies"]:checked').val();
-        var qualfication = $('input[name="qualification"]:checked').val();
+      // function focusValid() {
+      //   var al = [];
+      //   var firstname = $("#fname").val();
+      //   var lastname = $("#lname").val();
+      //   var email = $("#email").val();
+      //   var password = $("#password").val();
+      //   var mobile = $("#mobile").val();
+      //   var datepicker = $("#datepicker").val();
+      //   var time = $("#timer").val();
+      //   var gender = $("#gender").val();
+      //   $('input[id="hobbies"]:checked').each(function(i) {
+      //     al[i] = $(this).val();
+      //   });
+      //   var hobbies = $('input[class="hobbies"]:checked').val();
+      //   var qualfication = $('input[name="qualification"]:checked').val();
 
-        var sfname = $("#Sname").val();
-        var sgender = $("#sdropselect").val();
-        var srollno = $("#srollno").val();
-        var stime = $("#stime").val();
-        var sdob = $("#sdob").val();
-        var saddress = $("#saddress").val();
+      //   var sfname = $("#Sname").val();
+      //   var sgender = $("#sdropselect").val();
+      //   var srollno = $("#srollno").val();
+      //   var stime = $("#stime").val();
+      //   var sdob = $("#sdob").val();
+      //   var saddress = $("#saddress").val();
 
-        var rfname = /^[A-Z][a-z]+$/;
-        var rlname = /^[A-Z][a-z]+$/;
-        var remail = /(^[A-Za-z0-9\.]+)@([A-Za-z0-9\.]+).([A-z]{2,8})/;
-        var rpassword = /(^[A-Z]([a-z0-9]){5}$)/;
-        var rmobile = /(^[0-9]{10}$)/;
+      //   var rfname = /^[A-Z][a-z]+$/;
+      //   var rlname = /^[A-Z][a-z]+$/;
+      //   var remail = /(^[A-Za-z0-9\.]+)@([A-Za-z0-9\.]+).([A-z]{2,8})/;
+      //   var rpassword = /(^[A-Z]([a-z0-9]){5}$)/;
+      //   var rmobile = /(^[0-9]{10}$)/;
 
-        reg_fname = rfname.test(firstname);
-        reg_lname = rlname.test(lastname);
-        reg_email = remail.test(email);
-        reg_password = rpassword.test(password);
-        reg_mobile = rmobile.test(mobile);
+      //   reg_fname = rfname.test(firstname);
+      //   reg_lname = rlname.test(lastname);
+      //   reg_email = remail.test(email);
+      //   reg_password = rpassword.test(password);
+      //   reg_mobile = rmobile.test(mobile);
 
-        if (!reg_fname) {
-          $("#pfname").text("Enter a First Name");
-        } else {
-          $("#pfname").text("");
-        }
+      //   if (!reg_fname) {
+      //     $("#pfname").text("Enter a First Name");
+      //   } else {
+      //     $("#pfname").text("");
+      //   }
 
-        if (!reg_lname) {
-          $("#plname").text("Enter a Last Name");
-        } else {
-          $("#plname").text("");
-        }
-        if (!reg_email) {
-          $("#pemail").text("Enter a Valid Email");
-        } else {
-          $("#pemail").text("");
-        }
-        if (password == "") {
-          $("#ppassword").text("Please Fill the Field");
-        } else if (!reg_password) {
-          $("#ppassword").text(
-            "First Character must Capital and Must be 6 Character Long"
-          );
-        } else {
-          $("#ppassword").text("");
-        }
-        if (!reg_mobile) {
-          $("#pmobile").text("Enter a Valid Mobile Number");
-        } else {
-          $("#pmobile").text("");
-        }
-        if (datepicker == "") {
-          $("#pdate").text("Please Choose a Date");
-        } else {
-          $("#pdate").text("");
-        }
-        if (time == "") {
-          $("#ptimer").text("Please Select  a Time");
-        } else {
-          $("#ptimer").text("");
-        }
-        if (gender == "Select a Gender") {
-          $("#pgender").text("Please Select  a Gender");
-        } else {
-          $("#pgender").text("");
-        }
-        if (!hobbies) {
-          $("#phobbies").text("Please Select Any one Checkbox");
-        } else {
-          $("#phobbies").text("");
-        }
-        if (!qualfication) {
-          $("#pradio").text("Please Select the radio button");
-        } else {
-          $("#pradio").text("");
-        }
-        if ($("#file").attr("imgpath") == "") {
-          $("#pfile").text("Please Upload the File");
-        } else {
-          $("#pfile").text("");
-        }
+      //   if (!reg_lname) {
+      //     $("#plname").text("Enter a Last Name");
+      //   } else {
+      //     $("#plname").text("");
+      //   }
+      //   if (!reg_email) {
+      //     $("#pemail").text("Enter a Valid Email");
+      //   } else {
+      //     $("#pemail").text("");
+      //   }
+      //   if (password == "") {
+      //     $("#ppassword").text("Please Fill the Field");
+      //   } else if (!reg_password) {
+      //     $("#ppassword").text(
+      //       "First Character must Capital and Must be 6 Character Long"
+      //     );
+      //   } else {
+      //     $("#ppassword").text("");
+      //   }
+      //   if (!reg_mobile) {
+      //     $("#pmobile").text("Enter a Valid Mobile Number");
+      //   } else {
+      //     $("#pmobile").text("");
+      //   }
+      //   if (datepicker == "") {
+      //     $("#pdate").text("Please Choose a Date");
+      //   } else {
+      //     $("#pdate").text("");
+      //   }
+      //   if (time == "") {
+      //     $("#ptimer").text("Please Select  a Time");
+      //   } else {
+      //     $("#ptimer").text("");
+      //   }
+      //   if (gender == "Select a Gender") {
+      //     $("#pgender").text("Please Select  a Gender");
+      //   } else {
+      //     $("#pgender").text("");
+      //   }
+      //   if (!hobbies) {
+      //     $("#phobbies").text("Please Select Any one Checkbox");
+      //   } else {
+      //     $("#phobbies").text("");
+      //   }
+      //   if (!qualfication) {
+      //     $("#pradio").text("Please Select the radio button");
+      //   } else {
+      //     $("#pradio").text("");
+      //   }
+      //   if ($("#file").attr("imgpath") == "") {
+      //     $("#pfile").text("Please Upload the File");
+      //   } else {
+      //     $("#pfile").text("");
+      //   }
 
-        if ($("#multiple_Select").attr("data-value") == "") {
-          $("#mid").text("Please Select the hobbies");
-        } else {
-          $("#mid").text("");
-        }
-        if (sgender == "Select a Gender") {
-          $("#psgender").text("Please Select the Gender");
-        } else {
-          $("#psgender").text("");
-        }
-        if (!stime) {
-          $("#pstime").text("Please select Time");
-        } else {
-          $("#pstime").text(" ");
-        }
-        if (!saddress) {
-          $("#psaddr").text("Please Enter the Address");
-        } else {
-          $("#psaddr").text("");
-        }
-      }
+      //   if ($("#multiple_Select").attr("data-value") == "") {
+      //     $("#mid").text("Please Select the hobbies");
+      //   } else {
+      //     $("#mid").text("");
+      //   }
+      //   if (sgender == "Select a Gender") {
+      //     $("#psgender").text("Please Select the Gender");
+      //   } else {
+      //     $("#psgender").text("");
+      //   }
+      //   if (!stime) {
+      //     $("#pstime").text("Please select Time");
+      //   } else {
+      //     $("#pstime").text(" ");
+      //   }
+      //   if (!saddress) {
+      //     $("#psaddr").text("Please Enter the Address");
+      //   } else {
+      //     $("#psaddr").text("");
+      //   }
+      // }
     </script>
 
     <div class="footer">

@@ -88,17 +88,14 @@
     "Mandatory": "true"
   },
   {
-    "id": "9",
     "type": "option",
     "value": "Select a Gender"
   },
   {
-    "id": "10",
     "type": "option",
     "value": "Male"
   },
   {
-    "id": "11",
     "type": "option",
     "value": "Female"
   },
@@ -107,19 +104,17 @@
     "pid": "phobbies",
     "did": "dhobbies",
     "type": "cvalue",
-    "width": "6",
+    "width": "4",
     "title": "Hobbies :",
     "Mandatory": "true"
   },
   {
-    "id": "13",
     "type": "checkbox",
     "class": "hobbies",
     "did": "dhobbies",
     "value": "Swimming"
   },
   {
-    "id": "14",
     "type": "checkbox",
     "class": "hobbies",
     "did": "dhobbies",
@@ -129,7 +124,7 @@
     "id": "15",
     "pid": "pradio",
     "did": "dradio",
-    "width": "6",
+    "width": "4",
     "type": "radiobutton",
     "name": "qualification",
     "title": "Qualification :"
@@ -137,7 +132,7 @@
   {
     "type": "radio",
     "class": "radio",
-    "id": "16",
+
     "did": "dradio",
 
     "value": "BCA ",
@@ -147,7 +142,6 @@
     "type": "radio",
     "did": "dradio",
     "class": "radio",
-    "id": "17",
     "value": "MCA ",
     "name": "qualification"
   },
@@ -169,31 +163,26 @@
     "pid": "mid"
   },
   {
-    "id": "20",
     "type": "option3",
     "value": "Reading",
     "class": "dmultiple"
   },
   {
-    "id": "21",
     "type": "option3",
     "value": "Playing",
     "class": "dmultiple"
   },
   {
-    "id": "22",
     "type": "option3",
     "value": "cricket",
     "class": "dmultiple"
   },
   {
-    "id": "23",
     "type": "option3",
     "value": "swim",
     "class": "dmultiple"
   },
   {
-    "id": "24",
     "type": "closeSelect1"
   },
   {
@@ -203,43 +192,36 @@
     "title": "Country :"
   },
   {
-    "id": "26",
     "type": "dropOption",
     "value": "India",
     "path": "country img/india.png"
   },
   {
-    "id": "27",
     "type": "dropOption",
     "value": "USA",
     "path": "country img/usa.png"
   },
   {
-    "id": "28",
     "type": "dropOption",
     "value": "Japan",
     "path": "country img/japan.png"
   },
   {
-    "id": "29",
     "type": "dropOption",
     "value": "UK",
     "path": "country img/uk.png"
   },
   {
-    "id": "30",
     "type": "dropOption",
     "value": "Germany",
     "path": "country img/germany.png"
   },
   {
-    "id": "31",
     "type": "closeDropdownImage",
     "pid": "pdropImg"
   },
   {
-    "type": "table",
-    "id": "32"
+    "type": "table"
   },
   {
     "pid": "psname",
@@ -259,26 +241,21 @@
     "did": "slname"
   },
   {
-    "id": "35",
     "type": "option2",
     "value": "Select a Gender"
   },
   {
-    "id": "36",
     "type": "option2",
     "value": "Male"
   },
   {
-    "id": "37",
     "type": "option2",
     "value": "Female"
   },
   {
-    "id": "38",
     "type": "closeSelect"
   },
   {
-    "id": "39",
     "type": "tr"
   },
   {
@@ -341,16 +318,13 @@
     "did": "dsname"
   },
   {
-    "type": "tableclose",
-    "id": ""
+    "type": "tableclose"
   },
   {
-    "type": "closediv",
-    "id": ""
+    "type": "closediv"
   },
   {
     "pid": "",
-    "id": "",
     "title": "",
     "pattern": "",
     "did": "dsubmit",
