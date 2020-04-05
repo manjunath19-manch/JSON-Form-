@@ -1,356 +1,452 @@
 [
   {
-    "type": "divcontainer"
+    "metaDataId": "1",
+    "tagName": "First Name",
+    "type": "TEXT",
+    "mandatory": "true",
+    "editable": "false",
+    "pdfFill": "false",
+    "variableName": "_fname_",
+    "pollable": "false",
+
+    "gridValue": "6",
+    "placeholder": "First name"
   },
   {
-    "pid": "pfname",
-    "did": "dfname",
-    "id": "1",
-    "width": "6",
-    "title": "First Name",
-    "type": "text",
-    "placeholder": "First name",
-    "Mandatory": "true",
-    "variableName": "_fname_"
+    "metaDataId": "2",
+    "tagName": "LastName",
+    "type": "TEXT",
+    "mandatory": "true",
+    "editable": "false",
+    "pdfFill": "false",
+    "variableName": "_lname_",
+    "pollable": "false",
+
+    "gridValue": "6",
+    "placeholder": "Last Name"
   },
   {
-    "pid": "plname",
-    "did": "dlname",
-    "id": "2",
-    "width": "6",
-    "title": "LastName",
-    "type": "text",
-    "placeholder": "Last Name",
-    "Mandatory": "true",
-    "variableName": "_lname_"
+    "metaDataId": "3",
+    "tagName": "Email",
+    "type": "TEXT",
+    "mandatory": "true",
+    "editable": "false",
+    "pdfFill": "false",
+    "variableName": "_lname_",
+    "pollable": "false",
+
+    "gridValue": "6",
+    "placeholder": "Email"
   },
   {
-    "pid": "pemail",
-    "did": "demail",
-    "width": "6",
-    "id": "3",
-    "title": "Email",
-    "type": "text",
-    "placeholder": "Email",
-    "maxlength": "",
-    "Mandatory": "true"
-  },
-  {
-    "pid": "ppassword",
-    "did": "dpassword",
-    "id": "4",
-    "width": "6",
-    "title": "Password",
+    "metaDataId": "4",
+    "tagName": "Password",
     "type": "password",
-    "maxlength": 6,
-    "placeholder": "Password",
-    "Mandatory": "true"
+    "mandatory": "true",
+    "editable": "false",
+    "pdfFill": "false",
+    "variableName": "_password_",
+    "pollable": "false",
+
+    "gridValue": "6",
+    "placeholder": "Password"
   },
   {
-    "pid": "pmobile",
-    "did": "dmobile",
-    "id": "5",
-    "width": "6",
-    "title": "Mobile",
-    "type": "text",
-    "maxlength": 10,
-    "placeholder": "Enter only 10 digit mobile number",
-    "Mandatory": "true"
+    "metaDataId": "5",
+    "tagName": "Mobile",
+    "type": "TEXT",
+    "mandatory": "true",
+    "editable": "false",
+    "pdfFill": "false",
+    "variableName": "_mobile_",
+    "pollable": "false",
+
+    "gridValue": "6",
+    "placeholder": "Enter only 10 digit mobile number"
   },
   {
-    "pid": "pdate",
-    "did": "ddate",
-    "id": "6",
-    "width": "6",
-    "title": "Date",
-    "type": "text",
-    "placeholder": "Date",
-    "maxlength": "",
-    "Mandatory": "true"
+    "metaDataId": "6",
+    "tagName": "Date",
+    "type": "TEXT",
+    "mandatory": "true",
+    "editable": "true",
+    "pdfFill": "true",
+    "variableName": "_date_",
+    "pollable": "false",
+
+    "gridValue": "6",
+    "placeholder": "Date"
   },
   {
-    "pid": "ptimer",
-    "did": "dtimer",
-    "id": "7",
-    "width": "6",
-    "title": "Time",
-    "placeholder": "Time",
-    "type": "text",
-    "Mandatory": "true"
+    "metaDataId": "7",
+    "tagName": "Time",
+    "type": "TEXT",
+    "mandatory": "true",
+    "editable": "true",
+    "pdfFill": "true",
+    "variableName": "_time_",
+    "pollable": "false",
+
+    "gridValue": "6",
+    "placeholder": "Time"
   },
   {
-    "pid": "pgender",
-    "did": "dgender",
-    "id": "8",
+    "metaDataId": "8",
+    "tagName": "Gender:",
     "type": "select",
-    "width": "6",
-    "title": "Gender:",
-    "Mandatory": "true"
+    "mandatory": "true",
+    "editable": "true",
+    "pdfFill": "true",
+    "variableName": "_Gender_",
+    "pollable": "false",
+    "gridValue": "6"
   },
   {
-    "id": "9",
+    "metaDataId": "9",
     "type": "option",
     "value": "Select a Gender"
   },
   {
-    "id": "10",
+    "metaDataId": "10",
     "type": "option",
     "value": "Male"
   },
   {
-    "id": "11",
+    "metaDataId": "11",
     "type": "option",
     "value": "Female"
   },
   {
-    "id": "12",
-    "pid": "phobbies",
-    "did": "dhobbies",
+    "metaDataId": "12",
+    "tagName": "Hobbies :",
     "type": "cvalue",
-    "width": "6",
-    "title": "Hobbies :",
-    "Mandatory": "true"
+    "mandatory": "true",
+    "editable": "true",
+    "pdfFill": "true",
+    "variableName": "_Hobbies_",
+    "pollable": "false",
+    "gridValue": "6"
   },
   {
-    "id": "13",
+    "metaDataId": "13",
     "type": "checkbox",
     "class": "hobbies",
-    "did": "dhobbies",
     "value": "Swimming"
   },
   {
-    "id": "14",
+    "metaDataId": "14",
     "type": "checkbox",
     "class": "hobbies",
     "did": "dhobbies",
     "value": "Dancing"
   },
   {
-    "id": "15",
-    "pid": "pradio",
-    "did": "dradio",
-    "width": "6",
+    "metaDataId": "15",
+    "tagName": "Qualification :",
     "type": "radiobutton",
+    "mandatory": "true",
+    "editable": "true",
+    "pdfFill": "true",
+    "variableName": "_qualification_",
+    "pollable": "false",
     "name": "qualification",
-    "title": "Qualification :"
+    "gridValue": "6"
   },
   {
+    "metaDataId": "16",
     "type": "radio",
     "class": "radio",
-    "id": "16",
     "did": "dradio",
-
     "value": "BCA ",
     "name": "qualification"
   },
   {
+    "metaDataId": "17",
     "type": "radio",
     "did": "dradio",
-    "class": "radio",
-    "id": "17",
     "value": "MCA ",
     "name": "qualification"
   },
   {
+    "metaDataId": "18",
+    "tagName": "Image Upload :",
     "type": "file",
-    "id": "18",
-    "width": "6",
-    "title": "Image Upload :",
+    "mandatory": "true",
+    "editable": "true",
+    "exportable": "true",
+    "pdfFill": "true",
+    "variableName": "_imageUpload_",
+    "pollable": "false",
+
+    "gridValue": "6",
     "accept": "image/*",
     "did": "dfile",
     "pid": "pfile"
   },
   {
+    "metaDataId": "19",
+    "tagName": "Hobbies :",
     "type": "select1",
+    "mandatory": "false",
+    "editable": "true",
+    "exportable": "true",
+    "pdfFill": "true",
+    "variableName": "_Hobbies_",
+    "pollable": "false",
     "did": "mselect",
-    "width": "6",
-    "id": "19",
-    "title": "Hobbies :",
+    "gridValue": "6",
     "pid": "mid"
   },
   {
-    "id": "20",
+    "metaDataId": "20",
     "type": "option3",
     "value": "Reading",
     "class": "dmultiple"
   },
   {
-    "id": "21",
+    "metaDataId": "21",
     "type": "option3",
     "value": "Playing",
     "class": "dmultiple"
   },
   {
-    "id": "22",
+    "metaDataId": "22",
     "type": "option3",
     "value": "cricket",
     "class": "dmultiple"
   },
   {
-    "id": "23",
+    "metaDataId": "23",
     "type": "option3",
     "value": "swim",
     "class": "dmultiple"
   },
   {
-    "id": "24",
+    "metaDataId": "24",
     "type": "closeSelect1"
   },
   {
+    "metaDataId": "25",
+    "tagName": "Country :",
     "type": "dropdownWithImage",
-    "width": "6",
-    "id": "25",
-    "title": "Country :"
+    "mandatory": "true",
+    "editable": "true",
+    "exportable": "true",
+    "pdfFill": "true",
+    "variableName": "_country_",
+    "pollable": "false",
+    "gridValue": "6"
   },
   {
-    "id": "26",
+    "metaDataId": "26",
     "type": "dropOption",
     "value": "India",
     "path": "country img/india.png"
   },
   {
-    "id": "27",
+    "metaDataId": "27",
     "type": "dropOption",
     "value": "USA",
     "path": "country img/usa.png"
   },
   {
-    "id": "28",
+    "metaDataId": "28",
     "type": "dropOption",
     "value": "Japan",
     "path": "country img/japan.png"
   },
   {
-    "id": "29",
+    "metaDataId": "29",
     "type": "dropOption",
     "value": "UK",
     "path": "country img/uk.png"
   },
   {
-    "id": "30",
+    "metaDataId": "30",
     "type": "dropOption",
     "value": "Germany",
     "path": "country img/germany.png"
   },
   {
-    "id": "31",
+    "metaDataId": "31",
     "type": "closeDropdownImage",
     "pid": "pdropImg"
   },
   {
     "type": "table",
-    "id": "32"
+    "metaDataId": "32"
   },
   {
+    "metaDataId": "33",
+    "tagName": "Student Name",
+    "type": "tTEXT",
+    "mandatory": "true",
+    "editable": "true",
+    "exportable": "true",
+    "pdfFill": "true",
+    "variableName": "_studentName_",
+
     "pid": "psname",
-    "type": "ttext",
     "tdid": "tdsname",
-    "id": "33",
     "placeholder": "Name",
-    "title": "Student Name",
     "did": "dsname"
   },
   {
-    "pid": "psgender",
+    "metaDataId": "34",
+    "tagName": "Gender",
     "type": "select2",
+    "mandatory": "true",
+    "editable": "true",
+    "exportable": "true",
+    "pdfFill": "true",
+    "variableName": "_Gender_",
+    "pollable": "false",
+
+    "pid": "psgender",
     "tdid": "tdslname",
-    "id": "34",
-    "title": "Gender",
     "did": "slname"
   },
   {
-    "id": "35",
+    "metaDataId": "35",
     "type": "option2",
     "value": "Select a Gender"
   },
   {
-    "id": "36",
+    "metaDataId": "36",
     "type": "option2",
     "value": "Male"
   },
   {
-    "id": "37",
+    "metaDataId": "37",
     "type": "option2",
     "value": "Female"
   },
   {
-    "id": "38",
+    "metaDataId": "38",
     "type": "closeSelect"
   },
   {
-    "id": "39",
+    "metaDataId": "39",
     "type": "tr"
   },
   {
+    "metaDataId": "40",
+    "tagName": "Student Rollno",
+    "type": "ttext",
+    "mandatory": "true",
+    "editable": "true",
+    "exportable": "true",
+    "pdfFill": "true",
+    "variableName": "_studentRollno_",
+    "pollable": "false",
+
     "pid": "psrollno",
-    "type": "ttext",
-    "id": "40",
     "placeholder": "Rollno",
-    "tdid": "tdsrollno",
-    "title": "Student Rollno"
+    "tdid": "tdsrollno"
   },
   {
-    "pid": "pstime",
+    "metaDataId": "41",
+    "tagName": "Exam Time",
     "type": "ttime",
-    "id": "41",
+    "mandatory": "true",
+    "editable": "true",
+    "exportable": "true",
+    "pdfFill": "true",
+    "variableName": "_examTime_",
+    "pollable": "false",
+
+    "pid": "pstime",
     "tdid": "tdstime",
-    "placeholder": "Exam Time",
-    "title": "Exam Time"
+    "placeholder": "Exam Time"
   },
   {
-    "pid": "psdob",
+    "metaDataId": "42",
+    "tagName": "DOB",
     "type": "tdob",
-    "id": "42",
+    "mandatory": "true",
+    "editable": "true",
+    "exportable": "true",
+    "pdfFill": "true",
+    "variableName": "_DOB_",
+    "pollable": "false",
+
+    "pid": "psdob",
     "placeholder": "Date of Birth",
-    "tdid": "tdsdob",
-    "title": "DOB"
+    "tdid": "tdsdob"
   },
   {
-    "pid": "psaddr",
+    "metaDataId": "43",
+    "tagName": "Address",
     "type": "saddr",
-    "id": "43",
+    "mandatory": "true",
+    "editable": "true",
+    "exportable": "true",
+    "pdfFill": "true",
+    "variableName": "_DOB_",
+    "pollable": "false",
+
+    "pid": "psaddr",
     "tdid": "tdsaddr",
-    "placeholder": "Address ",
-    "title": "Address"
+    "placeholder": "Address "
   },
   {
-    "pid": "pslname",
+    "metaDataId": "44",
+    "tagName": "Student Last Name",
     "type": "ttext",
+    "mandatory": "true",
+    "editable": "true",
+    "exportable": "true",
+    "pdfFill": "true",
+    "variableName": "_studentLastName_",
+    "pollable": "false",
+
+    "pid": "pslname",
     "tdid": "tdslname",
-    "id": "44",
     "placeholder": "Student Last Name",
-    "title": "Student Last Name",
     "did": "dsname"
   },
   {
-    "pid": "pslname",
+    "metaDataId": "45",
+    "tagName": "Student Father Name",
     "type": "ttext",
+    "mandatory": "true",
+    "editable": "false",
+    "exportable": "false",
+    "pdfFill": "false",
+    "variableName": "_studentFatherName_",
+    "pollable": "false",
+
+    "pid": "pslname",
     "tdid": "tdslname",
-    "id": "45",
     "placeholder": "Student Father Name",
-    "title": "Student Father Name",
     "did": "dsname"
   },
   {
-    "pid": "psaddr",
+    "metaDataId": "46",
+    "tagName": "Student Complete Street",
     "type": "saddr",
+    "mandatory": "true",
+    "editable": "false",
+    "exportable": "false",
+    "pdfFill": "false",
+    "variableName": "_studentCompleteStreet_",
+    "pollable": "false",
+
+    "pid": "psaddr",
     "tdid": "tdslname",
-    "id": "46",
     "placeholder": "Student Complete Street",
-    "title": "Student Complete Street",
     "did": "dsname"
   },
   {
-    "type": "tableclose",
-    "id": ""
+    "metaDataId": "47",
+    "type": "tableclose"
   },
   {
-    "type": "closediv",
-    "id": ""
+    "metaDataId": "48",
+    "type": "closediv"
   },
   {
-    "pid": "",
-    "id": "",
+    "metaDataId": "49",
     "title": "",
     "pattern": "",
     "did": "dsubmit",

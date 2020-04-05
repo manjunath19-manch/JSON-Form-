@@ -119,9 +119,7 @@
     <script>
       var data1=[];
 
-      // $("<table></table>")
-      //   .attr("id", "tabuserdetails")
-      //   .appendTo("#mydata");
+      
       fetch("form.json")
         .then(function(response) {
           return response.json();
@@ -140,48 +138,44 @@
         data1=data;
        
         var dynamicHtml = "";
+        dynamicHtml+="<div class='container'><div class='row'>"
 
         for (var i = 0; i < data.length; i++) {
           var res = data[i].type;
           switch (res) {
-            case "divcontainer":dynamicHtml+="<div class='container'><div class='row'>"
-                        break;
-            case "text":
+           
+            case "TEXT":
               dynamicHtml +=
-                "<div class=col-md-"+data[i].width+ "><div id='" +
-                data[i].did +
-                "' class='form-group'><label  class='labeltext'>" +
-                data[i].title +
+                "<div class=col-md-"+data[i].gridValue+ "><div id=div_" +
+                data[i].metaDataId +
+                " class='form-group'><label  class='labeltext'>" +
+                data[i].tagName +
                 "</label>" +
-                "<input type='" +
-                data[i].type +
-                "'id= text_" +
-                data[i].id +
+                "<input type='text' id= text_" +
+                data[i].metaDataId +
                 " onchange='cValidation(this)' onkeyup='cValidation(this)' onclick=cValidation(this) placeholder='" +
                 data[i].placeholder +
-                "' class='form-control required'  autocomplete='off' ><p id='" +
-                data[i].pid +
-                "'class='validation'></p></div></div>";
+                "' class='form-control'  autocomplete='off' ><p id=p_" +
+                data[i].metaDataId +
+                " class='validation'></p></div></div>";
               // $("#mydata").html(dynamicHtml);
               break;
             case "password":
               dynamicHtml +=
-                "<div class=col-md-"+data[i].width+"><div id='" +
-                data[i].did +
+                "<div class=col-md-"+data[i].gridValue+"><div id='" +
+                data[i].metaDataId +
                 "'class='form-group'><label class='labeltext'>" +
-                data[i].title +
+                data[i].tagName +
                 "</label>" +
                 "<input type='" +
                 data[i].type +
                 "' id='password_"+
-                data[i].id +
-                "'maxlength='" +
-                data[i].maxlength +
+                data[i].metaDataId +
                 "'onkeyup='cValidation(this)' placeholder='" +
                 data[i].placeholder +
-                "' class='form-control' autocomplete='off'/><p id='" +
-                data[i].pid +
-                "'class='validation'</p><p id='message'></p></div></div>";
+                "' class='form-control' autocomplete='off' maxlength='6'/><p id=p_" +
+                data[i].metaDataId +
+                " class='validation'</p><p id='message'></p></div></div>";
               break;
             case "select":
               // dynamicHtml +=
@@ -195,13 +189,13 @@
               //   "'onchange='fgender()'>";
 
               dynamicHtml +=
-                "<div class=col-md-"+data[i].width+"><div id='" +
-                data[i].did +
-                "' class=''><label class='labeltext'>" +
-                data[i].title +
+                "<div class=col-md-"+data[i].gridValue+"><div id=div_" +
+                data[i].metaDataId +
+                " class=''><label class='labeltext'>" +
+                data[i].tagName +
                 "</label></br>" +
                 "<select id=select_" +
-                data[i].id +
+                data[i].metaDataId +
                 " onchange='cValidation(this)' class='form-control'>";
               break;
             case "option":
@@ -218,12 +212,15 @@
                 data[i].value +
                 "</option>";
               break;
+            case "selectClose":
+                         dynamicHtml+="</select></div><p id='pgender' class='validation'></p></div>"
+                          break
             case "cvalue":
               dynamicHtml +=
-                "</select></div><p id='pgender' class='validation'></p></div><div class=col-md-"+data[i].width+"><div id='" +
-                data[i].did +
+                "</select></div><p id='pgender' class='validation'></p></div><div class=col-md-"+data[i].gridValue+"><div id='" +
+                data[i].metaDataId +
                 "' ><label class='labeltext'>" +
-                data[i].title +
+                data[i].tagName +
                 "</label></br>";
 
               break;
@@ -241,10 +238,10 @@
               break;
             case "radiobutton":
               dynamicHtml +=
-                "<p id='phobbies' class='validation'></div></div><div class=col-md-"+data[i].width+"><div id='" +
-                data[i].did +
-                "'><label class='labeltext '>" +
-                data[i].title +
+                "<p id='phobbies' class='validation'></div></div><div class=col-md-"+data[i].gridValue+"><div id=div" +
+                data[i].metaDataId +
+                "><label class='labeltext '>" +
+                data[i].tagName +
                 "</label></br>";
               break;
             case "radio":
@@ -255,37 +252,37 @@
                 data[i].name +
                 "'value='" +
                 data[i].value +
-                "'onclick='checkradio()' style='margin-left:0px;'id='"+data[i].id+"' /><label class='radio-inline'  style='padding-left:5px;padding-right:10px;'>" +
+                "'onclick='checkradio()' style='margin-left:0px;'id=r_"+data[i].metaDataId+"/><label class='radio-inline'  style='padding-left:5px;padding-right:10px;'>" +
                 data[i].value +
                 "</label>";
               break;
             case "file":
               dynamicHtml +=
-                "<p id='pradio' class='validation'></p></div></div><div class=col-md-"+data[i].width+"><label class='labeltext ' '> Image Upload :</label><div id='" +
-                data[i].did +
-                "' class='custom-file' ><input type='" +
+                "<p id='pradio' class='validation'></p></div></div><div class=col-md-"+data[i].gridValue+"><label class='labeltext ' '> Image Upload :</label><div id=div_" +
+                data[i].metaDataId+
+                " class='custom-file' ><input type='" +
                 data[i].type +
                 "'accept='" +
                 data[i].accept +
-                "' imgpath='' id=file_"+data[i].id+" onchange='readURL(this)' onkeyup='cValidation(this)' class='custom-file-input ' /><label for='file' class='custom-file-label filestyle' >Choose File</label>";
+                "' imgpath='' id=file_"+data[i].metaDataId+" onchange='readURL(this)' onkeyup='cValidation(this)' class='custom-file-input ' /><label for='file' class='custom-file-label filestyle' >Choose File</label><p id=p_"+data[i].metaDataId+" class='validation'></p></br></div></div>";
 
               break;
             case "select1":
               dynamicHtml +=
-                "<p id='pfile' class='validation'></p></br></div></div><div class=col-md-"+data[i].width+"><div id='" +
-                data[i].did +
-                "' ><label class='labeltext'>" +
-                data[i].title +
+                "<div class=col-md-"+data[i].gridValue+"><div id=div_" +
+                data[i].metaDataId +
+                "><label class='labeltext'>" +
+                data[i].tagName +
                 "</label></br><select id=Select_" +
-                data[i].id +
+                data[i].metaDataId +
                 " multiple='multiple' data-value='' onchange='mhobbies()' >";
 
               break;
             case "option3":
               dynamicHtml +=
-                "<option value='" +
+                "<option value= " +
                 data[i].value +
-                "'class='dmultiple'>" +
+                " class='dmultiple'>" +
                 data[i].value +
                 "</option>";
               break;
@@ -293,12 +290,12 @@
                   break
             case "dropdownWithImage":
               dynamicHtml +=
-                "<div class=col-md-"+data[i].width+"><div id='" +
-                data[i].did +
+                "<div class=col-md-"+data[i].gridValue+"><div id=div_" +
+                data[i].metaDataId +
                 "'class='form-group' ><label class='labeltext'>" +
-                data[i].title +
+                data[i].tagName +
                 "</label></br><select id=select_" +
-                data[i].id +
+                data[i].metaDataId +
                 " class='my-select' onchange='cValidation(this)' ><option>Select Country</option>";
 
               break;
@@ -310,7 +307,7 @@
                 data[i].value +
                 "</option>";
               break;
-            case"closeDropdownImage":dynamicHtml+="</select><p id='"+data[i].pid+"' class='validation'></p></div></div>"
+            case"closeDropdownImage":dynamicHtml+="</select><p id=p_"+data[i].metaDataId+" class='validation'></p></div></div>"
                   break
             case "table":
               dynamicHtml +=
@@ -321,9 +318,9 @@
             case "ttext":
               dynamicHtml +=
                 "<td class='tdstyle ' ><label class='tlabeltext'>" +
-                data[i].title +
+                data[i].tagName +
                 "</label><input type='text' id=tText_" +
-                data[i].id +
+                data[i].metaDataId+
                 " onkeyup='cValidation(this)'placeholder='" +
                 data[i].placeholder +
                 "' autocomplete='off' class='form-control'/><p></p></td></div>";
@@ -333,7 +330,7 @@
             case "select2":
               dynamicHtml +=
                 "<td class='tdstyle'><label class='tlabeltext'>" +
-                data[i].title +
+                data[i].tagName +
                 "</label></br><select id='sdropselect' onchange='sgender()'class='form-control' >";
               break;
             case "option2":
@@ -346,7 +343,7 @@
               break;
             case "closeSelect":
             dynamicHtml +=
-                "</select><p id='psgender' class='validation'></p>";
+                "</select><p id=p_"+data[i].metaDataId+" class='validation'></p>";
                     break
             // case "tr":
             //   dynamicHtml +=
@@ -356,9 +353,9 @@
             case "ttime":
               dynamicHtml +=
                 "</tr><td class='tdstyle'><label class='tlabeltext'>" +
-                data[i].title +
+                data[i].tagName +
                 "</label><input type='text' id=tTime_" +
-                data[i].id +
+                data[i].metaDataId +
                 " onkeyup='cValidation(this)'onclick=cValidation(this) placeholder='" +
                 data[i].placeholder +
                 "'autocomplete='off'class='form-control'><p id='pstime' class='validation'></p></td>";
@@ -366,9 +363,9 @@
             case "tdob":
               dynamicHtml +=
                 "<td class='tdstyle'><label class='tlabeltext'>" +
-                data[i].title +
+                data[i].tagName +
                 "</label><input type='text' id=tDob_" +
-                data[i].id +
+                data[i].metaDataId +
                 " placeholder='" +
                 data[i].placeholder +
                 "'autocomplete='off' class='form-control'></td>";
@@ -378,10 +375,10 @@
             case "saddr":
               dynamicHtml +=
                 "<td class='tdstyle'><label class='tlabeltext'>" +
-                data[i].title +
-                "</label><textarea cols='0' rows='0' id=textArea_"+data[i].id+" onkeyup='cValidation(this)' placeholder='" +
+                data[i].tagName +
+                "</label><textarea cols='0' rows='0' id=textArea_"+data[i].metaDataId+" onkeyup='cValidation(this)' placeholder='" +
                 data[i].placeholder +
-                "' class='form-control'/><p id='psaddr' class='validation'  ></p></td></tr> ";
+                "' class='form-control'/><p id=p_"+data[i].metaDataId+" class='validation'  ></p></td></tr> ";
               break;
               case "tableclose":
                     dynamicHtml+=  "</table></div></div></br>"
@@ -414,15 +411,15 @@
             //localStorage.setItem("Hobbies 1", mdrop);
           }
         });
-        $("#multiple_Select12").multiselect({
-          enableHTML: true,
-          // element='country img\france.png',
-        optionLabel: function(element) {
-        // // return '<img src="'+$(element).attr('data-img')+'"> '+$(element).text();
-         return '<img src="country img/india.png" style="height:40px;width:40px;"> '+$(element).text();
-         },
+        // $("#multiple_Select12").multiselect({
+        //   enableHTML: true,
+        //   // element='country img\france.png',
+        // optionLabel: function(element) {
+        // // // return '<img src="'+$(element).attr('data-img')+'"> '+$(element).text();
+        //  return '<img src="country img/india.png" style="height:40px;width:40px;"> '+$(element).text();
+        //  },
          
-        });
+        // });
 
 
 
@@ -483,9 +480,9 @@
             imgPath = e.target.result;
             $("#file_18").attr("imgpath", imgPath);
             if ($("#file_18").attr("imgpath") == "") {
-              $("#pfile").text("Please Upload the File");
+              $("#p_18").text("Please Upload the File");
             } else {
-              $("#pfile").text("");
+              $("#p_18").text("");
             }
           };
 
@@ -529,9 +526,6 @@
         var sdob = $("#tDob_42").val();
         var saddress = $("#textArea_43").val();
 
-        //var hobbies1 = $('input[class="dmultiple"]:checked').val();
-        //var imgUpload = $("#file").val();
-
         var rfname = /^[A-Z][a-z]+$/;
         var rlname = /^[A-Z][a-z]+$/;
         var remail = /(^[A-Za-z0-9\.]+)@([A-Za-z0-9\.]+).([A-z]{2,8})/;
@@ -547,38 +541,38 @@
         switch (fid) {
           case "text_1":
             if (firstname == "") {
-              $("#pfname").text("");
+              $("#p_1").text("");
             } else if (!reg_fname) {
-              $("#pfname").text("Please a Enter First Letter Capital only");
+              $("#p_1").text("Please a Enter First Letter Capital only");
             } else {
-              $("#pfname").text("");
+              $("#p_1").text("");
               $("#fname").attr("status", "valid");
             }
             break;
           case "text_2":
             if (lastname == "") {
-              $("#plname").text("");
+              $("#p_2").text("");
             } else if (!reg_lname) {
-              $("#plname").text("Please Enter First Letter Capital only");
+              $("#p_2").text("Please Enter First Letter Capital only");
             } else {
-              $("#plname").text("");
+              $("#p_2").text("");
             }
             break;
           case "text_3":
             if (email == "") {
-              $("#pemail").text("");
+              $("#p_3").text("");
             } else if (!reg_email) {
-              $("#pemail").text("Please Enter a Valid Email");
+              $("#p_3").text("Please Enter a Valid Email");
             } else {
-              $("#pemail").text("");
+              $("#p_3").text("");
             }
             break;
 
           case "password_4":
             if (password == "") {
-              $("#ppassword").text("");
+              $("#p_4").text("");
             } else if (!reg_password) {
-              $("#ppassword").hide();
+              $("#p_4").hide();
 
               $("#message")
                 .attr("class", "validation1")
@@ -593,21 +587,21 @@
             break;
           case "text_5":
             if (mobile == "") {
-              $("#pmobile").text("");
+              $("#p_5").text("");
             } else if (!reg_mobile) {
-              $("#pmobile").text("Please Enter a Valid Mobile Number");
+              $("#p_5").text("Please Enter a Valid Mobile Number");
             } else {
-              $("#pmobile").text("");
+              $("#p_5").text("");
             }
             break;
           case "text_6":
             if (datepicker != "") {
-              $("#pdate").text("");
+              $("#p_6").text("");
             }
             break;
           case "text_7":
             if (time != "") {
-              $("#ptimer").text("");
+              $("#p_7").text("");
             }
             
             break;
@@ -623,7 +617,7 @@
             break;
           case "sdropselect":
             if (sgender != "Select a Gender") {
-              $("#psgender").text("");
+              $("#p_38").text("");
             }
             break;
           case "tTime_41":
@@ -633,25 +627,25 @@
             break;
           case "textArea_43":
             if (saddress != "") {
-              $("#psaddr").text("");
+              $("#p_43").text("");
             }
             break;
           case "file_18":
             if ($("#file_18").attr("imgpath") != "") {
-              $("#pfile").text("");
+              $("#p_18").text("");
             } else {
-              $("#pfile").text("Please chose a Image");
+              $("#p_18").text("Please chose a Image");
             }
 
             break;
           case "select_25":
           if(country=="Select Country" )
         {
-          $('#pdropImg').text("Please select a Country")
+          $('#p_31').text("Please select a Country")
 
         }
         else{
-          $('#pdropImg').text("")
+          $('#p_31').text("")
 
         }
 
@@ -660,9 +654,9 @@
       }
       function sgender() {
         if (sgender == "Select a Gender") {
-          $("#psgender").text("Please Select the Gender");
+          $("#p_38").text("Please Select the Gender");
         } else {
-          $("#psgender").text("");
+          $("#p_38").text("");
         }
       }
       function fgender() {
@@ -1110,8 +1104,7 @@
 
         var sdob = $("#tDob_42").val();
         var saddress = $("#textArea_43").val();
-        
-
+       
         var rfname = /^[A-Z][a-z]+$/;
         var rlname = /^[A-Z][a-z]+$/;
         var remail = /(^[A-Za-z0-9\.]+)@([A-Za-z0-9\.]+).([A-z]{2,8})/;
@@ -1144,13 +1137,14 @@
           //        });
           for(var i=1;i<data1.length;i++)
           {
-            if(data1[i].id)
+            if(data1[i].metaDataId)
             {
-            vname.push(data1[i].id);
+            vname.push(data1[i].metaDataId);
 
             }
-            // vname.push(data1[i].id);
           }
+            // vname.push(data1[i].id);
+          
         
           // for(var i=0;i<data1.length;i++)
           // {
@@ -1186,44 +1180,44 @@
 
 
         if (!reg_fname) {
-          $("#pfname").text("Please Enter a First Letter Capital only ");
+          $("#p_1").text("Please Enter a First Letter Capital only ");
         } else {
-          $("#pfname").text("");
+          $("#p_1").text("");
         }
 
         if (!reg_lname) {
-          $("#plname").text("Please Enter a First Letter Capital only");
+          $("#p_2").text("Please Enter a First Letter Capital only");
         } else {
-          $("#plname").text("");
+          $("#p_2").text("");
         }
         if (!reg_email) {
-          $("#pemail").text("Enter a Valid Email");
+          $("#p_3").text("Enter a Valid Email");
         } else {
-          $("#pemail").text("");
+          $("#p_3").text("");
         }
         if (password == "") {
-          $("#ppassword").text("Please Fill the Field");
+          $("#p_4").text("Please Fill the Field");
         } else if (!reg_password) {
-          $("#ppassword").text(
+          $("#p_4").text(
             "First Character must Capital and Must be 6 Character Long"
           );
         } else {
-          $("#ppassword").text("");
+          $("#p_4").text("");
         }
         if (!reg_mobile) {
-          $("#pmobile").text("Enter a Valid Mobile Number");
+          $("#p_5").text("Enter a Valid Mobile Number");
         } else {
-          $("#pmobile").text("");
+          $("#p_5").text("");
         }
         if (datepicker == "") {
-          $("#pdate").text("Please Choose a Date");
+          $("#p_6").text("Please Choose a Date");
         } else {
-          $("#pdate").text("");
+          $("#p_6").text("");
         }
         if (time == "") {
-          $("#ptimer").text("Please Select  a Time");
+          $("#p_7").text("Please Select  a Time");
         } else {
-          $("#ptimer").text("");
+          $("#p_7").text("");
         }
         if (gender == "Select a Gender") {
           $("#pgender").text("Please Select  a Gender");
@@ -1240,30 +1234,30 @@
         } else {
           $("#pradio").text("");
         }
-        if ($("#file_11").attr("imgpath") == "") {
-          $("#pfile").text("Please Upload the File");
+        if ($("#file_18").attr("imgpath") == "") {
+          $("#p_18").text("Please Upload the File");
         } else {
-          $("#pfile").text("");
+          $("#p_18").text("");
         }
         if(country=="Select Country" )
         {
-          $('#pdropImg').text("Please select a Country")
+          $('#p_31').text("Please select a Country")
 
         }
         else{
-          $('#pdropImg').text("")
+          $('#p_31').text("")
 
         }
 
-        if ($("#Select_11").attr("data-value") == "") {
+        if ($("#Select_19").attr("data-value") == "") {
           $("#mid").text("Please Select the hobbies");
         } else {
           $("#mid").text("");
         }
         if (sgender == "Select a Gender") {
-          $("#psgender").text("Please Select the Gender");
+          $("#p_38").text("Please Select the Gender");
         } else {
-          $("#psgender").text("");
+          $("#p_38").text("");
         }
         if (!stime) {
           $("#pstime").text("Please select Time");
@@ -1271,129 +1265,13 @@
           $("#pstime").text(" ");
         }
         if (!saddress) {
-          $("#psaddr").text("Please Enter the Address");
+          $("#p_43").text("Please Enter the Address");
         } else {
-          $("#psaddr").text("");
+          $("#p_43").text("");
         }
       }
 
-      // function focusValid() {
-      //   var al = [];
-      //   var firstname = $("#fname").val();
-      //   var lastname = $("#lname").val();
-      //   var email = $("#email").val();
-      //   var password = $("#password").val();
-      //   var mobile = $("#mobile").val();
-      //   var datepicker = $("#datepicker").val();
-      //   var time = $("#timer").val();
-      //   var gender = $("#gender").val();
-      //   $('input[id="hobbies"]:checked').each(function(i) {
-      //     al[i] = $(this).val();
-      //   });
-      //   var hobbies = $('input[class="hobbies"]:checked').val();
-      //   var qualfication = $('input[name="qualification"]:checked').val();
-
-      //   var sfname = $("#Sname").val();
-      //   var sgender = $("#sdropselect").val();
-      //   var srollno = $("#srollno").val();
-      //   var stime = $("#stime").val();
-      //   var sdob = $("#sdob").val();
-      //   var saddress = $("#saddress").val();
-
-      //   var rfname = /^[A-Z][a-z]+$/;
-      //   var rlname = /^[A-Z][a-z]+$/;
-      //   var remail = /(^[A-Za-z0-9\.]+)@([A-Za-z0-9\.]+).([A-z]{2,8})/;
-      //   var rpassword = /(^[A-Z]([a-z0-9]){5}$)/;
-      //   var rmobile = /(^[0-9]{10}$)/;
-
-      //   reg_fname = rfname.test(firstname);
-      //   reg_lname = rlname.test(lastname);
-      //   reg_email = remail.test(email);
-      //   reg_password = rpassword.test(password);
-      //   reg_mobile = rmobile.test(mobile);
-
-      //   if (!reg_fname) {
-      //     $("#pfname").text("Enter a First Name");
-      //   } else {
-      //     $("#pfname").text("");
-      //   }
-
-      //   if (!reg_lname) {
-      //     $("#plname").text("Enter a Last Name");
-      //   } else {
-      //     $("#plname").text("");
-      //   }
-      //   if (!reg_email) {
-      //     $("#pemail").text("Enter a Valid Email");
-      //   } else {
-      //     $("#pemail").text("");
-      //   }
-      //   if (password == "") {
-      //     $("#ppassword").text("Please Fill the Field");
-      //   } else if (!reg_password) {
-      //     $("#ppassword").text(
-      //       "First Character must Capital and Must be 6 Character Long"
-      //     );
-      //   } else {
-      //     $("#ppassword").text("");
-      //   }
-      //   if (!reg_mobile) {
-      //     $("#pmobile").text("Enter a Valid Mobile Number");
-      //   } else {
-      //     $("#pmobile").text("");
-      //   }
-      //   if (datepicker == "") {
-      //     $("#pdate").text("Please Choose a Date");
-      //   } else {
-      //     $("#pdate").text("");
-      //   }
-      //   if (time == "") {
-      //     $("#ptimer").text("Please Select  a Time");
-      //   } else {
-      //     $("#ptimer").text("");
-      //   }
-      //   if (gender == "Select a Gender") {
-      //     $("#pgender").text("Please Select  a Gender");
-      //   } else {
-      //     $("#pgender").text("");
-      //   }
-      //   if (!hobbies) {
-      //     $("#phobbies").text("Please Select Any one Checkbox");
-      //   } else {
-      //     $("#phobbies").text("");
-      //   }
-      //   if (!qualfication) {
-      //     $("#pradio").text("Please Select the radio button");
-      //   } else {
-      //     $("#pradio").text("");
-      //   }
-      //   if ($("#file").attr("imgpath") == "") {
-      //     $("#pfile").text("Please Upload the File");
-      //   } else {
-      //     $("#pfile").text("");
-      //   }
-
-      //   if ($("#multiple_Select").attr("data-value") == "") {
-      //     $("#mid").text("Please Select the hobbies");
-      //   } else {
-      //     $("#mid").text("");
-      //   }
-      //   if (sgender == "Select a Gender") {
-      //     $("#psgender").text("Please Select the Gender");
-      //   } else {
-      //     $("#psgender").text("");
-      //   }
-      //   if (!stime) {
-      //     $("#pstime").text("Please select Time");
-      //   } else {
-      //     $("#pstime").text(" ");
-      //   }
-      //   if (!saddress) {
-      //     $("#psaddr").text("Please Enter the Address");
-      //   } else {
-      //     $("#psaddr").text("");
-      //   }
-      // }
+      
     </script>
 
     <div class="footer">
