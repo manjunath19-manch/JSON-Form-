@@ -279,7 +279,7 @@
   {
     "metaDataId": "33",
     "tagName": "Student Name",
-    "type": "tTEXT",
+    "type": "ttext",
     "mandatory": "true",
     "editable": "true",
     "exportable": "true",
